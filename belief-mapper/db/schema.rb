@@ -11,9 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126222737) do
+ActiveRecord::Schema.define(version: 20141126225823) do
 
-  create_table "models", force: true do |t|
+  create_table "beliefs", force: true do |t|
+    t.string   "title"
+    t.string   "resource"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_beliefs", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "belief_id"
+    t.integer  "conviction"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_beliefs", ["belief_id"], name: "index_user_beliefs_on_belief_id"
+  add_index "user_beliefs", ["user_id"], name: "index_user_beliefs_on_user_id"
+
+  create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -28,7 +46,7 @@ ActiveRecord::Schema.define(version: 20141126222737) do
     t.datetime "updated_at"
   end
 
-  add_index "models", ["email"], name: "index_models_on_email", unique: true
-  add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

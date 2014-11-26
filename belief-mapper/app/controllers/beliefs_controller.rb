@@ -1,0 +1,2 @@
+class BeliefsController < ApplicationController
+end

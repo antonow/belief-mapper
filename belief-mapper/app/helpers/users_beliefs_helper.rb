@@ -1,0 +1,2 @@
+module UsersBeliefsHelper
+end

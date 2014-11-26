@@ -1,0 +1,2 @@
+module BeliefsHelper
+end
