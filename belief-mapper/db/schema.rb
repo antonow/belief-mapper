@@ -14,7 +14,8 @@
 ActiveRecord::Schema.define(version: 20141126225823) do
 
   create_table "beliefs", force: true do |t|
-    t.string   "title"
+    t.string   "name"
+    t.string   "definition"
     t.string   "resource"
     t.datetime "created_at"
     t.datetime "updated_at"
