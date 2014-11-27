@@ -11,12 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126225823) do
+ActiveRecord::Schema.define(version: 20141127175406) do
 
   create_table "beliefs", force: true do |t|
     t.string   "name"
     t.string   "definition"
     t.string   "resource"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "connections", force: true do |t|
+    t.integer  "belief_1_id"
+    t.integer  "belief_2_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
