@@ -1,0 +1,3 @@
+<% Belief.all.each do |belief| %>
+  <br><%= belief.name + " - " + belief.users.count.to_s %>
+<% end %>
