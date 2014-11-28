@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+
+#conviction {
+  width: 67%;
+  margin: auto;
+}
+
+#options {
+  text-align: center;
+}
+
+.centered {
+  margin: auto;
+}

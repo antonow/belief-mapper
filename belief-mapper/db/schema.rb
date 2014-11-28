@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127175406) do
+ActiveRecord::Schema.define(version: 20141128191950) do
 
   create_table "beliefs", force: true do |t|
     t.string   "name"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 20141127175406) do
   create_table "connections", force: true do |t|
     t.integer  "belief_1_id"
     t.integer  "belief_2_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "demographics", force: true do |t|
+    t.string   "gender"
+    t.integer  "age"
+    t.string   "religion"
+    t.string   "country"
+    t.string   "state"
+    t.string   "education_level"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

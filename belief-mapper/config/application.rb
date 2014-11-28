@@ -6,6 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# paths.app.views << "app/views/devise" # for connection custom registration controller to devise views
 # config.assets.initialize_on_precompile = false #recommend by devise for Heroku
 
 module BeliefMapper

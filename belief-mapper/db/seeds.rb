@@ -12,7 +12,7 @@ File.open( 'phrontisteryisms.txt' ).each_with_index do |line, index|
   end
 end
 
-10.times do
+20.times do
   User.create!(:email => Faker::Internet.email, :password => 'password', :password_confirmation => 'password')
 end
 
