@@ -14,6 +14,7 @@
 <%= form_for :resource, url: user_registration_path do |f| %>
 
   <%= devise_error_messages! %>
+  <%= flash[:error] %>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -33,7 +34,6 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-<%= render "devise/shared/links" %>
 </div>
 <div class="col-md-8">
   <h2>Demographics (optional)</h2>

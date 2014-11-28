@@ -1,15 +1,18 @@
 <div class="jumbotron">
   <h1>Belief Mapper</h1>
-  <p>Create a visual web of your beliefs. Categorize your belief system, manually or via a questionnaire.</p>
+  <p>Create a visual web of your beliefs. Categorize your belief system.</p>
   <p><a class="btn btn-primary btn-lg" href="#" role="button">Get Started Now</a></p>
 
   <hr>
   <h3>Question</h3>
-
-  Do you believe <%= Belief.all.sample.definition.sub(/belief /, "").sub(/doctrine /, "") %>?
+  <% @belief = Belief.all.sample %>
+  Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "") %>?
   <br>
   <br>
-  <form method="post" action="demoform.asp">
+  <!-- <form method="post" action=""> -->
+  <%= form_for :user_belief, url: user_beliefs_path do |f| %>
+  <% f.hidden_field :belief %>
+    <input type="hidden" name="belief" value=<%=@belief.id%>>
     <input type="range" name="conviction" id="conviction" value=0 min=0 max=100 list='levels' oninput="outputUpdate(value)">
 <!--     <datalist id='levels'>
       <option>0</option>
@@ -43,8 +46,8 @@
       }
     </script>
     <button type="submit" class="btn btn-success centered">Submit</button>
-    </form>
-
+    <!-- </form> -->
+    <% end %>
 </div>
 
 
