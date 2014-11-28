@@ -4,6 +4,7 @@ class UserBeliefsController < ApplicationController
     if create_belief?
       user_belief = UserBelief.new(belief: belief, user: current_user, conviction: params[:conviction])
       if user_belief.save!
+        create_connections_for(belief)
         redirect 'pagethatdoesntexist'
       end
     end
