@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   has_one  :demographic
   has_many :user_beliefs
   has_many :beliefs, through: :user_beliefs
+
+  def held_beliefs
+    return self.beliefs.where("conviction > ?", 5)
+  end
 end
