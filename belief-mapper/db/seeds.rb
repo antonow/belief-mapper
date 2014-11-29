@@ -1,5 +1,6 @@
-
 require 'faker'
+include ApplicationHelper
+
 
 belief = Belief.new
 
@@ -14,12 +15,14 @@ File.open( 'phrontisteryisms.txt' ).each_with_index do |line, index|
 end
 
 10.times do
-  User.create!(:email => Faker::Internet.email, :password => 'password', :password_confirmation => 'password')
+  demographic = Demographic.create!(:gender => 'f') # ['m', 'f'].sample
+  User.create!(:email => Faker::Internet.email, :password => 'password', :password_confirmation => 'password', :demographic => demographic)
 end
 
 User.all.each do |user|
-    rand(10..20).times do
+  rand(10..20).times do
     belief = Belief.all.sample
+    # user_belief = user.beliefs.create!(belief: belief, )
     user.beliefs << belief unless user.beliefs.include?(belief)
     belief.user_count += 1
     belief.save

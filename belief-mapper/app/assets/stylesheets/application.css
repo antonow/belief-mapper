@@ -27,3 +27,19 @@
 .centered {
   margin: auto;
 }
+
+.toolbar {
+    margin-left: 0;
+    padding-left: 19px;
+    border-left: 1px solid #eee;
+}
+
+/*.container {
+  background-color: black;
+  color: white;
+}*/
+
+/*.graph {
+  background-color: black;
+  color: white;
+}*/

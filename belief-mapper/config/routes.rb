@@ -21,7 +21,8 @@ Rails.application.routes.draw do
 
 
 
-  resources :beliefs, only: [:index]
+  resources :beliefs, only: [:index, :filter]
+  get 'beliefs/filter' => 'beliefs#filter'
 
 
   # Example of regular route:
