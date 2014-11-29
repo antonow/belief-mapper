@@ -11,20 +11,20 @@ var force = d3.layout.force()
     .charge(-100)
     .size([width, height]);
 
-d3.json("graph.json", function(error, json) {
+d3.json("/beliefs.json", function(error, json) {
   force
-      .nodes(json.nodes)
-      .links(json.links)
+      .nodes(json.beliefs)
+      .links(json.connections)
       .start();
 
   var link = svg.selectAll(".link")
-      .data(json.links)
+      .data(json.connections)
       .enter().append("line")
       .attr("class", "link")
-      .style("stroke-width", function(d) { return d.value; });
+      .style("stroke-width", function(d) { return d.ct; });
 
   var node = svg.selectAll(".node")
-      .data(json.nodes)
+      .data(json.beliefs)
       .enter().append("g")
       .attr("class", "node")
       .call(force.drag);
@@ -34,7 +34,7 @@ d3.json("graph.json", function(error, json) {
       // .enter()
       .attr("x", -8)
       .attr("y", -8)
-      .attr("r", function(d) { return d.count * 3; })
+      .attr("r", 3)
       .attr("width", 16)
       .attr("height", 16);
 
