@@ -1,24 +1,3 @@
 <!-- List all belief connections for a given belief -->
 
-<% @connection_hash.each do |names, count| %>
-  <%= names + " - " + count.to_s %>
-<% end %>
-
-<hr>
-
-<% Belief.all[2].connections.order('belief_1_id ASC').each do |connection| %>
-  <p><%= connection.belief_1.name %> and
-  <%= connection.belief_2.name %></p>
-  <p>Count: <%= Connection.all.where(belief_1_id: connection.belief_1.id, belief_2_id: connection.belief_2.id).count %></p>
-<% end %>
-<p>hello</p>
-
-
-
-<% Belief.all.each do |belief| %>
-  <br><%= belief.name + " - " + belief.users.count.to_s %>
-  <!-- <p>Connections to:</p> -->
-
-<% end %>
-<hr>
 

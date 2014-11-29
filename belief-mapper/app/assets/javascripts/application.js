@@ -10,7 +10,12 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require d3
 //= require jquery
 //= require jquery_ujs
+//= require underscore
 //= require turbolinks
-//= require_tree .
+
+
+// we turned of the requiring tree for some reason it works
+
