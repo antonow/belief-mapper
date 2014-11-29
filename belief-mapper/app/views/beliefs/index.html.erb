@@ -1,6 +1,3 @@
-<!-- List all belief connections for a given belief -->
-
-
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
@@ -17,6 +14,9 @@
 </style>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://underscorejs.org/underscore.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/jquery.tipsy/1.0.2/jquery.tipsy.js'></script>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.tipsy/1.0.2/jquery.tipsy.css" type="text/css" />
 <body>
 <div>
   <h3>Question</h3>
@@ -67,16 +67,21 @@
 <hr>
 <div class="row">
   <div class="col-lg-10 graph">
+
 <script>
+ $(function() {
+   $('a[rel=tipsy]').tipsy({fade: true, gravity: 'n'});
+ });
+
 var width = 960,
-    height = 500
+    height = 900
 
 var svg = d3.select(".graph").append("svg")
     .attr("width", width)
     .attr("height", height);
 
 var force = d3.layout.force()
-    .gravity(.05)
+    .gravity(.5)
     .distance(350)
     .charge(-10)
     .size([width, height]);
@@ -113,6 +118,8 @@ d3.json("/beliefs.json", function(error, json) {
       // .enter()
       .attr("x", -8)
       .attr("y", -8)
+      .attr("id", function(d) { return d.id;})
+      .attr("def", function(d) { return d.definition;})
       .attr("r", function(d) { return d.count * 2; })
       .attr("width", 16)
       .attr("height", 16);
@@ -123,21 +130,59 @@ d3.json("/beliefs.json", function(error, json) {
       .style("fill", "blue")
       .text(function(d) { return d.name });
 
-  d3.selectAll("circle").on("click", function(){
-            d3.select(this).attr('r', 25)
-                .style("fill","lightcoral")
-                .style("stroke","red");
+  node.on("click", function (d) {
+        // alert("Hi!");
+        link.style('stroke-width', function(l) {
+            if (d === l.source || d === l.target)
+              return l.value * 2;
+            else
+              return 0;
+        })
+        link.style('stroke', function(l) {
+            if (d === l.source || d === l.target)
+              return "red";
+            else
+              return "#ccc";
         });
 
+
+  });
+
+  node.on("dblclick", function(d) {
+    link.style('stroke-width', function(l) {
+      return l.value;
+    })
+    link.style('stroke', '#ccc');
+  });
+
+  $('circle').tipsy({
+        gravity: 'n',
+        html: true,
+        title: function() {
+          var def = this.getAttribute("def");
+          return def;
+        }
+      });
+
+  // d3.selectAll("circle").on("click", function(){
+  //           // d3.select(this).attr('r', 25)
+  //             d3.select(this).style("fill","lightcoral")
+  //               .style("stroke","red");
+  //       });
+
   force.on("tick", function() {
+
     link.attr("x1", function(d) { return d.source.x; })
         .attr("y1", function(d) { return d.source.y; })
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
 
     node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
   });
+
 });
+
 
 </script>
 </div>
