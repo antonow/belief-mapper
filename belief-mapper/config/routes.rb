@@ -13,14 +13,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-
-  # get '/users/sign_out'
   # devise_for :users, controllers: { registrations: "users/registrations" }
 
   # devise_for :users, :controllers => {:registrations => "registrations"}
 
-
-
+  # resources :mysessions, only: [:destroy]
+  delete 'sign_out' => 'my_sessions#destroy'
   resources :beliefs, only: [:index, :filter]
   get 'beliefs/filter' => 'beliefs#filter'
 

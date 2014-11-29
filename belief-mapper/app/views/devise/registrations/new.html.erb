@@ -1,20 +1,17 @@
 <script type= "text/javascript" src = "countries.js"></script>
 
 
-
-
-
-
 <div class="row">
 <div class="col-md-4">
 <h2>Sign up</h2>
 <hr>
 
+<%= devise_error_messages! %>
+<%= flash[:error] %>
 
 <%= form_for :resource, url: user_registration_path do |f| %>
 
-  <%= devise_error_messages! %>
-  <%= flash[:error] %>
+
 
   <div class="field">
     <%= f.label :email %><br />
