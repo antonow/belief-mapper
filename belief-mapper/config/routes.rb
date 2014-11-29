@@ -17,11 +17,10 @@ Rails.application.routes.draw do
 
   # devise_for :users, :controllers => {:registrations => "registrations"}
 
-  resources :beliefs, only: [:index]
-
-
   # resources :mysessions, only: [:destroy]
   delete 'sign_out' => 'my_sessions#destroy'
+  resources :beliefs, only: [:index, :filter]
+  get 'beliefs/filter' => 'beliefs#filter'
 
 
   # Example of regular route:
