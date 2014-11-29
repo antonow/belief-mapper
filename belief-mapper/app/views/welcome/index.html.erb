@@ -1,17 +1,67 @@
-<!-- List all belief connections for a given belief -->
+<div class="jumbotron">
+  <h1>Belief Mapper</h1>
+  <p>Create a visual web of your beliefs. Categorize your belief system.</p>
+  <p><a class="btn btn-primary btn-lg" href="#" role="button">Get Started Now</a></p>
 
+  <hr>
+  <h3>Question</h3>
+  <% @belief = Belief.all.sample %>
+  Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "") %>?
+  <br>
+  <br>
+  <!-- <form method="post" action=""> -->
+  <%= form_for :user_belief, url: user_beliefs_path do |f| %>
+  <% f.hidden_field :belief %>
+    <input type="hidden" name="belief" value=<%=@belief.id%>>
+    <input type="range" name="conviction" id="conviction" value=0 min=0 max=100 list='levels' oninput="outputUpdate(value)">
+<!--     <datalist id='levels'>
+      <option>0</option>
+      <option>50</option>
+      <option>100</option>
+    </datalist>
+ -->    <output for='conviction' id='level'></output>
+    <div id='options'>
+    <div class='col-lg-4 col-md-4 col-sm-4' id='1'>Not at all</div>
+    <div class='col-lg-4 col-md-4 col-sm-4' id='2'>I kinda believe that</div>
+    <div class='col-lg-4 col-md-4 col-sm-4' id='3'>Core belief</div>
+    </div>
+    <!-- <input type="submit" data-inline="true" value="Submit"> -->
+    <br>
+    <script>
+      function outputUpdate(level) {
+        $('#1').css("font-weight", "bold")
+        $('#2').css("font-weight", "normal")
+        $('#2').css("font-weight", "normal")
+
+        if (level > 95) {
+          $('#1').css("font-weight", "normal")
+          $('#2').css("font-weight", "normal")
+          $('#3').css("font-weight", "bold")
+        } else if (level > 5) {
+          $('#1').css("font-weight", "normal")
+          $('#2').css("font-weight", "bold")
+          $('#3').css("font-weight", "normal")
+        };
+        // document.querySelector('#level').value = phrase;
+      }
+    </script>
+    <button type="submit" class="btn btn-success centered">Submit</button>
+    <!-- </form> -->
+    <% end %>
+</div>
+
+
+
+
+<!-- List all belief connections for a given belief -->
+<p>Between _________ and __________ there are __ many connections</p>
 <% @connection_hash.each do |names, count| %>
-  <%= names + " - " + count.to_s %>
+  <%= names + " - " + (count / 2).to_s %><br>
 <% end %>
 
 <hr>
 
-<% Belief.all[2].connections.order('belief_1_id ASC').each do |connection| %>
-  <p><%= connection.belief_1.name %> and
-  <%= connection.belief_2.name %></p>
-  <p>Count: <%= Connection.all.where(belief_1_id: connection.belief_1.id, belief_2_id: connection.belief_2.id).count %></p>
-<% end %>
-<p>hello</p>
+
 
 
 

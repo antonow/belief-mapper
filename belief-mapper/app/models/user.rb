@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_one  :demographic
   has_many :user_beliefs
   has_many :beliefs, through: :user_beliefs
 end

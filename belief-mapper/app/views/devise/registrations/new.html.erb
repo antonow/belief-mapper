@@ -1,0 +1,100 @@
+<script type= "text/javascript" src = "countries.js"></script>
+
+
+
+
+
+
+<div class="row">
+<div class="col-md-4">
+<h2>Sign up</h2>
+<hr>
+
+
+<%= form_for :resource, url: user_registration_path do |f| %>
+
+  <%= devise_error_messages! %>
+  <%= flash[:error] %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @validatable %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+</div>
+<div class="col-md-8">
+  <h2>Demographics (optional)</h2>
+<hr>
+
+  <div class="field">
+    <%= f.label :gender %><br />
+    <select name="demographic[gender]">
+      <option value="" selected="selected">No answer</option>
+      <option value="m">Male</option>
+      <option value="f">Female</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <%= f.label :age %><br />
+    <input type="number" name="demographic[age]" min="3" max="130">
+  </div>
+
+  <div class="field">
+    <%= f.label :religion %><br/>
+    <select name="demographic[religion]">
+      <option value="" selected="selected">No answer</option>
+      <option value="Christianity">Christianity</option>
+      <option value="Islam">Islam</option>
+      <option value="Hinduism">Hinduism</option>
+      <option value="Buddhism">Buddhism</option>
+      <option value="Folk Religions">Folk Religions</option>
+      <option value="Judaism">Judaism</option>
+      <option value="Other">Other</option>
+      <option value="Unaffiliated">Unaffiliated</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <%=f.label :country %><br>
+    <select id="country" name ="demographic[country]"></select>
+    Select State: <select name ="demographic[state]" id ="state"></select>
+     <script language="javascript">
+    populateCountries("country", "state");
+     </script>
+  </div>
+
+  <div class="field">
+    <%= f.label :education_level %><br/>
+    <select name="demographic[education_level]">
+      <option value="" selected="selected">No answer</option>
+      <option value="High School Graduate">High School Graduate</option>
+      <option value="Some College">Some College</option>
+      <option value="Associate's Degree">Associate's Degree</option>
+      <option value="Bachelor's Degree">Bachelor's Degree</option>
+      <option value="Master's Degree">Master's Degree</option>
+      <option value="Doctorate">Doctorate</option>
+    </select>
+  </div>
+</div>
+</div>
+<hr>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+

@@ -1,2 +1,0 @@
-class UsersBeliefsController < ApplicationController
-end
