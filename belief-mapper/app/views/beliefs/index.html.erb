@@ -18,7 +18,7 @@
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://underscorejs.org/underscore.js"></script>
 <body>
-<div >
+<div>
   <h3>Question</h3>
   <% @belief = Belief.all.sample %>
   Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "") + " - " + @belief.id.to_s %>?
@@ -146,7 +146,6 @@ d3.json("/beliefs.json", function(error, json) {
   <hr>
   <ul>
     <li>Add a Belief</li>
-    <li>Subscribe to Selected Belief</li>
     <li>Remove Selected Belief</li>
     <li>Take a Survey
       <ul>
