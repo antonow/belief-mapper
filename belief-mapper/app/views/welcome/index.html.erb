@@ -53,22 +53,4 @@
 
 
 
-<!-- List all belief connections for a given belief -->
-<p>Between _________ and __________ there are __ many connections</p>
-<% @connection_hash.each do |names, count| %>
-  <%= names + " - " + (count / 2).to_s %><br>
-<% end %>
-
-<hr>
-
-
-
-
-
-<% Belief.all.each do |belief| %>
-  <br><%= belief.name + " - " + belief.users.count.to_s %>
-  <!-- <p>Connections to:</p> -->
-
-<% end %>
-<hr>
 
