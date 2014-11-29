@@ -3,7 +3,9 @@ json.beliefs @beliefs do |belief|
   json.name belief.name
   json.definition belief.definition
   json.count belief.user_count
-
+  if current_user.held_beliefs.include?(belief)
+    json.color "green"
+  end
 end
 
   json.connections @connections do |connection|
