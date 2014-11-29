@@ -1,12 +1,14 @@
 <div class="jumbotron">
   <h1>Belief Mapper</h1>
   <p>Create a visual web of your beliefs. Categorize your belief system.</p>
-  <p><a class="btn btn-primary btn-lg" href="#" role="button">Get Started Now</a></p>
+  <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Get Started Now</a></p> -->
 
   <hr>
+  <% @count = 0 %>
+  <p>Answer <%= (3-@count).to_s %> more questions to see your map</p>
   <h3>Question</h3>
   <% @belief = Belief.all.sample %>
-  Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "") %>?
+  Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "") + " - " + @belief.id.to_s %>?
   <br>
   <br>
   <!-- <form method="post" action=""> -->
