@@ -28,8 +28,8 @@ var svg = d3.select("body").append("svg")
 
 var force = d3.layout.force()
     .gravity(.05)
-    .distance(150)
-    .charge(-100)
+    .distance(350)
+    .charge(-10)
     .size([width, height]);
 
 d3.json("/beliefs.json", function(error, json) {
@@ -50,7 +50,8 @@ d3.json("/beliefs.json", function(error, json) {
       .data(edges)
       .enter().append("line")
       .attr("class", "link")
-      .style("stroke-width", function(d) { return d.value; });
+      .style("opacity", function(d) { return d.value / 10;})
+      .style("stroke-width", function(d) { if (d.value > 3) {return d.value ;}; });
 
   var node = svg.selectAll(".node")
       .data(json.beliefs)
@@ -63,14 +64,21 @@ d3.json("/beliefs.json", function(error, json) {
       // .enter()
       .attr("x", -8)
       .attr("y", -8)
-      .attr("r", function(d) { return d.count; })
+      .attr("r", function(d) { return d.count * 2; })
       .attr("width", 16)
       .attr("height", 16);
 
   node.append("text")
       .attr("dx", 12)
       .attr("dy", ".35em")
+      .style("fill", "blue")
       .text(function(d) { return d.name });
+
+  d3.selectAll("circle").on("click", function(){
+            d3.select(this).attr('r', 25)
+                .style("fill","lightcoral")
+                .style("stroke","red");
+        });
 
   force.on("tick", function() {
     link.attr("x1", function(d) { return d.source.x; })

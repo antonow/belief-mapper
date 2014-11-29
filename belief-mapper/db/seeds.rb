@@ -18,7 +18,7 @@ end
 end
 
 User.all.each do |user|
-  rand(30..50).times do
+    rand(10..20).times do
     belief = Belief.all.sample
     user.beliefs << belief unless user.beliefs.include?(belief)
     belief.user_count += 1
