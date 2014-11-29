@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20141128191950) do
     t.string   "name"
     t.string   "definition"
     t.string   "resource"
+    t.integer  "user_count", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(version: 20141128191950) do
   create_table "connections", force: true do |t|
     t.integer  "belief_1_id"
     t.integer  "belief_2_id"
+    t.integer  "count",       default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

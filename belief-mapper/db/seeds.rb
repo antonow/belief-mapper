@@ -1,3 +1,4 @@
+
 require 'faker'
 
 belief = Belief.new
@@ -12,7 +13,7 @@ File.open( 'phrontisteryisms.txt' ).each_with_index do |line, index|
   end
 end
 
-20.times do
+10.times do
   User.create!(:email => Faker::Internet.email, :password => 'password', :password_confirmation => 'password')
 end
 
@@ -20,6 +21,8 @@ User.all.each do |user|
   rand(30..50).times do
     belief = Belief.all.sample
     user.beliefs << belief unless user.beliefs.include?(belief)
+    belief.user_count += 1
+    belief.save
   end
 end
 
@@ -41,6 +44,12 @@ Belief.all.each do |belief|
       first_belief_id = related_belief.id
       second_belief_id = belief.id
     end
-    Connection.create(belief_1_id: first_belief_id, belief_2_id: second_belief_id)
+    if @conn = Connection.where(:belief_1_id => first_belief_id, :belief_2_id => second_belief_id).first
+      @conn.count += 1
+      @conn.save
+    else
+      Connection.create(belief_1_id: first_belief_id, belief_2_id: second_belief_id)
+    end
   end
 end
+
