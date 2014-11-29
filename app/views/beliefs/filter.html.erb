@@ -114,6 +114,7 @@ d3.json("/beliefs/filter.json", function(error, json) {
       .attr("x", -8)
       .attr("y", -8)
       .attr("r", function(d) { return d.count * 2; })
+      .style("fill", function(d) { return d.color })
       .attr("width", 16)
       .attr("height", 16);
 
@@ -140,6 +141,7 @@ d3.json("/beliefs/filter.json", function(error, json) {
 });
 
 </script>
+<div id="selected_node" hidden></div>
 </div>
 <div class="col-lg-2 toolbar">
   <h3>Toolbar</h3>
