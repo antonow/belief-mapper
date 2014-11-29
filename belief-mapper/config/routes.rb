@@ -14,14 +14,16 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
 
-  # get '/users/sign_out'
   # devise_for :users, controllers: { registrations: "users/registrations" }
 
   # devise_for :users, :controllers => {:registrations => "registrations"}
 
+  # get '/users/sign_out' => 'users/sessions#destroy'
 
 
   resources :beliefs, only: [:index]
+
+
 
 
   # Example of regular route:

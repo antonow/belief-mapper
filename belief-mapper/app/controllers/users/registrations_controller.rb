@@ -14,9 +14,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new(email: params[:resource][:email], password: params[:resource][:password])
     if params[:resource][:password] != params[:resource][:password_confirmation]
       flash[:error] = "Passwords do not match."
-      render :'devise/registrations/new'#:template => :back # "registrations_contr/index
+      render :'devise/registrations/new' #:template => :back # "registrations_contr/index
 
     elsif @user.save
+      session[:user_id] = @user.id
       flash[:success] = "User created!"
       redirect_to root_path
     else
@@ -33,9 +34,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       state: params[:demographic][:state],
       education_level: params[:demographic][:education_level]
       )
-    puts "==================="
-    puts @user.inspect
-    # redirect_to 'welcome/index'
+    puts "================="
+    puts params.inspect
+    puts "=================="
+    puts session[:user_id]
+
   end
 
   # GET /resource/edit
