@@ -17,8 +17,6 @@ Rails.application.routes.draw do
 
   # devise_for :users, :controllers => {:registrations => "registrations"}
 
-  # resources :mysessions, only: [:destroy]
-  delete 'sign_out' => 'my_sessions#destroy'
 
   # user_session POST   /users/sign_in(.:format)         users/sessions#create
 

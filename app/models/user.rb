@@ -12,7 +12,19 @@ class User < ActiveRecord::Base
     return self.beliefs.where("conviction > ?", 5)
   end
 
+
   def unexamined_beliefs
     return Belief.all - self.beliefs
   end
+
+  # returns every belief that the user has answered.
+  def beliefs_answered
+    return self.beliefs
+  end
+
+  # returns the percentage of questions answered.
+  def percent_answered
+    ((self.beliefs_answered.count.to_f / Belief.all.count.to_f) * 100).to_i.to_s + "%"
+  end
+
 end
