@@ -20,6 +20,7 @@
 <body>
 <div>
   <h3>Question</h3>
+
   <% @belief = current_user.unexamined_beliefs.sample %>
   Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "") + " - " + @belief.id.to_s %>?
   <br>
@@ -238,5 +239,23 @@ d3.json("/beliefs.json", function(error, json) {
     <li>Share your Map</li>
   </ul>
 </div>
+
+</div>
+
+<!-- Stats on questions answered and progress -->
+<div class="row">
+  <hr>
+
+  <h4>Percentage of questions answered:</h4>
+
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%=current_user.percent_answered %>;">
+      <%=current_user.percent_answered %>
+    </div>
+  </div>
+
+  <h4>You've answered <%=current_user.beliefs_answered.count%> questions.</h4>
+
+  <h4>You have <%=current_user.held_beliefs.count%> held beliefs.</h4>
 
 </div>
