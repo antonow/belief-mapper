@@ -1,7 +1,11 @@
 class BeliefsController < ApplicationController
   def index
-    @beliefs = Belief.all
-    @connections = Connection.all
+    unless user_signed_in?
+      redirect_to '/'
+    else
+      @beliefs = Belief.all
+      @connections = Connection.all
+    end
   end
 
   def filter
