@@ -131,10 +131,9 @@ d3.json("/beliefs.json", function(error, json) {
       .text(function(d) { return d.name });
 
   node.on("click", function (d) {
-        // alert("Hi!");
         link.style('stroke-width', function(l) {
             if (d === l.source || d === l.target)
-              return l.value * 2;
+              return l.value;
             else
               return 0;
         })
@@ -144,9 +143,28 @@ d3.json("/beliefs.json", function(error, json) {
             else
               return "#ccc";
         });
-
-
   });
+
+// TRYING TO TURN TIPSY OFF WHEN MOUSEDOWN
+
+  // var timeout = null
+  // $('.node').mousedown(function () {
+  //   $('.node').tipsy('disable')
+
+  //   timeout = setInterval(function () {
+  //   $('.node').tipsy('disable')
+  //   }, 500);
+
+  //   return false;
+  //   });
+  //   $('.node').mouseup(function () {
+  //       clearInterval(timeout);
+  //       return false;
+  //   });
+  //   $('.node').mouseout(function () {
+  //       clearInterval(timeout);
+  //       return false;
+  //   });
 
   node.on("dblclick", function(d) {
     link.style('stroke-width', function(l) {
@@ -155,11 +173,11 @@ d3.json("/beliefs.json", function(error, json) {
     link.style('stroke', '#ccc');
   });
 
-  $('circle').tipsy({
+  $('.node').tipsy({
         gravity: 'n',
         html: true,
         title: function() {
-          var def = this.getAttribute("def");
+          var def = this.getElementsByTagName("circle")[0].getAttribute("def");
           return def;
         }
       });
