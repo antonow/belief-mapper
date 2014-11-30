@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
   def held_beliefs
     return self.beliefs.where("conviction > ?", 5)
   end
+
+  def unexamined_beliefs
+    return Belief.all - self.beliefs
+  end
 end

@@ -7,7 +7,7 @@
   <% @count = 0 %>
   <p>Answer <%= (3-@count).to_s %> more questions to see your map</p>
   <h3>Question</h3>
-  <% @belief = Belief.all.sample %>
+  <% @belief = current_user.unexamined_beliefs.sample %>
   Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "") + " - " + @belief.id.to_s %>?
   <br>
   <br>

@@ -27,7 +27,7 @@
       </a>
     </div>
       <!-- Only displays logout button if user is signed in -->
-      <% if current_user %>
+      <% if current_user? %>
         <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Log Out', sign_out_path, method: :delete%></button>
       <!-- Displays sign in or sign up button if not logged in -->
       <% else %>
