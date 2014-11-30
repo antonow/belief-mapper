@@ -22,8 +22,8 @@ end
 User.all.each do |user|
   rand(10..20).times do
     belief = Belief.all.sample
-    # user_belief = user.beliefs.create!(belief: belief, )
-    user.beliefs << belief unless user.beliefs.include?(belief)
+    user_belief = UserBelief.create!(belief: belief, conviction: rand(0..100), user: user)
+    # user.beliefs << belief unless user.beliefs.include?(belief)
     belief.user_count += 1
     belief.save
   end
