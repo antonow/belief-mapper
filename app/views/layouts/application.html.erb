@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BeliefMapper</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class='container col-3'>
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <!-- <img alt="Brand" src="..."> -->
+      </a>
+    </div>
+      <!-- Only displays logout button if user is signed in -->
+<<<<<<< HEAD:belief-mapper/app/views/layouts/application.html.erb
+      <% if current_user? %>
+=======
+      <% if user_signed_in? %>
+>>>>>>> 7b1762684909c00036395435c509f61ce055e352:app/views/layouts/application.html.erb
+        <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Log Out', sign_out_path, method: :delete%></button>
+      <!-- Displays sign in or sign up button if not logged in -->
+      <% else %>
+        <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Sign in', new_user_session_path %></button>
+        <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Sign up', new_user_registration_path %></button>
+      <% end %>
+  </div>
+</nav>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+<%= yield %>
+</div>
+
+</body>
+</html>
