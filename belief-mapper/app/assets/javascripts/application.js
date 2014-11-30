@@ -16,5 +16,6 @@
 //= require underscore
 //= require turbolinks
 
-// we turned of the requiring tree for some reason it works
+
+// we turned of the requiring tree for some reason it works.
 

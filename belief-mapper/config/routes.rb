@@ -19,6 +19,13 @@ Rails.application.routes.draw do
 
   # resources :mysessions, only: [:destroy]
   delete 'sign_out' => 'my_sessions#destroy'
+
+  # user_session POST   /users/sign_in(.:format)         users/sessions#create
+
+  # post 'login' => 'my_sessions#create'
+
+
+
   resources :beliefs, only: [:index, :filter]
   get 'beliefs/filter' => 'beliefs#filter'
 

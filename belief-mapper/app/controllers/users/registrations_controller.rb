@@ -1,6 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
+# skip_before_filter  :verify_authenticity_token
 
   # GET /resource/sign_up
   # def new
@@ -11,9 +12,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     # raise "we're here"
     # @user = User.new(email: )
+    # super
+    @user = User.new(
+      email: params[:resource][:email],
+      password: params[:resource][:password],
+      password_confirmation: params[:resource][:password_confirmation]
+      )
 
-
-    @user = User.new(email: params[:resource][:email], password: params[:resource][:password])
     if params[:resource][:password] != params[:resource][:password_confirmation]
       flash[:error] = "Passwords do not match."
       render :'devise/registrations/new' #:template => :back # "registrations_contr/index
@@ -21,7 +26,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     elsif @user.save
       session[:user_id] = @user.id
       flash[:success] = "User created!"
-      redirect_to root_path
+      sign_in @user, :bypass => true
+      redirect_to beliefs_path
+
     else
       flash[:error] = "We could not create an account for you."
       render :'devise/registrations/new'#:template => :back # "registrations_contr/index"
@@ -36,7 +43,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
       state: params[:demographic][:state],
       education_level: params[:demographic][:education_level]
       )
+
+    # @user.save
+    # sign_in @user
+    # sign_in @user, :bypass => true
+    # redirect_to beliefs_path
   end
+
+  # def after_sign_up_path_for(user)
+  #    beliefs_path
+  # end
 
   # GET /resource/edit
   # def edit

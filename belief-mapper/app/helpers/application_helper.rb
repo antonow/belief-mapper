@@ -1,4 +1,12 @@
 module ApplicationHelper
+
+   # DEVISE HELPERS
+   # To verify if a user is signed in, use the following helper:
+   # user_signed_in?
+   # For the current signed-in user, this helper is available:
+   # current_user
+
+
   # Returns current user if it exists
   def current_user
     @current_user = User.find(session[:user_id]) if session[:user_id]
