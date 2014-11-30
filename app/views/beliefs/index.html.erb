@@ -131,11 +131,7 @@ d3.json("/beliefs.json", function(error, json) {
       .text(function(d) { return d.name });
 
   node.on("click", function (d) {
-<<<<<<< HEAD:belief-mapper/app/views/beliefs/index.html.erb
-        // alert("Hi!");
         $('#selected_node').html(d.id);
-=======
->>>>>>> 7b1762684909c00036395435c509f61ce055e352:app/views/beliefs/index.html.erb
         link.style('stroke-width', function(l) {
             if (d === l.source || d === l.target)
               return l.value;
