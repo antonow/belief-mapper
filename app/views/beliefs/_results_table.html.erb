@@ -1,0 +1,25 @@
+<%= link_to 'Return to Graph', beliefs_path %><br><br>
+<% your_beliefs = current_user.held_beliefs %>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Definition</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @results.each do |result| %>
+    <tr>
+      <td><%= result.name %></td>
+      <td><%= result.definition %></td>
+      <% unless your_beliefs.include?(result) %>
+        <td><%= button_tag 'Subscribe', :class => 'subscribe ' + result.id.to_s %></td>
+      <% else %>
+        <td><%= button_to 'Unsubscribe', user_belief_path(result), method: :delete %></td>
+      <% end %>
+    </tr>
+    <tr id=<%= result.id.to_s %> hidden><td colspan='3'><%= render partial: "slider_form", locals: { belief: result } %></td></tr>
+  <% end %>
+  </tbody>
+</table>
