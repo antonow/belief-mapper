@@ -11,29 +11,7 @@
  * file per style scope.
  *
  *= require_tree .
- *= require_self
  */
-
-
-#conviction {
-  width: 67%;
-  margin: auto;
-}
-
-#options {
-  text-align: center;
-}
-
-.centered {
-  text-align: center;
-  margin: auto;
-}
-
-.toolbar {
-    margin-left: 0;
-    padding-left: 19px;
-    border-left: 1px solid #eee;
-}
 
 /*.container {
   background-color: black;
