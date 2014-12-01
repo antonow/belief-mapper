@@ -1,8 +1,5 @@
 renderD3Web = function() {
-  $('a[rel=tipsy]').tipsy({
-    fade: true,
-    gravity: 'n'
-  });
+
 
   var width = 960,
     height = 600
@@ -129,27 +126,6 @@ renderD3Web = function() {
       });
     });
 
-    // TRYING TO TURN TIPSY OFF WHEN MOUSEDOWN
-
-    // var timeout = null
-    // $('.node').mousedown(function () {
-    //   $('.node').tipsy('disable')
-
-    //   timeout = setInterval(function () {
-    //   $('.node').tipsy('disable')
-    //   }, 500);
-
-    //   return false;
-    //   });
-    //   $('.node').mouseup(function () {
-    //       clearInterval(timeout);
-    //       return false;
-    //   });
-    //   $('.node').mouseout(function () {
-    //       clearInterval(timeout);
-    //       return false;
-    //   });
-
     node.on("dblclick", function(d) {
       link.style('stroke-width', function(l) {
         return l.value;
@@ -158,7 +134,7 @@ renderD3Web = function() {
     });
 
     $('.node').tipsy({
-      gravity: 'n',
+      gravity: 'sw',
       html: true,
       title: function() {
         var def = this.getElementsByTagName("circle")[0].getAttribute("def");
@@ -171,6 +147,38 @@ renderD3Web = function() {
     //             d3.select(this).style("fill","lightcoral")
     //               .style("stroke","red");
     //       });
+
+    var padding = 10, // separation between circles
+      radius = 10;
+
+    function collide(alpha) {
+      var quadtree = d3.geom.quadtree(json.beliefs);
+      return function(d) {
+        // console.log("COLLIDE RETURN!", d);
+        //console.log(quadtree);
+        var rb = 2 * radius + padding,
+          nx1 = d.x - rb,
+          nx2 = d.x + rb,
+          ny1 = d.y - rb,
+          ny2 = d.y + rb;
+        quadtree.visit(function(quad, x1, y1, x2, y2) {
+          //console.log("VISITED!!!!!", quad);
+          if (quad.point && (quad.point !== d)) {
+            var x = d.x - quad.point.x,
+              y = d.y - quad.point.y,
+              l = Math.sqrt(x * x + y * y);
+            if (l < rb) {
+              l = (l - rb) / l * alpha;
+              d.x -= x *= l;
+              d.y -= y *= l;
+              quad.point.x += x;
+              quad.point.y += y;
+            }
+          }
+          return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+        });
+      };
+    }
 
     force.on("tick", function() {
 
@@ -190,6 +198,7 @@ renderD3Web = function() {
       node.attr("transform", function(d) {
         return "translate(" + d.x + "," + d.y + ")";
       });
+      // node.each(collide(1));
 
     });
 
