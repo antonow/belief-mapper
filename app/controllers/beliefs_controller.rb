@@ -4,7 +4,7 @@ class BeliefsController < ApplicationController
       redirect_to '/'
     else
       if params[:query].present?
-        @results = Belief.search(params[:query], page: params[:page])
+        @results = Belief.search(params[:query]) # , page: params[:page]
       else
         @beliefs = Belief.all
         @connections = Connection.all

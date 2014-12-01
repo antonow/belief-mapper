@@ -11,43 +11,5 @@
   <!-- + " - " + @belief.id.to_s -->
   <br>
   <br>
-  <!-- <form method="post" action=""> -->
-  <%= form_for :user_belief, url: user_beliefs_path do |f| %>
-  <% f.hidden_field :belief %>
-    <input type="hidden" name="belief" value=<%=@belief.id%>>
-    <input type="range" name="conviction" id="conviction" value=0 min=0 max=100 list='levels' oninput="outputUpdate(value)">
-<!--     <datalist id='levels'>
-      <option>0</option>
-      <option>50</option>
-      <option>100</option>
-    </datalist>
- -->    <output for='conviction' id='level'></output>
-    <div id='options'>
-    <div class='col-lg-4 col-md-4 col-sm-4' id='1'>Not at all</div>
-    <div class='col-lg-4 col-md-4 col-sm-4' id='2'>I kinda believe that</div>
-    <div class='col-lg-4 col-md-4 col-sm-4' id='3'>Core belief</div>
-    </div>
-    <!-- <input type="submit" data-inline="true" value="Submit"> -->
-    <br>
-    <script>
-      function outputUpdate(level) {
-        $('#1').css("font-weight", "bold")
-        $('#2').css("font-weight", "normal")
-        $('#2').css("font-weight", "normal")
-
-        if (level > 95) {
-          $('#1').css("font-weight", "normal")
-          $('#2').css("font-weight", "normal")
-          $('#3').css("font-weight", "bold")
-        } else if (level > 5) {
-          $('#1').css("font-weight", "normal")
-          $('#2').css("font-weight", "bold")
-          $('#3').css("font-weight", "normal")
-        };
-        // document.querySelector('#level').value = phrase;
-      }
-    </script>
-    <button type="submit" class="btn btn-success centered">Submit</button>
-    <!-- </form> -->
-    <% end %>
+  <%= render partial: "/beliefs/slider_form", locals: { belief: @belief } %>
 </div>
