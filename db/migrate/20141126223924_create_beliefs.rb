@@ -7,6 +7,7 @@ class CreateBeliefs < ActiveRecord::Migration
       t.belongs_to :category
       t.integer :user_count, :default => 0
       t.integer :avg_conviction
+      t.boolean :starred, :default => false
 
       t.timestamps
     end

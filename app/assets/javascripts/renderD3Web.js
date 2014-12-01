@@ -1,6 +1,19 @@
-var maxNodes = 13
+
 
 renderD3Web = function() {
+  var maxNodes = 40;
+  // var showFirst;
+  // var hideEdges;
+
+  // $("#max_nodes").mousemove(function () {
+  //   $("#text").text($("#max_nodes").val());
+  //   maxNodes = $("#max_nodes").val();
+  //   console.log(maxNodes);
+  //   showFirst(10);
+  //   hideEdges(25);
+  // });
+
+
 
 
   var width = 960,
@@ -43,8 +56,8 @@ renderD3Web = function() {
   }
 
   d3.json("/beliefs.json", function(error, json) {
-    var data = json.beliefs.filter(function(d) {return d.id < maxNodes;});
-    console.log(data);
+    // var data = json.beliefs.filter(function(d) {return d.id < maxNodes;});
+    // console.log(data);
     var edges = [];
     json.connections.forEach(function(e) {
       var sourceBelief = json.beliefs.filter(function(n) {
@@ -54,29 +67,26 @@ renderD3Web = function() {
           return n.id === e.target;
         })[0];
 
-      // var toAdd, check1, check2 = false;
-      // data.forEach(function(e) {
-      //   if (e.id === sourceBelief.id) {
-      //     check1 = true;
-      //   };
-      //   if (e.id === targetBelief.id) {
-      //     check2 = true;
-      //   };
-      // });
-      // if (check1 === true && check2 == true) {
-      //   toAdd = true;
-      // };
-
         edges.push({
           source: sourceBelief,
           target: targetBelief,
           value: e.value
         });
 
-      var toAdd, check1, check2 = false;
     });
 
-    edges = edges.filter(function(d) { return (d.source.id < maxNodes && d.target.id < maxNodes); });
+    // showFirst = function showFirst(x) {
+    //   debugger;
+    //   var node = svg.selectAll(".node")
+    //     .data(edges.filter(function(d) { return d.id < x; }))
+    //     .attr("display", "none");
+    // }
+
+    // hideEdges = function(max) {
+    //   var link = svg.selectAll(".link")
+    //     .data(edges.filter(function(d) { return (d.source.id < max && d.target.id < max); }))
+    //     .attr("display", "none");
+    // }
 
     force
       .nodes(json.beliefs)
@@ -84,7 +94,7 @@ renderD3Web = function() {
       .start();
 
     var link = svg.selectAll(".link")
-      .data(edges)
+      .data(edges.filter(function(d) { return (d.source.id < maxNodes && d.target.id < maxNodes); }))
       .enter().append("line")
       .attr("class", "link")
       .style("opacity", function(d) {
