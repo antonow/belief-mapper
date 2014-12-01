@@ -3,8 +3,12 @@ class BeliefsController < ApplicationController
     unless user_signed_in?
       redirect_to '/'
     else
-      @beliefs = Belief.all
-      @connections = Connection.all
+      if params[:query].present?
+        @results = Belief.search(params[:query], page: params[:page])
+      else
+        @beliefs = Belief.all
+        @connections = Connection.all
+      end
     end
   end
 
@@ -34,6 +38,11 @@ class BeliefsController < ApplicationController
   @beliefs = Belief.all
   @connections = Connection.all
 
+  end
+
+  def search
+    raise params.to_s
+    @results = Belief.search(params)
   end
 
   def autocomplete
