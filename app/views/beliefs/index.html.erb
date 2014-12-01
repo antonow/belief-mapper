@@ -22,7 +22,8 @@
   <h3>Question</h3>
 
   <% @belief = current_user.unexamined_beliefs.sample %>
-  Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "") + " - " + @belief.id.to_s %>?
+  Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "")  %>?
+  <!-- + " - " + @belief.id.to_s -->
   <br>
   <br>
   <!-- <form method="post" action=""> -->
