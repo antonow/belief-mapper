@@ -20,7 +20,8 @@ ActiveRecord::Schema.define(version: 20141128191950) do
     t.string   "name"
     t.string   "definition"
     t.string   "resource"
-    t.integer  "user_count", default: 0
+    t.integer  "user_count",     default: 0
+    t.integer  "avg_conviction"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

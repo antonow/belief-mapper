@@ -73,6 +73,7 @@
    $('a[rel=tipsy]').tipsy({fade: true, gravity: 'n'});
  });
 
+
 var width = 960,
     height = 600
 
@@ -85,6 +86,32 @@ var force = d3.layout.force()
     .distance(350)
     .charge(-10)
     .size([width, height]);
+
+function toQuintile(value) {
+  switch (true) {
+    case value > 85:
+      return "hsl(5, 90%, 50%)";
+      break;
+    case value > 65:
+      return "hsl(10, 80%, 50%)";
+      break;
+    case value > 50:
+      return "hsl(15, 70%, 50%)";
+      break;
+    case value > 35:
+      return "hsl(20, 60%, 50%)";
+      break;
+    case value > 20:
+      return "hsl(25, 50%, 50%)";
+      break;
+    case value > 5:
+      return "hsl(30, 40%, 50%)";
+      break;
+    case value == -1:
+      return "hsl(0, 0%, 50%)";
+      break;
+    }
+}
 
 d3.json("/beliefs.json", function(error, json) {
   var edges = [];
@@ -121,14 +148,15 @@ d3.json("/beliefs.json", function(error, json) {
       .attr("id", function(d) { return d.id;})
       .attr("def", function(d) { return d.definition;})
       .attr("r", function(d) { return d.count * 2; })
-      .style("fill", function(d) { return d.color })
+      // .style("fill", function(d) { return d.color;})    "hsl(" + d.hsl.to_quintile + ",50%, 50%)"; })
+      .style("fill", function(d) {return toQuintile(d.hsl);})
       .attr("width", 16)
       .attr("height", 16);
 
   node.append("text")
       .attr("dx", 12)
       .attr("dy", ".35em")
-      .style("fill", "blue")
+      .style("fill", "#153D93")
       .text(function(d) { return d.name });
 
   node.on("click", function (d) {
@@ -141,7 +169,7 @@ d3.json("/beliefs.json", function(error, json) {
         })
         link.style('stroke', function(l) {
             if (d === l.source || d === l.target)
-              return "red";
+              return "#DA6E6C";
             else
               return "#ccc";
         });
