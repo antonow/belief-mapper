@@ -4,6 +4,7 @@ class CreateBeliefs < ActiveRecord::Migration
       t.string :name
       t.string :definition
       t.string :resource
+      t.belongs_to :category
       t.integer :user_count, :default => 0
       t.integer :avg_conviction
 

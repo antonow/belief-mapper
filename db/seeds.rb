@@ -51,4 +51,11 @@ Belief.all.each do |belief|
   belief.save
 end
 
+# Creates categories
+Category.create!(name: "Philosophy")
+Category.create!(name: "Politics")
+Category.create!(name: "Religion")
+
+
+
 
