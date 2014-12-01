@@ -80,7 +80,7 @@
 .tipsy-s .tipsy-arrow {
     bottom: 0;
     left: 50%;
-    margin-left: -5px;
+    margin-left: 50px;
     border-top-style: solid;
     border-bottom: none;
     border-left-color: transparent;
