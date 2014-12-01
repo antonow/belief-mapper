@@ -1,3 +1,5 @@
+var maxNodes = 13
+
 renderD3Web = function() {
 
 
@@ -41,6 +43,8 @@ renderD3Web = function() {
   }
 
   d3.json("/beliefs.json", function(error, json) {
+    var data = json.beliefs.filter(function(d) {return d.id < maxNodes;});
+    console.log(data);
     var edges = [];
     json.connections.forEach(function(e) {
       var sourceBelief = json.beliefs.filter(function(n) {
@@ -50,12 +54,29 @@ renderD3Web = function() {
           return n.id === e.target;
         })[0];
 
-      edges.push({
-        source: sourceBelief,
-        target: targetBelief,
-        value: e.value
-      });
+      // var toAdd, check1, check2 = false;
+      // data.forEach(function(e) {
+      //   if (e.id === sourceBelief.id) {
+      //     check1 = true;
+      //   };
+      //   if (e.id === targetBelief.id) {
+      //     check2 = true;
+      //   };
+      // });
+      // if (check1 === true && check2 == true) {
+      //   toAdd = true;
+      // };
+
+        edges.push({
+          source: sourceBelief,
+          target: targetBelief,
+          value: e.value
+        });
+
+      var toAdd, check1, check2 = false;
     });
+
+    edges = edges.filter(function(d) { return (d.source.id < maxNodes && d.target.id < maxNodes); });
 
     force
       .nodes(json.beliefs)
@@ -76,7 +97,7 @@ renderD3Web = function() {
       });
 
     var node = svg.selectAll(".node")
-      .data(json.beliefs)
+      .data(json.beliefs.filter(function(d) {return d.id < maxNodes;}))
       .enter().append("g")
       .attr("class", "node")
       .call(force.drag);
