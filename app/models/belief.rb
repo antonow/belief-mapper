@@ -1,4 +1,5 @@
 class Belief < ActiveRecord::Base
+  belongs_to :category
   has_many :user_beliefs
   has_many :users, through: :user_beliefs
   has_many :connections, foreign_key: 'belief_1_id'
