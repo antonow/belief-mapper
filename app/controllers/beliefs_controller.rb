@@ -35,4 +35,9 @@ class BeliefsController < ApplicationController
   @connections = Connection.all
 
   end
+
+  def autocomplete
+    render json: Belief.search(params[:query], fields: [{name: :text_start}], limit: 10).map(&:name)
+  end
+
 end

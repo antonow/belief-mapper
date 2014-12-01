@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :beliefs, only: [:index, :filter]
   get 'beliefs/filter' => 'beliefs#filter'
 
-  resources :demographics, only: [:new, :create, :update]
+  resources :demographics, only: [:new, :create, :update, :edit]
 
 
   # Example of regular route:

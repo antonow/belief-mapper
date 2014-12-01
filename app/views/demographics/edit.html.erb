@@ -3,7 +3,7 @@
 <h2>Demographics (optional)</h2>
 <hr>
 
-<%= form_for :demographic, url: demographics_path do |f| %>
+<%= form_for(:demographic, url: demographic_path(@demographic), html: { method: :put }) do |f| %>
 
   <div class="field">
     <%= f.label :gender %><br />
