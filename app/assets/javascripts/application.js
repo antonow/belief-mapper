@@ -20,3 +20,11 @@
 
 // we turned of the requiring tree for some reason it works.
 
+$(document).ready(function(){
+  $('.subscribe').click(function(e) {
+    e.preventDefault();
+    $('#' + this.classList[1]).show();
+  });
+});
+
+

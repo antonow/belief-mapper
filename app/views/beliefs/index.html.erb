@@ -13,58 +13,24 @@
 
 </style>
 <body>
-<div>
-
+<% if (defined?(@results)).nil? %>
   <!-- QUESTION DIV BEGINS HERE -->
   <div class="row">
     <!-- <div class="col-md-1"></div> -->
     <div class="col-md-3" >
     <% @belief = current_user.unexamined_beliefs.sample %>
-    Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "") + " (question id: #{@belief.id.to_s})" %>?
+    Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "")%>?
     </div>
   <!-- </div> -->
 
     <!-- CONVICTION SLIDER DIV -->
     <!-- <div class="row"> -->
     <div class="col-md-7">
-    <%= form_for :user_belief, url: user_beliefs_path do |f| %>
-    <% f.hidden_field :belief %>
-      <input type="hidden" name="belief" value=<%=@belief.id%>>
-      <input type="range" name="conviction" id="conviction" value=0 min=0 max=100 list='levels' oninput="outputUpdate(value)">
-      <!-- <output for='conviction' id='level'></output> -->
-      <div id='options'>
-        <div class='col-lg-4 col-md-4 col-sm-4' id='1'>Not at all</div>
-        <div class='col-lg-4 col-md-4 col-sm-4' id='2'>I kinda believe that</div>
-        <div class='col-lg-4 col-md-4 col-sm-4' id='3'>Core belief</div>
-      </div>
-    </div>
-    <!-- SUBMIT BUTTON DIV -->
-    <div class="col-md-2">
-      <button type="submit" class="btn btn-success centered">Submit</button>
+      <%= render partial: "slider_form", locals: { belief: @belief } %>
     </div>
   </div>
-  <script>
-    function outputUpdate(level) {
-      $('#1').css("font-weight", "bold")
-      $('#2').css("font-weight", "normal")
-      $('#2').css("font-weight", "normal")
-
-      if (level > 95) {
-        $('#1').css("font-weight", "normal")
-        $('#2').css("font-weight", "normal")
-        $('#3').css("font-weight", "bold")
-      } else if (level > 5) {
-        $('#1').css("font-weight", "normal")
-        $('#2').css("font-weight", "bold")
-        $('#3').css("font-weight", "normal")
-      };
-      // document.querySelector('#level').value = phrase;
-    }
-  </script>
+<hr>
 <% end %>
-</div>
-
-<br>
 
 <!-- PROGRESS BAR DIV BEGINS HERE -->
   <div class="row">
@@ -95,16 +61,35 @@
 <div id="selected_node" hidden></div>
 <% else %>
 <%= link_to 'Return to Graph', beliefs_path %><br><br>
-<% @results.each do |result| %>
-<p><%= result.name + " - " + result.definition %></p>
-<% end %>
-
+<% your_beliefs = current_user.held_beliefs %>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Definition</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @results.each do |result| %>
+    <tr>
+      <td><%= result.name %></td>
+      <td><%= result.definition %></td>
+      <% unless your_beliefs.include?(result) %>
+        <td><%= button_tag 'Subscribe', :class => 'subscribe ' + result.id.to_s %></td>
+      <% else %>
+        <td><%= button_to 'Unsubscribe', user_belief_path(result), method: :delete %></td>
+      <% end %>
+    </tr>
+    <tr id=<%= result.id.to_s %> hidden><td colspan='3'><%= render partial: "slider_form", locals: { belief: result } %></td></tr>
+  <% end %>
+  </tbody>
+</table>
 <% end %>
 </div>
 <div class="col-lg-2 toolbar">
   <h3>Toolbar</h3>
   <hr>
-
       <%= form_for :belief, url: beliefs_path, method: :get do |f| %>
         <div class="field">
           <input type="text" id="query" name="query" placeholder="Search All Beliefs" />
@@ -114,20 +99,9 @@
         </div><br>
       <% end %>
 
-
-<!-- <script src="jquery.js"></script> -->
-<!-- <script src="typeahead.js"></script> -->
-<script>
-  // $("#query").typeahead({
-  //   name: "belief",
-  //   remote: "/belief/autocomplete?query=%QUERY"
-  // });
-</script>
-
-
     <%= form_for :user_belief, url: user_belief_path(:user_belief), method: :delete do |f| %>
         <div class="field">
-          <%= f.select(:user_belief, current_user.beliefs.map { |belief| belief.name }, {include_blank: 'Select a belief to'}) %>
+          <%= f.select(:name, current_user.beliefs.map { |belief| belief.name }, {include_blank: 'Select a belief to'}) %>
         </div>
       <div class="actions">
           <%= f.submit "Unsubscribe" %>

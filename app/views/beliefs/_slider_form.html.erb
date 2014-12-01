@@ -1,0 +1,38 @@
+<%= form_for :user_belief, url: user_beliefs_path do |f| %>
+<% f.hidden_field :belief %>
+  <input type="hidden" name="belief" value=<%=belief.id%>>
+  <input type="range" name="conviction" id="conviction" value=0 min=0 max=100 list='levels' oninput="outputUpdate(value)">
+<!--     <datalist id='levels'>
+    <option>0</option>
+    <option>50</option>
+    <option>100</option>
+  </datalist>
+-->    <output for='conviction' id='level'></output>
+  <div id='options'>
+  <div class='col-lg-4 col-md-4 col-sm-4' id='first'>Not at all</div>
+  <div class='col-lg-4 col-md-4 col-sm-4' id='second'>I kinda believe that</div>
+  <div class='col-lg-4 col-md-4 col-sm-4' id='third'>Core belief</div>
+  </div>
+  <!-- <input type="submit" data-inline="true" value="Submit"> -->
+  <br>
+  <script>
+    function outputUpdate(level) {
+      $('#first').css("font-weight", "bold")
+      $('#second').css("font-weight", "normal")
+      $('#third').css("font-weight", "normal")
+
+      if (level > 95) {
+        $('#first').css("font-weight", "normal")
+        $('#second').css("font-weight", "normal")
+        $('#third').css("font-weight", "bold")
+      } else if (level > 5) {
+        $('#first').css("font-weight", "normal")
+        $('#second').css("font-weight", "bold")
+        $('#third').css("font-weight", "normal")
+      };
+      // document.querySelector('#level').value = phrase;
+    }
+  </script>
+  <button type="submit" class="btn btn-success centered">Submit</button>
+  <!-- </form> -->
+  <% end %>
