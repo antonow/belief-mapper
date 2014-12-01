@@ -4,7 +4,9 @@ json.beliefs @beliefs do |belief|
   json.definition belief.definition
   json.count belief.user_count
   if current_user.held_beliefs.include?(belief)
-    json.color "green"
+    json.hsl belief.avg_conviction
+  else
+    json.hsl -1
   end
 end
 

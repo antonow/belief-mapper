@@ -1,3 +1,38 @@
 // Place all the styles related to the Beliefs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#conviction {
+  width: 67%;
+  margin: auto;
+}
+
+#options {
+  text-align: center;
+}
+
+.centered {
+  text-align: center;
+  margin: auto;
+}
+
+.toolbar {
+  margin-left: 0;
+  padding-left: 19px;
+  border-left: 1px solid #eee;
+}
+#question_box{
+  margin-bottom: -30px;
+}
+
+#progress_bar{
+  margin-bottom: 0px;
+}
+
+.submit {
+  position: relative;
+  top: -15px;
+}

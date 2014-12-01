@@ -17,8 +17,6 @@ Rails.application.routes.draw do
 
   # devise_for :users, :controllers => {:registrations => "registrations"}
 
-  # resources :mysessions, only: [:destroy]
-  delete 'sign_out' => 'my_sessions#destroy'
 
   # user_session POST   /users/sign_in(.:format)         users/sessions#create
 
@@ -26,10 +24,12 @@ Rails.application.routes.draw do
 
 
 
-  resources :beliefs, only: [:index, :filter]
+  resources :beliefs, only: [:index, :filter, :results, :search]
   get 'beliefs/filter' => 'beliefs#filter'
+  get 'beliefs/results' => 'beliefs#results'
+  post 'beliefs/search' => 'beliefs#search'
 
-  resources :demographics, only: [:new, :create, :update]
+  resources :demographics, only: [:new, :create, :update, :edit]
 
 
   # Example of regular route:

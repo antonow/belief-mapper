@@ -1,0 +1,43 @@
+<script type= "text/javascript" src = "countries.js"></script>
+
+<h2>Demographics (optional)</h2>
+<hr>
+
+<%= form_for(:demographic, url: demographic_path(@demographic), html: { method: :put }) do |f| %>
+
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.select(:gender, %w[Female Male Transgender], {include_blank: true}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :age %><br />
+    <%= f.number_field :age %>
+  </div>
+
+  <div class="field">
+    <%= f.label :religion %><br/>
+    <%= f.select(:religion, %w[Christianity Islam Hinduism Buddhism Folk Judaism Other Unaffiliated], {include_blank: true}) %>
+  </div>
+
+<div class="field">
+    <%=f.label :country %><br>
+    <select id="country" name ="demographic[country]"></select>
+    Select State: <select name ="demographic[state]" id ="state"></select>
+     <script language="javascript">
+    populateCountries("country", "state");
+     </script>
+  </div>
+
+  <div class="field">
+    <%= f.label :education_level %><br/>
+    <%= f.select(:education_level, ["High School Graduate", "Some College", "Associate's Degree", "Bachelor's Degree", "Master's Degree", "Doctorate"], {include_blank: true}) %>
+  </div>
+</div>
+</div>
+<hr>
+
+  <div class="actions">
+    <%= f.submit "Save Changes" %>
+  </div>
+<% end %>

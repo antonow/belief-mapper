@@ -34,3 +34,21 @@ Belief.all.each do |belief|
   create_connections_for(belief)
 end
 
+UserBelief.all.each do |ub|
+    ub.conviction = rand(1..100)
+    ub.save
+end
+
+Belief.all.each do |belief|
+  if belief.user_beliefs.count > 0
+    total = 0
+    belief.user_beliefs.each do |ub|
+      total += ub.conviction
+    end
+    belief.avg_conviction = total/belief.user_beliefs.count
+  else belief.avg_conviction = 0
+  end
+  belief.save
+end
+
+

@@ -1,31 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BeliefMapper</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application'%>
+  <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
-
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
+  <title>BeliefMapper</title>
 </head>
 <body>
-<div class='container col-3'>
-
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-        <!-- <img alt="Brand" src="..."> -->
-      </a>
-    </div>
+<div class='container'>
       <!-- Only displays logout button if user is signed in -->
       <% if user_signed_in? %>
         <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Log Out', destroy_user_session_path, method: :delete%></button>
@@ -34,11 +16,13 @@
         <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Sign in', new_user_session_path %></button>
         <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Sign up', new_user_registration_path %></button>
       <% end %>
-  </div>
-</nav>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 <%= yield %>
+<hr>
+<p class="centered">Belief Mapper</p>
+<br>
+<br>
 </div>
 
 </body>

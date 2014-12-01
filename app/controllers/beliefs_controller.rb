@@ -1,7 +1,15 @@
 class BeliefsController < ApplicationController
   def index
-    @beliefs = Belief.all
-    @connections = Connection.all
+    unless user_signed_in?
+      redirect_to '/'
+    else
+      if params[:query].present?
+        @results = Belief.search(params[:query]) # , page: params[:page]
+      else
+        @beliefs = Belief.all
+        @connections = Connection.all
+      end
+    end
   end
 
   def filter
@@ -31,4 +39,14 @@ class BeliefsController < ApplicationController
   @connections = Connection.all
 
   end
+
+  def search
+    raise params.to_s
+    @results = Belief.search(params)
+  end
+
+  def autocomplete
+    render json: Belief.search(params[:query], fields: [{name: :text_start}], limit: 10).map(&:name)
+  end
+
 end
