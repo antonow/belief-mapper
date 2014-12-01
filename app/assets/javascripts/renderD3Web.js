@@ -56,7 +56,6 @@ renderD3Web = function() {
   }
 
   d3.json("/beliefs.json", function(error, json) {
-
     var data = json.beliefs.filter(function(d) {return d.id < maxNodes;});
     console.log(data);
     var edges = [];
