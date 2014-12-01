@@ -18,6 +18,7 @@
 //= require_tree .
 
 
+
 // we turned of the requiring tree for some reason it works.
 
 $(document).ready(function(){
