@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
     if current_user == nil
       @belief = Belief.all.sample
     else
-      current_user.unexamined_beliefs.sample
+      @belief = current_user.unexamined_beliefs.sample
     end
   end
 end

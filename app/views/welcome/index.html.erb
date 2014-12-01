@@ -5,9 +5,10 @@
 
   <hr>
   <% @count = 0 %>
-  <p>Answer <%= (3-@count).to_s %> more questions to see your map</p>
+  <!-- <p>Answer 3 more questions to see your map</p> -->
   <h3>Question</h3>
-  Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "") + " - " + @belief.id.to_s %>?
+  Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "")  %>?
+  <!-- + " - " + @belief.id.to_s -->
   <br>
   <br>
   <!-- <form method="post" action=""> -->
@@ -50,8 +51,3 @@
     <!-- </form> -->
     <% end %>
 </div>
-
-
-
-
-

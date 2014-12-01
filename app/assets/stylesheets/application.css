@@ -25,6 +25,7 @@
 }
 
 .centered {
+  text-align: center;
   margin: auto;
 }
 

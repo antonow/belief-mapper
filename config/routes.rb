@@ -24,10 +24,12 @@ Rails.application.routes.draw do
 
 
 
-  resources :beliefs, only: [:index, :filter]
+  resources :beliefs, only: [:index, :filter, :results, :search]
   get 'beliefs/filter' => 'beliefs#filter'
+  get 'beliefs/results' => 'beliefs#results'
+  post 'beliefs/search' => 'beliefs#search'
 
-  resources :demographics, only: [:new, :create, :update]
+  resources :demographics, only: [:new, :create, :update, :edit]
 
 
   # Example of regular route:

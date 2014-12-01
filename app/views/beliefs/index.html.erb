@@ -22,7 +22,8 @@
   <h3>Question</h3>
 
   <% @belief = current_user.unexamined_beliefs.sample %>
-  Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "") + " - " + @belief.id.to_s %>?
+  Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "")  %>?
+  <!-- + " - " + @belief.id.to_s -->
   <br>
   <br>
   <!-- <form method="post" action=""> -->
@@ -68,6 +69,7 @@
 <hr>
 <div class="row">
   <div class="col-lg-10 graph">
+    <% if (defined?(@results)).nil? %>
 <script>
  $(function() {
    $('a[rel=tipsy]').tipsy({fade: true, gravity: 'n'});
@@ -234,38 +236,73 @@ d3.json("/beliefs.json", function(error, json) {
 
 </script>
 <div id="selected_node" hidden></div>
+<% else %>
+<%= link_to 'Return to Graph', beliefs_path %><br><br>
+<% @results.each do |result| %>
+<p><%= result.name + " - " + result.definition %></p>
+<% end %>
+
+<% end %>
 </div>
 <div class="col-lg-2 toolbar">
   <h3>Toolbar</h3>
   <hr>
-  <ul>
-    <li>Add a Belief</li>
-    <li>Remove Selected Belief</li>
-    <li>Take a Survey
+
+      <%= form_for :belief, url: beliefs_path, method: :get do |f| %>
+        <div class="field">
+          <input type="text" id="query" name="query" placeholder="Search All Beliefs" />
+          <%= f.submit "Search" %>
+        </div>
+        <div class="actions">
+        </div><br>
+      <% end %>
+
+
+<!-- <script src="jquery.js"></script> -->
+<!-- <script src="typeahead.js"></script> -->
+<script>
+  // $("#query").typeahead({
+  //   name: "belief",
+  //   remote: "/belief/autocomplete?query=%QUERY"
+  // });
+</script>
+
+
+    <%= form_for :user_belief, url: user_belief_path(:user_belief), method: :delete do |f| %>
+        <div class="field">
+          <%= f.select(:user_belief, current_user.beliefs.map { |belief| belief.name }, {include_blank: 'Select a belief to'}) %>
+        </div>
+      <div class="actions">
+          <%= f.submit "Unsubscribe" %>
+        </div><br>
+      <% end %>
+
+<hr>
+    <p><%= link_to 'Sign Up', edit_user_registration_path %></p>
+    <% if current_user.demographic.nil? %>
+    <p><%= link_to 'Add Demographics', new_demographic_path %></p>
+    <% else %>
+    <p><%= link_to 'Edit Demographics', edit_demographic_path(current_user.demographic.id) %></p>
+    <% end %>
+    <p>Share your Map</p>
+  </ul>
+
+      <hr>
+    <p>Take a Survey</p>
       <ul>
         <li>Philosophy</li>
         <li>Politics</li>
         <li>Religion</li>
       </ul>
-    </li>
-  </ul>
   <hr>
-  <ul>
-    <li>Filter by
+  <p>Filter by</p>
       <ul>
         <li>Gender</li>
         <li>Age</li>
         <li>Location</li>
         <li>Religious Affiliation</li>
       </ul>
-    </li>
-  </ul>
-  <hr>
-  <ul>
-    <li>Sign Up</li>
-    <li>Add Demographics</li>
-    <li>Share your Map</li>
-  </ul>
+
 </div>
 
 </div>

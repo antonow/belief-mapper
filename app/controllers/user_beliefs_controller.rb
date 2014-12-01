@@ -21,6 +21,12 @@ class UserBeliefsController < ApplicationController
     end
   end
 
+  def destroy
+    belief = Belief.find_by(name: params[:user_belief][:user_belief])
+    current_user.user_beliefs.where(belief: belief).first.destroy
+    redirect_to '/beliefs'
+  end
+
   # def create_belief?
   #   params[:conviction].to_i > 5
   # end
