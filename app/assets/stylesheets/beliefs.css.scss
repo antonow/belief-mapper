@@ -2,3 +2,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#conviction {
+  width: 67%;
+  margin: auto;
+}
+
+#options {
+  text-align: center;
+}
+
+.centered {
+  text-align: center;
+  margin: auto;
+}
+
+.toolbar {
+  margin-left: 0;
+  padding-left: 19px;
+  border-left: 1px solid #eee;
+}
