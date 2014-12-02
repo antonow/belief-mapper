@@ -105,13 +105,36 @@ renderD3WebUser = function() {
       .attr("width", 16)
       .attr("height", 16);
 
+    // hypertext  = hypertext .data(force.nodes());
+
+    // // Add any incoming texts.
+    // hypertext.enter().append("text")
+    //     .append("a")
+    // //.attr("xlink:show", "new")
+    //     .attr("target", "_blank");
+
+    // // Remove any outgoing/old texts.
+    // hypertext.exit().remove();
+
+    // // Compute new attributes for entering and updating texts.
+    // hypertext.attr("x", 8)
+    //     .attr("y", ".31em")
+    // .select("a")
+    // .attr("xlink:href", function (d) {
+    //     return "http://example.com/" + d.name;
+    // })
+    // .text(function (d) {
+    //     return d.name;
+    // });
+
     node.append("text")
       .attr("dx", 12)
       .attr("dy", ".35em")
       .style("fill", "#153D93")
       .text(function(d) {
         return d.name
-      });
+      })
+
 
     node.on("click", function(d) {
       $('#selected_node').html(d.id);
@@ -144,6 +167,8 @@ renderD3WebUser = function() {
         return def;
       }
     });
+
+
 
         $('.text').tipsy({
       gravity: 'sw',
