@@ -40,7 +40,7 @@ renderD3WebUser = function() {
     }
   }
 
-  d3.json("/beliefs/user.json", function(error, json) {
+  d3.json("/users.json", function(error, json) {
     var edges = [];
 
     if (json.connections.length > 0)
