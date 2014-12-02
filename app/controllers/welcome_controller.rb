@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
     if current_user == nil
       @belief = Belief.all.where(starred: true).sample
     else
-      redirect_to beliefs_path
+      redirect_to users_path
       # unless starred.empty?
       #   @belief = unexamined_for_user.sample
       # else

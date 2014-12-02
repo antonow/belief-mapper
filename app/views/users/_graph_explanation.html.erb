@@ -1,23 +1,71 @@
-
 <hr>
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          <h2>How Belief Mapper Works</h2>
-        </a>
-      </h4>
+
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingOne">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <h3>What is Belief Mapper?</h3>
+          </a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body lead">
+          Belief mapper is an interactive tool that allows you to create a visual map of your beliefs.  Find out what your beliefs are by answering questions. Belief mapper keeps track of your beliefs and in how other people hold beliefs.
+        </div>
+      </div>
     </div>
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-        <h4>Nodes <small>represent beliefs.</small></h4>
-        <h4>Size of nodes <small>represent the number of people who share that belief.  The more people who have that belief the larger the node.</small></h4>
-        <h4>Connectors <small>represent a link between two beliefs.  The more people hold two common beliefs, the thicker the connector line.</small></h4>
-        <h4>Color of nodes <small>identify which beliefs you have voted on.  The darker the color the stronger your conviction in that belief.</small></h4>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingTwo">
+        <h4 class="panel-title">
+          <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <h3>How the Graph Works</h3>
+          </a>
+        </h4>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="panel-body lead">
+          <p><strong>Nodes </strong>represent beliefs. Click the node to highlight its links.</p>
+          <p><strong>The size of nodes </strong>represent the number of people who share that belief.  The more people who hold the belief the larger the node.</strong></p>
+          <p><strong>Connectors </strong>represent a link between two beliefs.  The more people hold two beliefs in common the thicker the connector lines.</p>
+          <p><strong>Colors of nodes </strong>identify which beliefs you have voted on.  The more intense the color the stronger your conviction in that belief.</p>
+          <p>
+            <svg height="50" width="130">
+              <circle cx="10" cy="25" r="10" fill="hsl(5, 90%, 50%)" />
+              <circle cx="30" cy="25" r="10" fill="hsl(10, 80%, 50%)" />
+               <circle cx="50" cy="25" r="10" fill="hsl(15, 70%, 50%)" />
+                <circle cx="70" cy="25" r="10" fill="hsl(20, 60%, 50%)" />
+                 <circle cx="90" cy="25" r="10" fill="hsl(25, 50%, 50%)" />
+                <circle cx="110" cy="25" r="10" fill="hsl(30, 40%, 50%)" />
+            </svg>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingThree">
+        <h4 class="panel-title">
+          <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <h3>Getting Started</h3>
+          </a>
+        </h4>
+      </div>
+      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+        <div class="panel-body lead">
+          <p>Simply answer questions using the slider above.   The more questions you answer the more information we can display and the better the data is for everybody.</p>
+          <p></p>
+
+
+        </div>
       </div>
     </div>
   </div>
+
+
+
+
 
 
   <!-- CODE FOR QUESTION MARK ICON AND POPUP -->

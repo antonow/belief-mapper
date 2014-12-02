@@ -1,5 +1,9 @@
 <h3>Toolbar</h3>
   <hr>
+
+  <p><%= link_to "All Users' Beliefs", beliefs_path %></p>
+
+  <hr>
       <%= form_for :belief, url: beliefs_path, method: :get do |f| %>
         <div class="field">
           <input type="text" id="query" name="query" placeholder="Search All Beliefs" />
@@ -36,7 +40,6 @@
         <li>Religion</li>
       </ul>
   <hr>
-  <p><%= link_to "All Users' Beliefs", beliefs_path %></p>
   <p>Filter by</p>
       <ul>
         <li>Category</li>

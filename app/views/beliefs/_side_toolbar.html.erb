@@ -36,14 +36,7 @@
         <li>Religion</li>
       </ul>
   <hr>
-  <%= form_for :belief, url: beliefs_path, method: :get do |f| %>
-        <div class="field">
-          <input type="text" id="user" name="user" placeholder="Show Your Beliefs" />
-          <%= f.submit "Search" %>
-        </div>
-        <div class="actions">
-        </div><br>
-      <% end %>
+ <p> <%= link_to 'Your Belief Map', users_path %> </p>
   <p>Filter by</p>
       <ul>
         <li>Category</li>
