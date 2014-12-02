@@ -11,7 +11,7 @@
   <tbody>
   <% @results.each do |result| %>
     <tr>
-      <td><%= result.name %></td>
+      <td><%= link_to result.name, belief_path(result) %></td>
       <td><%= result.definition %></td>
       <% unless your_beliefs.include?(result) %>
         <td><%= button_tag 'Subscribe', :class => 'subscribe ' + result.id.to_s %></td>

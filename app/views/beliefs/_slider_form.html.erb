@@ -1,6 +1,6 @@
 <%= form_for :user_belief, url: user_beliefs_path do |f| %>
 <% f.hidden_field :belief %>
-  <div class='col-lg-11 col-md-11 col-sm-11 lead'>
+  <div class='col-lg-10 col-md-10 col-sm-10 lead'>
   <div id='options'>
     <div class='col-lg-4 col-md-4 col-sm-4' id='first'>Not at all</div>
     <div class='col-lg-4 col-md-4 col-sm-4' id='second'>I kinda believe that</div>
@@ -29,4 +29,5 @@
     }
   </script>
   <button type="submit" class="btn btn-primary submit">Submit</button>
+  <!-- <button type="submit" class="btn btn-primary submit">Skip</button> -->
   <% end %>

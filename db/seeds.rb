@@ -1,5 +1,7 @@
 require 'faker'
 include ApplicationHelper
+include UsersBeliefsHelper
+
 
 
 belief = Belief.new
@@ -26,7 +28,7 @@ File.open( 'refactored_isms.txt' ).each_with_index do |line, index|
   end
 end
 
-30.times do
+50.times do
   demographic = Demographic.create!(:gender => all_genders.sample, :age => rand(5..110), :religion => all_religions.sample, :country => "USA", :state => all_states.sample, :education_level => all_education_levels.sample)
   User.create!(:email => Faker::Internet.email, :password => 'password', :password_confirmation => 'password', :demographic => demographic)
 end
@@ -36,15 +38,18 @@ User.all.each do |user|
     belief = Belief.all.sample
     user_belief = UserBelief.create!(belief: belief, conviction: rand(0..100), user: user)
     # user.beliefs << belief unless user.beliefs.include?(belief)
-    belief.user_count += 1
+    if user_belief.conviction > 5
+      generate_new_connections(user_belief)
+      belief.user_count += 1
+    end
     belief.save
   end
 end
 
 # Creates connections between beliefs based on how many users have the same connection in common
-Belief.all.each do |belief|
-  create_connections_for(belief)
-end
+# Belief.all.each do |belief|
+#   create_connections_for(belief)
+# end
 
 
 Belief.all.each do |belief|

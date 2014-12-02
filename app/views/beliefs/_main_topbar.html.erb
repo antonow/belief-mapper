@@ -1,10 +1,9 @@
   <!-- QUESTION DIV BEGINS HERE -->
   <div class="row">
     <!-- <div class="col-md-1"></div> -->
-    <div class="col-md-3 lead" >
     <% @belief = current_user.unexamined_beliefs.sample %>
     <% unless @belief.nil? %>
-      <div class="col-md-3" >
+      <div class="col-md-3 lead" >
         <% display = @belief.definition %>
         <% display += "in the " unless ['belief', 'doctrine'].include?(display.split(' ').first) %>
         <% display = display.sub(/belief /, "").sub(/doctrine /, "") %>
