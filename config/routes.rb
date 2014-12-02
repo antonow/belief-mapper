@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
 
 
-  resources :beliefs, only: [:index, :filter, :results, :search]
+  resources :beliefs, only: [:index, :filter, :results, :search, :show]
   get 'beliefs/filter' => 'beliefs#filter'
   get 'beliefs/results' => 'beliefs#results'
   post 'beliefs/search' => 'beliefs#search'

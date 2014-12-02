@@ -7,7 +7,10 @@
   <% @count = 0 %>
   <!-- <p>Answer 3 more questions to see your map</p> -->
   <h3>Question</h3>
-  Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "")  %>?
+  <% display = @belief.definition %>
+  <% display += "in the " unless ['belief', 'doctrine'].include?(display.split(' ').first) %>
+  <% display = display.sub(/belief /, "").sub(/doctrine /, "") %>
+  Do you believe <%= display %>?
   <!-- + " - " + @belief.id.to_s -->
   <br>
   <br>

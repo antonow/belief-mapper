@@ -4,9 +4,12 @@ class UserBeliefsController < ApplicationController
 
   def create
     belief = Belief.find(params[:belief])
-    # @count = 0
-    user = (current_user == nil) ? User.create!(:email => Faker::Internet.email, :password => 'password', :password_confirmation => 'password') : current_user
-    session[:user_id] = user.id
+    if (current_user == nil)
+      user = User.create!(:email => Faker::Internet.email, :password => 'password', :password_confirmation => 'password')
+      sign_in(user)
+    else
+      user = current_user
+    end
     user_belief = UserBelief.new(belief: belief, user: user, conviction: params[:conviction])
     if user_belief.save!
       if user_belief.conviction > 5

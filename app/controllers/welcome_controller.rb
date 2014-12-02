@@ -11,6 +11,5 @@ class WelcomeController < ApplicationController
         @belief = current_user.unexamined_beliefs.sample
       end
     end
-    raise @belief.name
   end
 end

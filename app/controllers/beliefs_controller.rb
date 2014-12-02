@@ -12,6 +12,10 @@ class BeliefsController < ApplicationController
     end
   end
 
+  def show
+    @belief = Belief.find(params[:id])
+  end
+
   def filter
     # relevant_users = []
     # @beliefs = []
