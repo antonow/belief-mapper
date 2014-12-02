@@ -43,7 +43,7 @@ belief in two equal gods, one good and one evil
 ditheletism
 doctrine that Christ had two wills
 *gymnobiblism
-belief that the Bible can be presented to unlearned without commentary
+belief that the Bible can be presented to the unlearned without commentary
 henotheism
 belief in one tribal god, but not as the only god
 holobaptism
@@ -72,33 +72,33 @@ monergism
 theory that the Holy Spirit alone can act
 monophysitism
 belief that Christ was primarily divine but in human form
-monopsychism
+*monopsychism
 belief that individuals have a single eternal soul
-monotheism
+*monotheism
 belief in only one God
 monotheletism
 belief that Christ had only one will
-mortalism
+*mortalism
 belief that the soul is mortal
 neonomianism
 theory that the gospel abrogates earlier moral codes
 numenism
 belief in local deities or spirits
-omnism
-belief in all religions
+*omnism
+belief in the validity of all religions
 paedobaptism
 doctrine of infant baptism
 panentheism
 belief that world is part but not all of God’s being
-pantheism
-belief that the universe is God; belief in many gods
+*pantheism
+belief that the universe is God
 physitheism
 attribution of physical form and attributes to deities
-polytheism
-belief in multiple deities
+*polytheism
+belief in multiple deities or gods
 psilanthropism
 denial of Christ's divinity
-psychopannychism
+*psychopannychism
 belief souls sleep from death to resurrection
 psychotheism
 doctrine that God is a purely spiritual entity
@@ -144,11 +144,11 @@ belief that Christ is present in everything
 belief in universal salvation
 
 Philosophy
-absurdism
+*absurdism
 doctrine that we live in an irrational universe
-academicism
+*academicism
 doctrine that nothing can be known
-accidentalism
+*accidentalism
 theory that events do not have causes
 aestheticism
 doctrine that beauty is central to other moral principles
@@ -158,33 +158,33 @@ agathism
 belief in ultimate triumph of good despite evil means
 antinomianism
 doctrine of the rejection of moral law
-atomism
+*atomism
 belief that the universe consists of small indivisible particles
-bonism
-the doctrine that the world is good but not perfect
-casualism
-the belief that chance governs all things
+*bonism
+doctrine that the world is good but not perfect
+*casualism
+belief that chance governs all things
 conceptualism
 theory that universal truths exist as mental concepts
 constructivism
 belief that knowledge and reality do not have an objective value
 cosmism
 belief that the cosmos is a self-existing whole
-determinism
+*determinism
 doctrine that events are predetermined by preceding events or laws
-dualism
+*dualism
 doctrine that the universe is controlled by one good and one evil force
-egalitarianism
+*egalitarianism
 belief that humans ought to be equal in rights and privileges
-egoism
+*egoism
 doctrine that the pursuit of self-interest is the highest good
-emotivism
+*emotivism
 theory that moral statements are inherently biased
-empiricism
+*empiricism
 doctrine that the experience of the senses is the only source of knowledge
-epiphenomenalism
+*epiphenomenalism
 doctrine that mental processes are epiphenomena of brain activity
-eternalism
+*eternalism
 the belief that matter has existed eternally
 eudaemonism
 ethical belief that happiness equals morality
@@ -192,13 +192,13 @@ euhemerism
 explanation of mythology as growing out of history
 existentialism
 doctrine of individual human responsibility in an unfathomable universe
-experientialism
+*experientialism
 doctrine that knowledge comes from experience
-fallibilism
-the doctrine that empirical knowledge is uncertain
-fatalism
+*fallibilism
+doctrine that empirical knowledge is uncertain
+*fatalism
 doctrine that events are fixed and humans are powerless
-fideism
+*fideism
 doctrine that knowledge depends on faith over reason
 finalism
 belief that an end has or can be reached
