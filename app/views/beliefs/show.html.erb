@@ -1,0 +1,30 @@
+<%= link_to 'Return to Graph', beliefs_path %><br><br>
+
+<h1> <%=@belief.name%></h1>
+
+<p>
+  Category: <%= @belief.category.name %>
+</p>
+
+<p>
+  Definition: <%=@belief.definition%>
+</p>
+
+<p>
+  Total number of users with belief: <%=@belief.user_count %>
+</p>
+
+<p>
+  Average Conviction: <%=@belief.avg_conviction.to_i%>%
+</p>
+
+<!-- DEMOGRAPHICS -->
+<p>
+  total number male: <%= @belief.stats_for("gender", "m") %>
+<p>
+
+<p>
+  total number female: <%= @belief.stats_for("gender", "f") %>
+<p>
+
+<!-- List of top correlated beliefs -->

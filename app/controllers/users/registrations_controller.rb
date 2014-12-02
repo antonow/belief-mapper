@@ -44,8 +44,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       education_level: params[:demographic][:education_level]
       )
 
-    @user.save
-    sign_in @user
+    # @user.save
+    # sign_in @user
     # sign_in @user, :bypass => true
     # redirect_to beliefs_path
   end

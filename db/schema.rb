@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20141201193658) do
     t.integer  "category_id"
     t.integer  "user_count",     default: 0
     t.integer  "avg_conviction"
+    t.boolean  "starred",        default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

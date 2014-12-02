@@ -3,24 +3,36 @@ include ApplicationHelper
 
 
 belief = Belief.new
-
-File.open( 'phrontisteryisms.txt' ).each_with_index do |line, index|
+# 'phrontisteryisms.txt'
+category = ""
+File.open( 'refactored_isms.txt' ).each_with_index do |line, index|
+  text = line.chomp
   if index.even?
-    belief.name = line.chomp
+    if text[0] == "*"
+      belief.starred = true
+      belief.name = text[1..-1]
+    else
+      belief.name = text
+    end
   else
-    belief.definition = line.chomp
-    belief.save!
-    belief = Belief.new
+    if ["Religion", "Philosophy", "Politics", "Other"].include?(text)
+      category = Category.create!(name: text)
+    else
+      belief.definition = text
+      belief.category = category
+      belief.save!
+      belief = Belief.new
+    end
   end
 end
 
-10.times do
-  demographic = Demographic.create!(:gender => 'f') # ['m', 'f'].sample
+30.times do
+  demographic = Demographic.create!(:gender => ['m', 'f'].sample)
   User.create!(:email => Faker::Internet.email, :password => 'password', :password_confirmation => 'password', :demographic => demographic)
 end
 
 User.all.each do |user|
-  rand(10..20).times do
+  rand(20..40).times do
     belief = Belief.all.sample
     user_belief = UserBelief.create!(belief: belief, conviction: rand(0..100), user: user)
     # user.beliefs << belief unless user.beliefs.include?(belief)
@@ -52,9 +64,9 @@ Belief.all.each do |belief|
 end
 
 # Creates categories
-Category.create!(name: "Philosophy")
-Category.create!(name: "Politics")
-Category.create!(name: "Religion")
+# Category.create!(name: "Philosophy")
+# Category.create!(name: "Politics")
+# Category.create!(name: "Religion")
 
 
 

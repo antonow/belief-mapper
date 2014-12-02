@@ -160,3 +160,14 @@ d3.json("/beliefs/filter.json", function(error, json) {
 
 });
 }
+
+d3.selectAll("#filter_button").on("change", function() {
+  alert('here');
+  var type = this.value,
+  // I *think* "inline" is the default.
+  display = this.checked ? "inline" : "none";
+
+  svg.selectAll(".node")
+    .filter(function(d) { return d.properties.type === type; })
+    .attr("display", display);
+});

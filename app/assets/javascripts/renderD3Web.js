@@ -1,4 +1,19 @@
+
+
 renderD3Web = function() {
+  var maxNodes = 40;
+  // var showFirst;
+  // var hideEdges;
+
+  // $("#max_nodes").mousemove(function () {
+  //   $("#text").text($("#max_nodes").val());
+  //   maxNodes = $("#max_nodes").val();
+  //   console.log(maxNodes);
+  //   showFirst(10);
+  //   hideEdges(25);
+  // });
+
+
 
 
   var width = 960,
@@ -41,6 +56,8 @@ renderD3Web = function() {
   }
 
   d3.json("/beliefs.json", function(error, json) {
+    // var data = json.beliefs.filter(function(d) {return d.id < maxNodes;});
+    // console.log(data);
     var edges = [];
     json.connections.forEach(function(e) {
       var sourceBelief = json.beliefs.filter(function(n) {
@@ -50,12 +67,26 @@ renderD3Web = function() {
           return n.id === e.target;
         })[0];
 
-      edges.push({
-        source: sourceBelief,
-        target: targetBelief,
-        value: e.value
-      });
+        edges.push({
+          source: sourceBelief,
+          target: targetBelief,
+          value: e.value
+        });
+
     });
+
+    // showFirst = function showFirst(x) {
+    //   debugger;
+    //   var node = svg.selectAll(".node")
+    //     .data(edges.filter(function(d) { return d.id < x; }))
+    //     .attr("display", "none");
+    // }
+
+    // hideEdges = function(max) {
+    //   var link = svg.selectAll(".link")
+    //     .data(edges.filter(function(d) { return (d.source.id < max && d.target.id < max); }))
+    //     .attr("display", "none");
+    // }
 
     force
       .nodes(json.beliefs)
@@ -63,7 +94,7 @@ renderD3Web = function() {
       .start();
 
     var link = svg.selectAll(".link")
-      .data(edges)
+      .data(edges.filter(function(d) { return (d.source.id < maxNodes && d.target.id < maxNodes); }))
       .enter().append("line")
       .attr("class", "link")
       .style("opacity", function(d) {
@@ -76,7 +107,7 @@ renderD3Web = function() {
       });
 
     var node = svg.selectAll(".node")
-      .data(json.beliefs)
+      .data(json.beliefs.filter(function(d) {return d.id < maxNodes;}))
       .enter().append("g")
       .attr("class", "node")
       .call(force.drag);
