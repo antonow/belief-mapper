@@ -19,16 +19,38 @@
   Average Conviction: <%=@belief.avg_conviction.to_i%>%
 </p>
 
-<!-- DEMOGRAPHICS -->
 <p>
-  total number male: <%= @belief.stats_for("gender", "m") %>
-<p>
+  Rank: <%=@belief.rank.to_s + "/" + Belief.total_beliefs.to_s %>
+</p>
 
-<p>
-  total number female: <%= @belief.stats_for("gender", "f") %>
-<p>
-
+<h4>Top 10 Most Closely Related Beliefs</h4>
 <!-- List of top correlated beliefs -->
 <% @belief.list_top_connections.each do |belief, count| %>
 <p><%= link_to belief.name, belief_path(belief) %> - <%= count.to_s %></p>
 <% end %>
+
+<!-- DEMOGRAPHICS -->
+<% @belief.all_the_stats.each do |category, results| %>
+  <p><%= category %></p>
+  <p>
+<% results.each do |demographic, count| %>
+  <%= demographic + " - " + count.to_s + " | " %>
+  <% end %>
+  </p>
+<% end %>
+
+
+
+
+<p>
+<% @belief.all_stats_for("gender").each do |gender, count| %>
+  <%= gender + " - " + count.to_s + " | " %>
+<% end %>
+</p>
+<p>
+<% @belief.all_stats_for("religion").each do |religion, count| %>
+  <%= religion + " - " + count.to_s + " | " %>
+<% end %>
+</p>
+
+

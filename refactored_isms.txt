@@ -202,71 +202,71 @@ doctrine that events are fixed and humans are powerless
 doctrine that knowledge depends on faith over reason
 finalism
 belief that an end has or can be reached
-fortuitism
+*fortuitism
 belief in evolution by chance variation
-gnosticism
+*gnosticism
 belief that freedom derives solely from knowledge
 gradualism
 belief that things proceed by degrees
-hedonism
+*hedonism
 belief that pleasure is the highest good
 henism
 doctrine that there is only one kind of existence
-historicism
+*historicism
 belief that all phenomena are historically determined
-holism
-doctrine that parts of any thing must be understood in relation to the whole
-humanism
+*holism
+doctrine that the parts of any thing must be understood in relation to the whole
+*humanism
 belief that human interests and mind are paramount
-humanitarianism
+*humanitarianism
 doctrine that the highest moral obligation is to improve human welfare
 hylicism
 no definition
 materialism
 no definition
-hylomorphism
+*hylomorphism
 belief that matter is cause of the universe
-hylotheism
+*hylotheism
 belief that the universe is purely material
-hylozoism
+*hylozoism
 doctrine that all matter is endowed with life
 idealism
 belief that our experiences of the world consist of ideas
 identism
 doctrine that objective and subjective, or matter and mind, are identical
-ignorantism
+*ignorantism
 doctrine that ignorance is a favorable thing
 illusionism
 belief that the external world is philosophy
 imagism
 doctrine of use of precise images with unrestricted subject
-immaterialism
-the doctrine that there is no material substance
-immoralism
-rejection of morality
-individualism
+*immaterialism
+doctrine that there is no material substance
+*immoralism
+belief in the rejection of morality
+*individualism
 belief that individual interests and rights are paramount
 instrumentalism
 doctrine that ideas are instruments of action
-intellectualism
+*intellectualism
 belief that all knowledge is derived from reason
 interactionism
 belief that mind and body act on each other
-introspectionism
+*introspectionism
 doctrine that knowledge of mind must derive from introspection
-intuitionism
-belief that the perception of truth is by intuition
-laxism
+*intuitionism
+belief that the truth is arrived at by intuition
+*laxism
 belief that an unlikely opinion may be safely followed
-malism
-the belief that the world is evil
+*malism
+belief that the world is evil
 materialism
 belief that matter is the only extant substance
 mechanism
 belief that life is explainable by mechanical forces
-meliorism
-the belief the world tends to become better
-mentalism
+*meliorism
+belief that the world tends to become better
+*mentalism
 belief that the world can be explained as aspect of the mind
 monadism
 theory that there exist ultimate units of being
@@ -274,8 +274,8 @@ monism
 belief that all things can be placed in one category
 nativism
 belief that the mind possesses inborn thoughts
-naturalism
-belief that the world can be explained in terms of natural forces
+*naturalism
+belief that the world can be explained entirely in terms of natural forces
 necessarianism
 theory that actions are determined by prior history; fatalism
 neovitalism
@@ -284,81 +284,81 @@ nihilism
 denial of all reality; extreme scepticism
 nominalism
 doctrine that naming of things defines reality
-nomism
-view that moral conduct consists in observance of laws
+*nomism
+belief that moral conduct consists in observance of laws
 noumenalism
 belief in existence of noumena
 nullibilism
 denial that the soul exists in space
 objectivism
 doctrine that all reality is objective
-optimism
+*optimism
 doctrine that we live in the best of all possible worlds
 organicism
 conception of life or society as an organism
 panaesthetism
 theory that consciousness may inhere generally in matter
-pancosmism
+*pancosmism
 theory that the material universe is all that exists
 panegoism
 solipsism
-panpsychism
+*panpsychism
 theory that all nature has a psychic side
-pansexualism
-theory that all thought derived from sexual instinct
-panspermatism
-belief in origin of life from extraterrestrial germs
+*pansexualism
+theory that all thought is derived from sexual instinct
+*panspermatism
+belief that life on Earth originated from extraterrestrial germs
 panzoism
 belief that humans and animals share vital life energy
 parallelism
 belief that matter and mind don’t interact but relate
 pejorism
 severe pessimism
-perfectibilism
-doctrine that humans capable of becoming perfect
-perfectionism
-doctrine that moral perfection constitutes the highest value
-personalism
+*perfectibilism
+doctrine that humans are capable of becoming perfect
+*perfectionism
+doctrine that moral perfection is the highest value
+*personalism
 doctrine that humans possess spiritual freedom
-pessimism
+*pessimism
 doctrine that the universe is essentially evil
-phenomenalism
+*phenomenalism
 belief that phenomena are the only realities
-physicalism
+*physicalism
 belief that all phenomena reducible to verifiable assertions
 pluralism
 belief that reality consists of several kinds or entities
-positivism
+*positivism
 doctrine that that which is not observable is not knowable
 pragmatism
 doctrine emphasizing practical value of philosophy
-predestinarianism
+*predestinarianism
 belief that what ever is to happen is already fixed
-prescriptivism
+*prescriptivism
 belief that moral edicts are merely orders with no truth value
-primitivism
+*primitivism
 doctrine that a simple and natural life is morally best
 privatism
 attitude of avoiding involvement in outside interests
 probabiliorism
 belief that when in doubt one must choose most likely answer
-probabilism
+*probabilism
 belief that knowledge is always probable but never absolute
-psychism
-belief in universal soul
+*psychism
+belief in a universal soul
 psychomorphism
 doctrine that inanimate objects have human mentality
 pyrrhonism
 total or radical skepticism
-quietism
-doctrine of enlightenment through mental tranquility
-rationalism
+*quietism
+belief in enlightenment through mental tranquility
+*rationalism
 belief that reason is the fundamental source of knowledge
 realism
 doctrine that objects of cognition are real
-reductionism
+*reductionism
 belief that complex phenomena are reducible to simple ones
-representationalism
+*representationalism
 doctrine that ideas rather than external objects are basis of knowledge
 *scientism
 belief that the methods of science are universally applicable
@@ -404,31 +404,31 @@ belief that the will dominates the intellect and emotion
 doctrine that life originates from a single vital principle
 
 Politics
-absolutism
-doctrine of government by a single absolute ruler; autocracy
-anarchism
+*absolutism
+belief that government should be run by a single absolute ruler
+*anarchism
 doctrine that all governments should be abolished
-aspheterism
-denial of the right to private property
-bullionism
+*aspheterism
+belief in the denial of the right to private property
+*bullionism
 belief in the importance of metallic currency in economics
-capitalism
+*capitalism
 doctrine that private ownership and free markets should govern economies
-collectivism
-doctrine of communal control of means of production
+*collectivism
+belief that there should be communal control of means of production
 collegialism
 theory that church is independent from the state
-communism
-theory of classless society in which individuals cannot own property
-conservatism
+*communism
+belief that there should be a classless society in which individuals cannot own property
+*conservatism
 belief in maintaining political and social traditions
 entryism
 doctrine of joining a group to change its policies
-liberalism
-doctrine of social change and tolerance
-libertarianism
+*liberalism
+belief in creating social change and promoting tolerance
+*libertarianism
 doctrine that personal liberty is the highest value
-millenarianism
+*millenarianism
 belief that an ideal society will be produced in the near future
 mutualism
 belief in mutual dependence of society and the individual
@@ -446,29 +446,29 @@ anthropomorphism
 attribution of human qualities to non-human things
 antidisestablishmentarianism
 doctrine opposed to removing Church of England's official religion status
-apocalypticism
-doctrine of the imminent end of the world
+*apocalypticism
+belief in the imminent end of the world
 catastrophism
 belief in rapid geological and biological change
 egotheism
 identification of oneself with God
-eidolism
+*eidolism
 belief in ghosts
-geocentrism
-belief that Earth is the centre of the universe
+*geocentrism
+belief that Earth is the center of the universe
 functionalism
 doctrine emphasising utility and function
-hylopathism
+*hylopathism
 belief in ability of matter to affect the spiritual world
 illuminism
 belief in an inward spiritual light
-racism
+*racism
 belief that race is the primary determinant of human capacities
-resistentialism
-humorous theory that inanimate objects display malice towards humans
+*resistentialism
+belief that inanimate objects display malice towards humans
 romanticism
 belief in sentimental feeling in artistic expression
-sexism
+*sexism
 belief in systematic inequalities between the sexes
 *siderism
 belief that the stars influence human affairs

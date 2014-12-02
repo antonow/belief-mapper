@@ -27,7 +27,7 @@ File.open( 'refactored_isms.txt' ).each_with_index do |line, index|
 end
 
 30.times do
-  demographic = Demographic.create!(:gender => ['Male', 'Female'].sample, :age => rand(5..110), :religion => )
+  demographic = Demographic.create!(:gender => all_genders.sample, :age => rand(5..110), :religion => all_religions.sample, :country => "USA", :state => all_states.sample, :education_level => all_education_levels.sample)
   User.create!(:email => Faker::Internet.email, :password => 'password', :password_confirmation => 'password', :demographic => demographic)
 end
 

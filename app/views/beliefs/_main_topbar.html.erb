@@ -3,15 +3,22 @@
     <!-- <div class="col-md-1"></div> -->
     <div class="col-md-3 lead" >
     <% @belief = current_user.unexamined_beliefs.sample %>
-    <p>Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "")%>?</p>
-    </div>
-  <!-- </div> -->
+    <% unless @belief.nil? %>
+      <div class="col-md-3" >
+        <% display = @belief.definition %>
+        <% display += "in the " unless ['belief', 'doctrine'].include?(display.split(' ').first) %>
+        <% display = display.sub(/belief /, "").sub(/doctrine /, "") %>
+        <p>Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "")%>?</p>
+      </div>
+      <div class="col-md-9">
+        <%= render partial: "slider_form", locals: { belief: @belief } %>
+      </div>
+    <% else %>
 
-    <!-- CONVICTION SLIDER DIV -->
-    <!-- <div class="row"> -->
-    <div class="col-md-9">
-      <%= render partial: "slider_form", locals: { belief: @belief } %>
-    </div>
+  <!-- What displays if all the questions have been answered -->
+
+    <% end %>
+
   </div>
 
 <!-- PROGRESS BAR DIV BEGINS HERE -->
