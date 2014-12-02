@@ -28,3 +28,6 @@
 <p>
 
 <!-- List of top correlated beliefs -->
+<% @belief.list_top_connections.each do |belief, count| %>
+<p><%= link_to belief.name, belief_path(belief) %> - <%= count.to_s %></p>
+<% end %>

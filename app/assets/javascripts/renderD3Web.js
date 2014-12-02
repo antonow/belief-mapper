@@ -56,8 +56,9 @@ renderD3Web = function() {
   }
 
   d3.json("/beliefs.json", function(error, json) {
-    // var data = json.beliefs.filter(function(d) {return d.id < maxNodes;});
-    // console.log(data);
+
+    var data = json.beliefs.filter(function(d) {return d.id < maxNodes;});
+    console.log(data);
     var edges = [];
     json.connections.forEach(function(e) {
       var sourceBelief = json.beliefs.filter(function(n) {
@@ -87,6 +88,9 @@ renderD3Web = function() {
     //     .data(edges.filter(function(d) { return (d.source.id < max && d.target.id < max); }))
     //     .attr("display", "none");
     // }
+
+
+    edges = edges.filter(function(d) { return (d.source.id < maxNodes && d.target.id < maxNodes); });
 
     force
       .nodes(json.beliefs)
