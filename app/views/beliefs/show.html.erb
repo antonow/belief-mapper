@@ -3,7 +3,8 @@
 <h1> <%=@belief.name.capitalize%></h1>
 
 <p>
-  Category: <%= @belief.category.name %>
+  Category: <%= link_to @belief.category.name, category_path(@belief.category) %>
+
 </p>
 
 <p>
