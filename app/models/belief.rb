@@ -1,6 +1,6 @@
 class Belief < ActiveRecord::Base
   belongs_to :category
-  has_many :user_beliefs, -> { includes(:users) }
+  has_many :user_beliefs, -> { includes(:user) }
   has_many :users, through: :user_beliefs
   has_many :demographics, through: :users
   has_many :connections, foreign_key: 'belief_1_id'
