@@ -19,7 +19,7 @@
         <td><%= button_to 'Unsubscribe', user_belief_path(result), method: :delete %></td>
       <% end %>
     </tr>
-    <tr id=<%= result.id.to_s %> hidden><td colspan='3'><%= render partial: "slider_form", locals: { belief: result } %></td></tr>
+    <tr id=<%= result.id.to_s %> hidden><td colspan='3'><%= render partial: "beliefs/slider_form", locals: { belief: result } %></td></tr>
   <% end %>
   </tbody>
 </table>

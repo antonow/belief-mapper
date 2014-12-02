@@ -32,6 +32,20 @@ Rails.application.routes.draw do
   get 'beliefs/results' => 'beliefs#results'
   post 'beliefs/search' => 'beliefs#search'
 
+  # get 'beliefs/list', to: 'beliefs#list', as: :beliefs_list
+
+  # resources :beliefs do
+  #   collection do
+  #     get 'list'
+  #   end
+  # end
+
+  # resources :beliefs do
+  #   get 'list', on: :collection
+  # end
+
+  get 'list', to: 'beliefs#list', as: :list_beliefs
+
   resources :users, only: [:index]
 
   resources :demographics, only: [:new, :create, :update, :edit]
