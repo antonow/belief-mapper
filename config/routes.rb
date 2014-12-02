@@ -35,6 +35,8 @@ Rails.application.routes.draw do
 
   resources :demographics, only: [:new, :create, :update, :edit]
 
+  resources :categories, only: [:index, :show]
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

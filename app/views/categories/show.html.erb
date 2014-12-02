@@ -1,0 +1,13 @@
+<h1><%=@category.name%></h1>
+
+<h3>Beliefs and number of believers</h3>
+
+<ul>
+<%@beliefs.each do |belief| %>
+  <li>
+    <%= link_to belief.name, belief_path(belief) %>
+    <p>subscribers: <%= belief.user_count.to_s %><p>
+    <p>average conviction: <%=belief.avg_conviction.to_i%>%</p>
+  </li>
+<%end%>
+<ul>
