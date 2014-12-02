@@ -6,7 +6,7 @@
   <hr>
   <% @count = 0 %>
   <!-- <p>Answer 3 more questions to see your map</p> -->
-  <h3>Question</h3>
+  <!-- <h3>Answer Questions to get started</h3> -->
   <% display = @belief.definition %>
   <% display += "in the " unless ['belief', 'doctrine'].include?(display.split(' ').first) %>
   <% display = display.sub(/belief /, "").sub(/doctrine /, "") %>
