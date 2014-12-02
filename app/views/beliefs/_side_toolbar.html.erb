@@ -9,7 +9,7 @@
         </div><br>
       <% end %>
 
-    <%= form_for :user_belief, url: user_belief_path(:user_belief), method: :delete do |f| %>
+      <%= form_for :user_belief, url: user_belief_path(:user_belief), method: :delete do |f| %>
         <div class="field">
           <%= f.select(:name, current_user.beliefs.map { |belief| belief.name }, {include_blank: 'Select a belief to'}) %>
         </div>
@@ -28,15 +28,22 @@
     <p>Share your Map</p>
   </ul>
 
-      <hr>
-    <p>Take a Survey</p>
+
+<hr>
+  <p><%= link_to 'List of Beliefs', list_beliefs_path%> </p>
+
+<hr>
+    <p>Belief Categories</p>
       <ul>
-        <li>Philosophy</li>
-        <li>Politics</li>
-        <li>Religion</li>
+      <% Category.all.each do |category|%>
+        <li><%= link_to category.name, category_path(category) %></li>
+      <%end%>
       </ul>
+
   <hr>
  <p> <%= link_to 'Your Belief Map', users_path %> </p>
+
+
   <p>Filter by</p>
       <ul>
         <li>Category</li>
