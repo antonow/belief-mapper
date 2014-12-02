@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
 
   def unexamined_beliefs
-    return Belief.order('name ASC') - self.beliefs
+    return Belief.order('name ASC').where(starred: true) - self.beliefs
   end
 
   # returns every belief that the user has answered.
