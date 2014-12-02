@@ -10,7 +10,7 @@
         <p>Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "")%>?</p>
       </div>
       <div class="col-md-9">
-        <%= render partial: "slider_form", locals: { belief: @belief } %>
+        <%= render partial: "beliefs/slider_form", locals: { belief: @belief } %>
       </div>
     <% else %>
 
@@ -21,4 +21,4 @@
   </div>
 
 <!-- PROGRESS BAR DIV BEGINS HERE -->
-<%= render partial: "progress_bar" %>
+<%= render partial: "beliefs/progress_bar" %>
