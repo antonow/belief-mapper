@@ -7,7 +7,7 @@
 
   <div class="field">
     <%= f.label :gender %><br />
-    <%= f.select(:gender, %w[Female Male Transgender], {include_blank: true}) %>
+    <%= f.select(:gender, all_genders, {include_blank: true}) %>
   </div>
 
   <div class="field">
@@ -17,7 +17,7 @@
 
   <div class="field">
     <%= f.label :religion %><br/>
-    <%= f.select(:religion, %w[Christianity Islam Hinduism Buddhism Folk Judaism Other Unaffiliated], {include_blank: true}) %>
+    <%= f.select(:religion, all_religions, {include_blank: true}) %>
   </div>
 
 <div class="field">
@@ -31,7 +31,7 @@
 
   <div class="field">
     <%= f.label :education_level %><br/>
-    <%= f.select(:education_level, ["High School Graduate", "Some College", "Associate's Degree", "Bachelor's Degree", "Master's Degree", "Doctorate"], {include_blank: true}) %>
+    <%= f.select(:education_level, all_education_levels, {include_blank: true}) %>
   </div>
 </div>
 </div>
