@@ -1,0 +1,32 @@
+<%= form_for :user_belief, url: user_beliefs_path do |f| %>
+<% f.hidden_field :belief %>
+  <div class='col-lg-11 col-md-11 col-sm-11'>
+  <div id='options'>
+    <div class='col-lg-4 col-md-4 col-sm-4' id='first'>Not at all</div>
+    <div class='col-lg-4 col-md-4 col-sm-4' id='second'>I kinda believe that</div>
+    <div class='col-lg-4 col-md-4 col-sm-4' id='third'>Core belief</div>
+  </div>
+  <input type="hidden" name="belief" value=<%=belief.id%>>
+  <input type="range" name="conviction" id="conviction" value=0 min=0 max=100 list='levels' oninput="outputUpdate(value)">
+  <output for='conviction' id='level'></output>
+  </div>
+  <br>
+  <script>
+    function outputUpdate(level) {
+      $('#first').css("font-weight", "bold")
+      $('#second').css("font-weight", "normal")
+      $('#third').css("font-weight", "normal")
+
+      if (level > 95) {
+        $('#first').css("font-weight", "normal")
+        $('#second').css("font-weight", "normal")
+        $('#third').css("font-weight", "bold")
+      } else if (level > 5) {
+        $('#first').css("font-weight", "normal")
+        $('#second').css("font-weight", "bold")
+        $('#third').css("font-weight", "normal")
+      };
+    }
+  </script>
+  <button type="submit" class="btn btn-success submit">Submit</button>
+  <% end %>

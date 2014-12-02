@@ -14,7 +14,7 @@
 </style>
 <body>
 <% if (defined?(@results)).nil? %>
-  <%= render partial: "main_topbar", locals: { belief: @belief } %>
+  <%= render partial: "/beliefs/main_topbar", locals: { belief: @belief } %>
   <hr>
 <% end %>
 
@@ -29,12 +29,12 @@
 </script>
 <div id="selected_node" hidden></div>
 <% else %>
-  <%= render partial: "results_table", locals: { results: @results } %>
+  <%= render partial: "/beliefs/results_table", locals: { results: @results } %>
 <% end %>
 </div>
 
 <!-- TOOLBAR DIV -->
 <div class="col-lg-2 toolbar">
-  <%= render partial: "side_toolbar" %>
+  <%= render partial: "/beliefs/side_toolbar" %>
 </div>
 

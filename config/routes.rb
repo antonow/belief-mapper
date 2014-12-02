@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get 'beliefs/results' => 'beliefs#results'
   post 'beliefs/search' => 'beliefs#search'
 
+  resources :users, only: [:index]
 
   resources :demographics, only: [:new, :create, :update, :edit]
 
