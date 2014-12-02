@@ -1,5 +1,7 @@
 class UserBeliefsController < ApplicationController
-  include ApplicationHelper
+  # include ApplicationHelper
+  include UsersBeliefsHelper
+
   require 'faker'
 
   def create
@@ -13,7 +15,7 @@ class UserBeliefsController < ApplicationController
     user_belief = UserBelief.new(belief: belief, user: user, conviction: params[:conviction])
     if user_belief.save!
       if user_belief.conviction > 5
-        create_connections_for(belief)
+        generate_new_connections(user_belief)
         belief.user_count += 1
       end
       # if @count = user.beliefs.count >= 3
