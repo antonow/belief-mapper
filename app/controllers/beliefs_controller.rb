@@ -58,7 +58,8 @@ class BeliefsController < ApplicationController
   end
 
   def list
-    "hellow world"
+    @results = Belief.all
+    render "list"
   end
 
 end
