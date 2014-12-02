@@ -1,7 +1,7 @@
 renderD3WebAll = function() {
- $(function() {
-   $('a[rel=tipsy]').tipsy({fade: true, gravity: 'n'});
- });
+ // $(function() {
+ //   $('a[rel=tipsy]').tipsy({fade: true, gravity: 'n'});
+ // });
 
 
 var width = 960,

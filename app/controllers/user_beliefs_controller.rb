@@ -17,7 +17,7 @@ class UserBeliefsController < ApplicationController
         belief.user_count += 1
       end
       # if @count = user.beliefs.count >= 3
-      redirect_to beliefs_path
+      redirect_to :back
       # end
     else
       redirect_to 'error'

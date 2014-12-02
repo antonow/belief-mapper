@@ -10,7 +10,7 @@ json.beliefs @beliefs do |belief|
   end
 end
 
-  json.connections @connections do |connection|
+json.connections @connections do |connection|
   json.source connection.belief_1_id
   json.target connection.belief_2_id
   json.value connection.count
