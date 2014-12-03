@@ -1,24 +1,26 @@
   <!-- QUESTION DIV BEGINS HERE -->
-  <div class="row lead">
+  <div class="row lead question_div">
     <!-- <div class="col-md-1"></div> -->
     <% @belief = current_user.unexamined_beliefs.sample %>
     <% unless @belief.nil? %>
-      <div class="col-md-3 lead" >
-        <% display = @belief.definition %>
-        <% display += "in the " unless ['belief', 'doctrine'].include?(display.split(' ').first) %>
-        <% display = display.sub(/belief /, "").sub(/doctrine /, "") %>
-        <p>Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "")%>?</p>
+      <div class="row lead question_display">
+        <div class="col-md-10">
+          <% display = @belief.definition %>
+          <% display += "in the " unless ['belief', 'doctrine'].include?(display.split(' ').first) %>
+          <% display = display.sub(/belief /, "").sub(/doctrine /, "") %>
+          <p>Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "")%>?</p>
+        </div>
       </div>
-      <div class="col-md-9">
-        <%= render partial: "beliefs/slider_form", locals: { belief: @belief } %>
-      </div>
+          <div class="row lead">
+            <%= render partial: "beliefs/slider_form", locals: { belief: @belief } %>
+          </div>
     <% else %>
-
-  <!-- What displays if all the questions have been answered -->
-
+    <!-- What displays if all the questions have been answered -->
+    <h1>Congrats you've answered all the beliefs!  For more beliefs view <%= link_to 'List Beliefs', list_beliefs_path%></h1>
     <% end %>
-
   </div>
+
+
 
 <!-- PROGRESS BAR DIV BEGINS HERE -->
 <%= render partial: "beliefs/progress_bar" %>

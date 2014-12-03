@@ -1,22 +1,33 @@
 
 
 
-  <ul class="nav nav-pills nav-stacked">
+  <ul class="nav nav-pills nav-stacked side_toolbar" >
     <li role="presentation" class=""><a href="/">Home</a></li>
     <% if user_signed_in? == false %>
       <li role="presentation" class=""><a href="/users/sign_up">Sign up</a></li>
     <%else%>
       <li role="presentation" class=""><a href="/users/edit">Edit My Account</a></li>
     <%end%>
-    <li role="presentation"><%= link_to 'List All Beliefs', list_beliefs_path%></li>
-    <li role="presentation"><a href="#">List Belief By Category</a></li>
+
+    <hr>
+
+    <%if request.fullpath.to_s.include?("users")%>
+      <li role="presentation" class=<%="active" if request.fullpath == "/beliefs" %>><%= link_to 'Display All Belief Map', beliefs_path %></li>
+    <% elsif request.fullpath.to_s.include?("beliefs") %>
+      <li role="presentation" class=<%="active" if request.fullpath == "/users" %>><%= link_to 'Display Your Belief Map', users_path %></li>
+    <%end%>
+
+    <hr>
+
+    <li role="presentation"><%= link_to 'List Beliefs', list_beliefs_path%></li>
+    <!-- <li role="presentation"><a href="#">List Belief By Category</a></li> -->
       <ul>
         <% Category.all.each do |category|%>
           <li><%= link_to category.name, category_path(category) %></li>
         <%end%>
       </ul>
-  <li role="presentation" class=<%="active" if request.fullpath == "/users" %>><%= link_to 'Display Your Belief Map', users_path %></li>
-  <li role="presentation" class=<%="active" if request.fullpath == "/beliefs" %>><%= link_to 'Display All Belief Map', beliefs_path %></li>
+
+    <hr>
 
   </ul>
   <br>
@@ -34,19 +45,6 @@
     fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   </script>
-
-<!--
-  <p>Filter by</p>
-      <ul>
-        <li>Category</li>
-        <li>My Beliefs</li>
-        <li><%= check_box("filter", "button", {}, "yes", "no") %></li>
-        <li>Gender</li>
-        <li>Age</li>
-        <li>Location</li>
-        <li>Religious Affiliation</li>
-      </ul> -->
-
 
   <hr>
       <%= form_for :belief, url: beliefs_path, method: :get do |f| %>
@@ -68,3 +66,15 @@
       <% end %>
 
 </div>
+
+<!--
+  <p>Filter by</p>
+      <ul>
+        <li>Category</li>
+        <li>My Beliefs</li>
+        <li><%= check_box("filter", "button", {}, "yes", "no") %></li>
+        <li>Gender</li>
+        <li>Age</li>
+        <li>Location</li>
+        <li>Religious Affiliation</li>
+      </ul> -->

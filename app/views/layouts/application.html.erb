@@ -7,22 +7,38 @@
   <title>BeliefMapper</title>
 </head>
 <body>
+
+
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img alt="Brand" src="http://thevisualcommunicationguy.com/wp-content/uploads/2013/11/Starbucks-Logo-051711-300x282.gif" height="30" width="30">
+      </a>
+
+      <div class="header_buttons">
+        <!-- Only displays logout button if user is signed in -->
+        <% if user_signed_in? %>
+          <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Log Out', destroy_user_session_path, method: :delete%></button>
+        <!-- Displays sign in or sign up button if not logged in -->
+        <% else %>
+          <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Sign in', new_user_session_path %></button>
+          <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Sign up', new_user_registration_path %></button>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+
+
+
+
 <div class='container'>
-      <!-- Only displays logout button if user is signed in -->
-      <% if user_signed_in? %>
-        <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Log Out', destroy_user_session_path, method: :delete%></button>
-      <!-- Displays sign in or sign up button if not logged in -->
-      <% else %>
-        <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Sign in', new_user_session_path %></button>
-        <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Sign up', new_user_registration_path %></button>
-      <% end %>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<%= yield %>
-<hr>
-<p class="centered">Belief Mapper</p>
-<br>
-<br>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= yield %>
+  <hr>
+  <p class="centered">Life Examined</p>
+  <br>
+  <br>
 </div>
 
 </body>
