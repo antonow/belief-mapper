@@ -6,5 +6,4 @@ class CategoriesController < ApplicationController
     @results = @beliefs
   end
 
-
 end
