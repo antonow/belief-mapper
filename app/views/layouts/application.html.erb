@@ -10,11 +10,11 @@
 
 
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <img alt="Brand" src="http://thevisualcommunicationguy.com/wp-content/uploads/2013/11/Starbucks-Logo-051711-300x282.gif" height="30" width="30">
-      </a>
-
+      <div class="container">
+        <a href="/">
+          <%= image_tag("logo-image-only.jpg", :alt => "logo", class: "navbar-brand")%>
+          <div class="logo_text navbar-brand">life examined</div>
+        </a>
       <div class="header_buttons">
         <!-- Only displays logout button if user is signed in -->
         <% if user_signed_in? %>
@@ -36,6 +36,8 @@
   <p class="alert"><%= alert %></p>
   <%= yield %>
   <hr>
+
+
   <p class="centered">Life Examined</p>
   <br>
   <br>
