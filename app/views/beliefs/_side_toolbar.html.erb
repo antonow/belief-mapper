@@ -1,4 +1,38 @@
-<h3>Toolbar</h3>
+
+
+
+  <ul class="nav nav-pills nav-stacked">
+    <li role="presentation" class=""><a href="/">Home</a></li>
+    <% if user_signed_in? == false %>
+      <li role="presentation" class=""><a href="/users/sign_up">Sign up</a></li>
+    <%else%>
+      <li role="presentation" class=""><a href="/users/edit">Edit My Account</a></li>
+    <%end%>
+    <li role="presentation"><%= link_to 'List All Beliefs', list_beliefs_path%></li>
+    <li role="presentation"><a href="#">List Belief By Category</a></li>
+      <ul>
+        <% Category.all.each do |category|%>
+          <li><%= link_to category.name, category_path(category) %></li>
+        <%end%>
+      </ul>
+  <li role="presentation" class=<%="active" if request.fullpath == "/users" %>><%= link_to 'Display Your Belief Map', users_path %></li>
+  <li role="presentation" class=<%="active" if request.fullpath == "/beliefs" %>><%= link_to 'Display All Belief Map', beliefs_path %></li>
+
+  </ul>
+
+<!--
+  <p>Filter by</p>
+      <ul>
+        <li>Category</li>
+        <li>My Beliefs</li>
+        <li><%= check_box("filter", "button", {}, "yes", "no") %></li>
+        <li>Gender</li>
+        <li>Age</li>
+        <li>Location</li>
+        <li>Religious Affiliation</li>
+      </ul> -->
+
+
   <hr>
       <%= form_for :belief, url: beliefs_path, method: :get do |f| %>
         <div class="field">
@@ -17,42 +51,5 @@
           <%= f.submit "Unsubscribe" %>
         </div><br>
       <% end %>
-
-<hr>
-    <p><%= link_to 'Sign Up', edit_user_registration_path %></p>
-    <% if current_user.demographic.nil? %>
-    <p><%= link_to 'Add Demographics', new_demographic_path %></p>
-    <% else %>
-    <p><%= link_to 'Edit Demographics', edit_demographic_path(current_user.demographic.id) %></p>
-    <% end %>
-    <p>Share your Map</p>
-  </ul>
-
-
-<hr>
-  <p><%= link_to 'List of Beliefs', list_beliefs_path%> </p>
-
-<hr>
-    <p>Belief Categories</p>
-      <ul>
-      <% Category.all.each do |category|%>
-        <li><%= link_to category.name, category_path(category) %></li>
-      <%end%>
-      </ul>
-
-  <hr>
- <p> <%= link_to 'Your Belief Map', users_path %> </p>
-
-
-  <p>Filter by</p>
-      <ul>
-        <li>Category</li>
-        <li>My Beliefs</li>
-        <li><%= check_box("filter", "button", {}, "yes", "no") %></li>
-        <li>Gender</li>
-        <li>Age</li>
-        <li>Location</li>
-        <li>Religious Affiliation</li>
-      </ul>
 
 </div>

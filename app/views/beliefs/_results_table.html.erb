@@ -1,18 +1,22 @@
 <%= link_to 'Return to Graph', beliefs_path %><br><br>
 <% your_beliefs = current_user.held_beliefs %>
-<table class="table table-hover">
+<table class="table table-hover table-striped">
   <thead>
     <tr>
       <th>Name</th>
       <th>Definition</th>
+      <th>Number of Subscribers</th>
+      <th>Avg. Conviction</th>
       <th colspan="1"></th>
     </tr>
   </thead>
   <tbody>
-  <% @results.each do |result| %>
+  <%@results.each do |result| %>
     <tr>
       <td><%= link_to result.name, belief_path(result) %></td>
       <td><%= result.definition %></td>
+      <td><%= result.user_count %></td>
+      <td><%= result.avg_conviction%>%</td>
       <% unless your_beliefs.include?(result) %>
         <td><%= button_tag 'Subscribe', :class => 'subscribe ' + result.id.to_s %></td>
       <% else %>

@@ -63,7 +63,7 @@ class BeliefsController < ApplicationController
   end
 
   def list
-    @results = Belief.all
+    @results = Belief.all.order(name: :asc)
     render "list"
   end
 
