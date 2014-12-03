@@ -1,33 +1,53 @@
 class BeliefsController < ApplicationController
   def index
-    unless user_signed_in?
-      redirect_to '/'
-    else
-      if params[:query].present?
-        @results = Belief.search(params[:query]) # , page: params[:page]
-      elsif params[:filter].present?
-        demographics = []
-        filter_params.each_with_index do |filter, index|
-          if index == 0
-            demographics = Demographic.where(filter[0] => filter[1])
-
+    show_greater_than = 0
+    respond_to do |format|
+      format.html {
+        unless user_signed_in?
+          redirect_to '/'
+        else
+          if params[:query].present?
+            @results = Belief.search(params[:query])
           else
-            demographics = demographics.where(filter[0] => filter[1])
+            max = Belief.where("user_count > ?", show_greater_than).count
+            if params[:category].present?
+              selected_category = params[:category]
+              unless ["All", "Category"].include?(selected_category)
+                @category = Category.find(selected_category.to_i)
+                max = @category.total_beliefs
+              end
+            end
+            @count = 30
+            if params[:count].present?
+              @count = params[:count].to_i unless params[:count].to_i <= 0
+              if @count >= max
+                @maxed_out = max
+              end
+            end
           end
         end
-        @beliefs = demographics.all.map { |demographic| demographic.user.beliefs }.flatten.uniq
-        @connections = []
+      }
+      format.json {
+        @beliefs = Belief.order('user_count DESC')
+        @category = nil
+        @count = 30
+        if params[:count].present?
+          @count = params[:count].to_i unless params[:count].to_i <= 0
+          @beliefs = @beliefs.limit(@count).where("user_count > ?", show_greater_than)
+        end
+
+        selected_category = params[:category]
+        if selected_category.present? && !["All", "Category"].include?(selected_category)
+          @beliefs = @beliefs.where(category_id: selected_category).where("user_count > ?", show_greater_than)
+        end
+
         belief_ids = @beliefs.map { |belief| belief.id }
 
         @connections = Connection.where(:belief_1_id => belief_ids, :belief_2_id => belief_ids)
-        @connections = @connections.to_a.compact
-      else
-        @beliefs = Belief.all
-        @connections = Connection.all
-      end
+        render { render :json => {:beliefs => @beliefs,
+                                  :connections => @connections }}
+      }
     end
-
-
   end
 
 

@@ -222,8 +222,6 @@ belief that human interests and mind are paramount
 doctrine that the highest moral obligation is to improve human welfare
 hylicism
 no definition
-materialism
-no definition
 *hylomorphism
 belief that matter is cause of the universe
 *hylotheism
@@ -260,8 +258,8 @@ belief that the truth is arrived at by intuition
 belief that an unlikely opinion may be safely followed
 *malism
 belief that the world is evil
-materialism
-belief that matter is the only extant substance
+*materialism
+doctrine that nothing exists except matter and its movements and modifications
 mechanism
 belief that life is explainable by mechanical forces
 *meliorism
@@ -302,7 +300,7 @@ theory that consciousness may inhere generally in matter
 theory that the material universe is all that exists
 panegoism
 solipsism
-*panpsychism
+panpsychism
 theory that all nature has a psychic side
 *pansexualism
 theory that all thought is derived from sexual instinct
@@ -322,10 +320,10 @@ doctrine that moral perfection is the highest value
 doctrine that humans possess spiritual freedom
 *pessimism
 doctrine that the universe is essentially evil
-*phenomenalism
+phenomenalism
 belief that phenomena are the only realities
 *physicalism
-belief that all phenomena reducible to verifiable assertions
+belief that all phenomena are reducible to verifiable assertions
 pluralism
 belief that reality consists of several kinds or entities
 *positivism
@@ -370,8 +368,6 @@ belief that ideas originate solely in sensation
 doctrine that true knowledge is always uncertain
 *solipsism
 theory that your own self-existence is the only certainty
-*materialism
-doctrine that nothing exists except matter and its movements and modifications
 spatialism
 doctrine that matter has only spatial, temporal and causal properties
 *spiritualism
@@ -459,7 +455,7 @@ belief that Earth is the center of the universe
 functionalism
 doctrine emphasising utility and function
 *hylopathism
-belief in ability of matter to affect the spiritual world
+belief in the ability of matter to affect the spiritual world
 illuminism
 belief in an inward spiritual light
 *racism

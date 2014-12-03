@@ -2,6 +2,22 @@
 
 renderD3Web = function() {
   var maxNodes = 40;
+  var current_url = window.location.href;
+  var count = current_url.match(/count=\d+/);
+  if (count != null) {
+    count = "?"+count[0];
+  } else {
+    count = "?count=30";
+  }
+  var category = current_url.match(/category=\d+/);
+  if (category != null) {
+    if (count != null) {
+      category = "&"+category[0];
+    } else {
+      category = "?"+category[0];
+    }
+  }
+
   // var showFirst;
   // var hideEdges;
 
@@ -15,7 +31,6 @@ renderD3Web = function() {
 
 
 
-
   var width = 960,
     height = 600
 
@@ -24,9 +39,9 @@ renderD3Web = function() {
     .attr("height", height);
 
   var force = d3.layout.force()
-    .gravity(.5)
-    .distance(350)
-    .charge(-10)
+    .gravity(.05)
+    .distance(300)
+    .charge(-100)
     .size([width, height]);
 
   function toQuintile(value) {
@@ -55,9 +70,11 @@ renderD3Web = function() {
     }
   }
 
-  d3.json("/beliefs.json", function(error, json) {
-    var data = json.beliefs.filter(function(d) {return d.id < maxNodes;});
-    console.log(data);
+
+
+  d3.json("/beliefs.json"+count+category, function(error, json) {
+    // var data = json.beliefs;
+    // console.log(data);
     var edges = [];
     json.connections.forEach(function(e) {
       var sourceBelief = json.beliefs.filter(function(n) {
@@ -89,7 +106,7 @@ renderD3Web = function() {
     // }
 
 
-    edges = edges.filter(function(d) { return (d.source.id < maxNodes && d.target.id < maxNodes); });
+    // edges = edges.filter(function(d) { return (d.source.id < maxNodes && d.target.id < maxNodes); });
 
     force
       .nodes(json.beliefs)
@@ -97,7 +114,7 @@ renderD3Web = function() {
       .start();
 
     var link = svg.selectAll(".link")
-      .data(edges.filter(function(d) { return (d.source.id < maxNodes && d.target.id < maxNodes); }))
+      .data(edges)
       .enter().append("line")
       .attr("class", "link")
       .style("opacity", function(d) {
@@ -110,7 +127,7 @@ renderD3Web = function() {
       });
 
     var node = svg.selectAll(".node")
-      .data(json.beliefs.filter(function(d) {return d.id < maxNodes;}))
+      .data(json.beliefs)
       .enter().append("g")
       .attr("class", "node")
       .call(force.drag);

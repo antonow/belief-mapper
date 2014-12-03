@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    b = current_user.beliefs
+    b = current_user.held_beliefs
         @beliefs = []
         b.each {|bel| @beliefs << bel}
         @connections = []
@@ -11,4 +11,8 @@ class UsersController < ApplicationController
         @connections
         @beliefs
   end
+
+    def skip
+        render :partial => "/beliefs/main_topbar"
+    end
 end

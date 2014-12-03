@@ -14,32 +14,49 @@
 </style>
 <body>
 <% if (defined?(@results)).nil? %>
-  <%= render partial: "main_topbar", locals: { belief: @belief } %>
-  <hr>
+  <div id='refresh'>
+    <%= render partial: "main_topbar", locals: { belief: @belief } %>
+  </div>
+  <hr id="top-line">
 <% end %>
-<!-- <form action="/beliefs" method="get">
-    <input type="checkbox" name="filter[gender]" value="Male">Male
-    <input type="checkbox" name="filter[gender]" value="Female">Female
-    <input type="checkbox" name="filter[religion]" value="Judaism">Judaism
-    <input type="checkbox" name="filter[religion]" value="Christianity">Christianity
-    <input type="checkbox" name="filter[state]" value="Alaska">Alaska
 
-
-    <input type="submit">
-  </form> -->
 <!-- GRAPH DIV BEGINS HERE -->
 <div class="row">
   <div class="col-lg-10 graph">
     <% if (defined?(@results)).nil? %>
 <!--     <input type="range" name="max_nodes" id="max_nodes" value=40 min=10 max=100>
     <p id='text'></p> -->
-
+<span id="graph-text">
+<p>Displaying <% if @maxed_out.nil? %>the top <%= @count %> most popular <% else %> all <% @maxed_out %><% end %> beliefs <% unless @category.nil? %> in <%= @category.name %><% end %></p>
+</span>
 <script>
    $(function() {
       renderD3Web();
    });
 </script>
-<div id="selected_node" hidden></div>
+<div class="view-options">
+<%= form_for beliefs_path, method: 'get' do %>
+  <div class="field">
+    <%= number_field_tag(:count) %>
+    <%= label_tag(:count, "Quantity") %>
+  </div>
+  <div class="field">
+    <select name="category">
+      <option>Category</option>
+      <option>All</option>
+      <option value="1">Religion</option>
+      <option value="2">Philosophy</option>
+      <option value="3">Politics</option>
+      <option value="4">Other</option>
+    </select>
+  </div>
+  <div class="field">
+    <%= submit_tag("Show") %>
+  </div>
+<% end %>
+<br>
+</div>
+
 <% else %>
   <%= render partial: "results_table", locals: { results: @results } %>
 <% end %>

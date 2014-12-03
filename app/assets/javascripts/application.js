@@ -28,6 +28,11 @@ $(document).ready(function(){
     e.preventDefault();
     $('#' + this.classList[1]).show();
   });
+
+  $('#skip').click(function(e) {
+    e.preventDefault();
+    $('#refresh').load('/users/skip');
+  })
 });
 
 

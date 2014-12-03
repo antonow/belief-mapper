@@ -29,14 +29,61 @@
 
 
 .question_display{
-  text-align: center;
+  text-align: left;
+  position: relative;
+  left: 35px;
 }
 
 .slider_buttons{
-
 }
 
 .question_div{
+  position: relative;
   margin-bottom: 0px;
+  z-index: 100;
 }
 
+.results {
+  position: relative;
+  top: 500px;
+  height: 600px;
+}
+
+.graph {
+  position: relative;
+  top: -120px;
+  height: 600px;
+}
+
+.users-graph {
+  position: relative;
+  top: 0px;
+  height: 600px;
+}
+
+.results {
+  position: relative;
+  top: 500px;
+  height: 600px;
+}
+
+#graph-text {
+  position: relative;
+  left: 20px;
+  bottom: -140px;
+  pointer-events: none;
+}
+
+.view-options {
+  position:relative;
+  width: 120px;
+  top: 600px;
+}
+
+#count {
+  width: 45px;
+}
+
+hr {
+  margin: 0;
+}
