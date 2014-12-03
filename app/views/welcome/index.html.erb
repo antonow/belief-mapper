@@ -10,7 +10,7 @@
   <% display = @belief.definition %>
   <% display += "in the " unless ['belief', 'doctrine'].include?(display.split(' ').first) %>
   <% display = display.sub(/belief /, "").sub(/doctrine /, "") %>
-  Do you believe <%= display %>?
+  <p>Do you believe <%= display %>?</p>
   <!-- + " - " + @belief.id.to_s -->
   <br>
   <br>

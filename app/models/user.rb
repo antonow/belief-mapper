@@ -27,4 +27,6 @@ class User < ActiveRecord::Base
     ((self.beliefs_answered.count.to_f / Belief.all.count.to_f) * 100).to_i.to_s + "%"
   end
 
+
+
 end
