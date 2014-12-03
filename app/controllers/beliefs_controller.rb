@@ -1,5 +1,6 @@
 class BeliefsController < ApplicationController
   def index
+    show_greater_than = 0
     respond_to do |format|
       format.html {
         unless user_signed_in?
@@ -8,7 +9,7 @@ class BeliefsController < ApplicationController
           if params[:query].present?
             @results = Belief.search(params[:query])
           else
-            max = Belief.where("user_count > ?", 5).count
+            max = Belief.where("user_count > ?", show_greater_than).count
             if params[:category].present?
               selected_category = params[:category]
               unless ["All", "Category"].include?(selected_category)
@@ -32,12 +33,12 @@ class BeliefsController < ApplicationController
         @count = 30
         if params[:count].present?
           @count = params[:count].to_i unless params[:count].to_i <= 0
-          @beliefs = @beliefs.limit(@count).where("user_count > ?", 5)
+          @beliefs = @beliefs.limit(@count).where("user_count > ?", show_greater_than)
         end
 
         selected_category = params[:category]
         if selected_category.present? && !["All", "Category"].include?(selected_category)
-          @beliefs = @beliefs.where(category_id: selected_category).where("user_count > ?", 5)
+          @beliefs = @beliefs.where(category_id: selected_category).where("user_count > ?", show_greater_than)
         end
 
         belief_ids = @beliefs.map { |belief| belief.id }

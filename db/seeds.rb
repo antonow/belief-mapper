@@ -37,7 +37,6 @@ User.all.each do |user|
   rand(20..40).times do
     belief = Belief.all.sample
     user_belief = UserBelief.create!(belief: belief, conviction: rand(0..100), user: user)
-    # user.beliefs << belief unless user.beliefs.include?(belief)
     if user_belief.conviction > 5
       generate_new_connections(user_belief)
       belief.user_count += 1
@@ -45,12 +44,6 @@ User.all.each do |user|
     belief.save
   end
 end
-
-# Creates connections between beliefs based on how many users have the same connection in common
-# Belief.all.each do |belief|
-#   create_connections_for(belief)
-# end
-
 
 Belief.all.each do |belief|
   if belief.user_beliefs.count > 0
@@ -63,12 +56,3 @@ Belief.all.each do |belief|
   end
   belief.save
 end
-
-# Creates categories
-# Category.create!(name: "Philosophy")
-# Category.create!(name: "Politics")
-# Category.create!(name: "Religion")
-
-
-
-
