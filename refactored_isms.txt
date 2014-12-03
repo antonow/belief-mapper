@@ -222,8 +222,6 @@ belief that human interests and mind are paramount
 doctrine that the highest moral obligation is to improve human welfare
 hylicism
 no definition
-materialism
-no definition
 *hylomorphism
 belief that matter is cause of the universe
 *hylotheism
@@ -260,8 +258,8 @@ belief that the truth is arrived at by intuition
 belief that an unlikely opinion may be safely followed
 *malism
 belief that the world is evil
-materialism
-belief that matter is the only extant substance
+*materialism
+doctrine that nothing exists except matter and its movements and modifications
 mechanism
 belief that life is explainable by mechanical forces
 *meliorism
@@ -370,8 +368,6 @@ belief that ideas originate solely in sensation
 doctrine that true knowledge is always uncertain
 *solipsism
 theory that your own self-existence is the only certainty
-*materialism
-doctrine that nothing exists except matter and its movements and modifications
 spatialism
 doctrine that matter has only spatial, temporal and causal properties
 *spiritualism

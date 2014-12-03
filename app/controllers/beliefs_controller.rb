@@ -22,8 +22,26 @@ class BeliefsController < ApplicationController
         @connections = Connection.where(:belief_1_id => belief_ids, :belief_2_id => belief_ids)
         @connections = @connections.to_a.compact
       else
-        @beliefs = Belief.all
-        @connections = Connection.all
+        @beliefs = Belief.order('user_count DESC')
+        @category = nil
+        @count = 30
+        if params[:count].present?
+          @count = params[:count].to_i unless params[:count].to_i <= 0
+          @beliefs = @beliefs.limit(@count)
+        end
+
+        selected_category = params[:category]
+        if selected_category.present? && selected_category != "All"
+          @category = Category.find(selected_category.to_i).name
+          @beliefs = @beliefs.where(category_id: selected_category)
+        end
+
+        @maxed_out = @beliefs.count if @beliefs.count < @count
+
+        belief_ids = @beliefs.map { |belief| belief.id }
+
+        @connections = Connection.where(:belief_1_id => belief_ids, :belief_2_id => belief_ids)
+        # @connections = Connection.limit(10)
       end
     end
 
