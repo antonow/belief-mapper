@@ -17,6 +17,7 @@ class UserBeliefsController < ApplicationController
       if user_belief.conviction > 5
         generate_new_connections(user_belief)
         belief.user_count += 1
+        belief.save
       end
       # if @count = user.beliefs.count >= 3
       redirect_to :back

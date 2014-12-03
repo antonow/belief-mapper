@@ -20,16 +20,17 @@
 
 <!-- GRAPH DIV BEGINS HERE -->
 <div class="row">
-  <div class="col-lg-10 graph">
+  <div class="col-lg-10 graph users-graph">
     <% if (defined?(@results)).nil? %>
 <script>
    $(function() {
       renderD3WebUser();
    });
 </script>
-<div id="selected_node" hidden></div>
 <% else %>
-  <%= render partial: "/beliefs/results_table", locals: { results: @results } %>
+  <div class="results">
+    <%= render partial: "/beliefs/results_table", locals: { results: @results } %>
+  </div>
 <% end %>
 </div>
 

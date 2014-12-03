@@ -45,8 +45,10 @@ Rails.application.routes.draw do
   # end
 
   get 'list', to: 'beliefs#list', as: :list_beliefs
+  get 'users/skip' => 'users#skip'
 
-  resources :users, only: [:index]
+
+  resources :users, only: [:index, :skip]
 
   resources :demographics, only: [:new, :create, :update, :edit]
 
