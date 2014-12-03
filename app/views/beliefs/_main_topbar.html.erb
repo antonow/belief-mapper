@@ -13,9 +13,8 @@
         <%= render partial: "beliefs/slider_form", locals: { belief: @belief } %>
       </div>
     <% else %>
-
-  <!-- What displays if all the questions have been answered -->
-
+    <!-- What displays if all the questions have been answered -->
+    <h1>Congrats you've answered all the beliefs!  For more beliefs view <%= link_to 'List Beliefs', list_beliefs_path%></h1>
     <% end %>
 
   </div>
