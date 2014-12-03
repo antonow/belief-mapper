@@ -1,11 +1,4 @@
-<script type= "text/javascript" src = "countries.js"></script>
-
-<h2>Demographics (optional)</h2>
-<hr>
-
-<%= form_for :demographic, url: demographics_path do |f| %>
-
-  <div class="field">
+<div class="field">
     <%= f.label :gender %><br />
     <%= f.select(:gender, all_genders, {include_blank: true}) %>
   </div>
@@ -40,4 +33,3 @@
   <div class="actions">
     <%= f.submit "Save Changes" %>
   </div>
-<% end %>
