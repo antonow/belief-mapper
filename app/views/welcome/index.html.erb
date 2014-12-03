@@ -8,8 +8,8 @@
   <!-- <p>Answer 3 more questions to see your map</p> -->
   <h3>Question</h3>
   <% display = @belief.definition %>
-  <% display += "in the " unless ['belief', 'doctrine'].include?(display.split(' ').first) %>
-  <% display = display.sub(/belief /, "").sub(/doctrine /, "") %>
+  <% display = "in the " + display unless ['belief', 'doctrine', 'theory'].include?(display.split(' ').first) %>
+  <% display = display.sub(/belief /, "").sub(/doctrine /, "").sub(/theory /, "") %>
   <p>Do you believe <%= display %>?</p>
   <!-- + " - " + @belief.id.to_s -->
   <br>

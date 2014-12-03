@@ -302,7 +302,7 @@ theory that consciousness may inhere generally in matter
 theory that the material universe is all that exists
 panegoism
 solipsism
-*panpsychism
+panpsychism
 theory that all nature has a psychic side
 *pansexualism
 theory that all thought is derived from sexual instinct
@@ -322,10 +322,10 @@ doctrine that moral perfection is the highest value
 doctrine that humans possess spiritual freedom
 *pessimism
 doctrine that the universe is essentially evil
-*phenomenalism
+phenomenalism
 belief that phenomena are the only realities
 *physicalism
-belief that all phenomena reducible to verifiable assertions
+belief that all phenomena are reducible to verifiable assertions
 pluralism
 belief that reality consists of several kinds or entities
 *positivism
@@ -459,7 +459,7 @@ belief that Earth is the center of the universe
 functionalism
 doctrine emphasising utility and function
 *hylopathism
-belief in ability of matter to affect the spiritual world
+belief in the ability of matter to affect the spiritual world
 illuminism
 belief in an inward spiritual light
 *racism
