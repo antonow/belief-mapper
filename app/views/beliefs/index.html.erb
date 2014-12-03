@@ -17,13 +17,23 @@
   <%= render partial: "main_topbar", locals: { belief: @belief } %>
   <hr>
 <% end %>
+<!-- <form action="/beliefs" method="get">
+    <input type="checkbox" name="filter[gender]" value="Male">Male
+    <input type="checkbox" name="filter[gender]" value="Female">Female
+    <input type="checkbox" name="filter[religion]" value="Judaism">Judaism
+    <input type="checkbox" name="filter[religion]" value="Christianity">Christianity
+    <input type="checkbox" name="filter[state]" value="Alaska">Alaska
 
+
+    <input type="submit">
+  </form> -->
 <!-- GRAPH DIV BEGINS HERE -->
 <div class="row">
   <div class="col-lg-10 graph">
     <% if (defined?(@results)).nil? %>
 <!--     <input type="range" name="max_nodes" id="max_nodes" value=40 min=10 max=100>
     <p id='text'></p> -->
+
 <script>
    $(function() {
       renderD3Web();

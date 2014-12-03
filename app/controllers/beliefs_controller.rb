@@ -5,24 +5,29 @@ class BeliefsController < ApplicationController
     else
       if params[:query].present?
         @results = Belief.search(params[:query]) # , page: params[:page]
-      elsif params[:user].present?
-        redirect_to '/users'
-        b = current_user.beliefs
-        @beliefs = []
-        b.each {|bel| @beliefs << bel}
+      elsif params[:filter].present?
+        demographics = []
+        filter_params.each_with_index do |filter, index|
+          if index == 0
+            demographics = Demographic.where(filter[0] => filter[1])
+
+          else
+            demographics = demographics.where(filter[0] => filter[1])
+          end
+        end
+        @beliefs = demographics.all.map { |demographic| demographic.user.beliefs }.flatten.uniq
         @connections = []
-        user_belief_ids = b.pluck(:id)
-        # @beliefs.each do |belief|
-        @connections = Connection.where(:belief_1_id => user_belief_ids, :belief_2_id => user_belief_ids)
+        belief_ids = @beliefs.map { |belief| belief.id }
+
+        @connections = Connection.where(:belief_1_id => belief_ids, :belief_2_id => belief_ids)
         @connections = @connections.to_a.compact
-        @rout
-        @connections
-        @beliefs
       else
         @beliefs = Belief.all
         @connections = Connection.all
       end
     end
+
+
   end
 
 
@@ -60,6 +65,10 @@ class BeliefsController < ApplicationController
   def list
     @results = Belief.all
     render "list"
+  end
+
+  def filter_params
+    params.require(:filter).permit(:gender, :religion, :education_level)
   end
 
 end

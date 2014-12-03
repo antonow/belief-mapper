@@ -11,7 +11,7 @@
 
       <%= form_for :user_belief, url: user_belief_path(:user_belief), method: :delete do |f| %>
         <div class="field">
-          <%= f.select(:name, current_user.beliefs.map { |belief| belief.name }, {include_blank: 'Select a belief to'}) %>
+          <%= f.select(:name, current_user.held_beliefs.map { |belief| belief.name }, {include_blank: 'Select a belief to'}) %>
         </div>
       <div class="actions">
           <%= f.submit "Unsubscribe" %>
