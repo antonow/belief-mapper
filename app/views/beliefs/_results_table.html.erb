@@ -1,29 +1,31 @@
 <%= link_to 'Return to Graph', beliefs_path %><br><br>
 <% your_beliefs = current_user.held_beliefs %>
-<table class="table table-hover table-striped">
+<table class="table table-hover table-striped" id="resultTable">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Definition</th>
-      <th>Number of Subscribers</th>
-      <th>Avg. Conviction</th>
+      <th class="numsort">Name</th>
+      <th class="numsort">Definition</th>
+      <th class="numsort">Number of Subscribers</th>
+      <th class="numsort">Avg. Conviction</th>
       <th colspan="1"></th>
     </tr>
   </thead>
   <tbody>
   <%@results.each do |result| %>
-    <tr>
-      <td><%= link_to result.name, belief_path(result) %></td>
-      <td><%= result.definition %></td>
-      <td><%= result.user_count %></td>
-      <td><%= result.avg_conviction%>%</td>
+    <tr class="tablerow">
+      <td class="numsort"><%= link_to result.name, belief_path(result) %></td>
+      <td class="numsort"><%= result.definition %>
+        <div id=<%= result.id.to_s %> hidden style="width:200%; position:relative; left:-50% "><br><%= render partial: "beliefs/slider_form", locals: { belief: result } %></div>
+</td>
+      <td class="numsort"><%= result.user_count %></td>
+      <td class="numsort"><%= result.avg_conviction%>%</td>
       <% unless your_beliefs.include?(result) %>
         <td><%= button_tag 'Subscribe', :class => 'subscribe ' + result.id.to_s %></td>
       <% else %>
         <td><%= button_to 'Unsubscribe', user_belief_path(result), method: :delete %></td>
       <% end %>
-    </tr>
-    <tr id=<%= result.id.to_s %> hidden><td colspan='3'><%= render partial: "beliefs/slider_form", locals: { belief: result } %></td></tr>
+          </tr>
   <% end %>
   </tbody>
 </table>
+

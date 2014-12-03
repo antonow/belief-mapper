@@ -22,35 +22,23 @@
 <p>
   Rank: <%=@belief.rank.to_s + "/" + Belief.total_beliefs.to_s %>
 </p>
+<h3>Closely Related Beliefs</h3>
+<div class="row">
 
-<h4>Top 10 Most Closely Related Beliefs</h4>
-<!-- List of top correlated beliefs -->
-<% @belief.list_top_connections.each do |belief, count| %>
-<p><%= link_to belief.name, belief_path(belief) %> - <%= count.to_s %></p>
-<% end %>
+<div class="col-md-3 connection-links ">
+<%@belief.top_connections_links.each do |conn|%>
+<br>
+<a href="/beliefs/<%=conn[0]%>"><%=conn[1]%></a>
+<%end%>
+</div>
+<div class="col-md-9">
+<p> <%= column_chart @belief.list_top_connections %></p>
+</div>
+</div>
 
-<!-- DEMOGRAPHICS -->
-<% @belief.all_the_stats.each do |category, results| %>
-  <p><%= category %></p>
-  <p>
-<% results.each do |demographic, count| %>
-  <%= demographic + " - " + count.to_s + " | " %>
-  <% end %>
-  </p>
-<% end %>
-
-
-
-
-<p>
-<% @belief.all_stats_for("gender").each do |gender, count| %>
-  <%= gender + " - " + count.to_s + " | " %>
-<% end %>
-</p>
-<p>
-<% @belief.all_stats_for("religion").each do |religion, count| %>
-  <%= religion + " - " + count.to_s + " | " %>
-<% end %>
-</p>
-
+<div class="row">
+<div class="col-md-4"><h3> Religion <%= pie_chart @belief.all_stats_for("religion") %> </h3></div>
+<div class="col-md-4"><h3> Gender<%= pie_chart @belief.all_stats_for("gender") %> </h3></div>
+<div class="col-md-4"><h3> Education Level<%= pie_chart @belief.all_stats_for("education_level") %></h3></div>
+</div>
 

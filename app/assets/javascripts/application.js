@@ -15,6 +15,8 @@
 //= require jquery_ujs
 //= require underscore
 //= require bootstrap-sprockets
+//= require jsapi
+//= require chartkick
 //= require_tree .
 
 

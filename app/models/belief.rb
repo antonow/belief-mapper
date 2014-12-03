@@ -31,7 +31,22 @@ class Belief < ActiveRecord::Base
   end
 
   def list_top_connections
-    Connection.connected_belief_strengths(self)[0..10]
+    top_connections = Connection.connected_belief_strengths(self)[0..9]
+    passed_connections = []
+    top_connections.each do |conn|
+      passed_connections << [conn[0].name.capitalize, conn[0].user_count]
+    end
+     passed_connections
+  end
+
+
+  def top_connections_links
+    top_connections = Connection.connected_belief_strengths(self)[0..9]
+    link_connections = []
+    top_connections.each do |conn|
+      link_connections << [conn[0].id, conn[0].name.capitalize]
+    end
+     link_connections
   end
 
   def rank
