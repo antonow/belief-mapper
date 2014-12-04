@@ -1,5 +1,3 @@
-
-
 renderD3Web = function() {
   var maxNodes = 40;
   var current_url = window.location.href;
