@@ -51,7 +51,7 @@
 
 .graph {
   position: relative;
-  top: -120px;
+  top: -122px;
   height: 600px;
 }
 
@@ -74,6 +74,13 @@
   pointer-events: none;
 }
 
+#users-text {
+  position: relative;
+  left: 20px;
+  bottom: -18px;
+  pointer-events: none;
+}
+
 .view-options {
   position:relative;
   width: 120px;
@@ -86,4 +93,21 @@
 
 hr {
   margin: 0;
+}
+
+.fb-share-button {
+  position: relative;
+  top: -5px;
+}
+
+#node-legend {
+  position: relative;
+  top: 18px;
+  left: 16px;
+}
+
+.table-slider {
+  width: 150%;
+  position: relative;
+  left: -20%;
 }

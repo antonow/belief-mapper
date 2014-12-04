@@ -69,13 +69,18 @@ class BeliefsController < ApplicationController
   @connections = Connection.all
   end
 
+  def results
+    raise 'here'
+  end
+
   def show
     @belief = Belief.find(params[:id])
   end
 
   def search
-    raise params.to_s
-    @results = Belief.search(params)
+    @results = Belief.search(params[:query])
+    @query = params[:query]
+    render "results"
   end
 
   def autocomplete
@@ -86,6 +91,8 @@ class BeliefsController < ApplicationController
     @results = Belief.all.order(name: :asc)
     render "list"
   end
+
+
 
   def filter_params
     params.require(:filter).permit(:gender, :religion, :education_level)

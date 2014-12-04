@@ -18,7 +18,12 @@
       <div class="header_buttons">
         <!-- Only displays logout button if user is signed in -->
         <% if user_signed_in? %>
-          <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Log Out', destroy_user_session_path, method: :delete%></button>
+          <% if current_user.active == true %>
+            <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Log Out', destroy_user_session_path, method: :delete%></button>
+          <% else %>
+            <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Sign in', new_user_session_path %></button>
+            <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Sign up', users_activate_path %></button>
+          <% end %>
         <!-- Displays sign in or sign up button if not logged in -->
         <% else %>
           <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Sign in', new_user_session_path %></button>
@@ -36,7 +41,7 @@
   <p class="alert"><%= alert %></p>
   <%= yield %>
 
-
+<br>
   <hr><br>
   <p class="centered">Life Examined</p>
   <br>

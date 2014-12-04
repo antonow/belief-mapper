@@ -26,7 +26,7 @@
     <% if (defined?(@results)).nil? %>
 <!--     <input type="range" name="max_nodes" id="max_nodes" value=40 min=10 max=100>
     <p id='text'></p> -->
-<span id="graph-text">
+<span id="graph-text" class="lead">
 <p>Displaying <% if @maxed_out.nil? %>the top <%= @count %> most popular <% else %> all <% @maxed_out %><% end %> beliefs <% unless @category.nil? %> in <%= @category.name %><% end %></p>
 </span>
 <script>

@@ -50,6 +50,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # redirect_to beliefs_path
   end
 
+  def activate
+    @user = current_user
+    render :activate
+  end
+
   # def after_sign_up_path_for(user)
   #    beliefs_path
   # end
@@ -60,9 +65,35 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    @user = User.find(params[:id].to_i)
+    @user.active = true
+
+    if params[:user][:password] != params[:user][:password_confirmation]
+      flash[:error] = "Passwords do not match."
+      render :'devise/registrations/activate' #:template => :back # "registrations_contr/index
+
+    elsif @user.save
+      session[:user_id] = @user.id
+      flash[:success] = "Welcome to Life Examined!"
+      sign_in @user, :bypass => true
+      redirect_to users_path
+
+    else
+      flash[:error] = "We could not create an account for you."
+      render :'devise/registrations/activate'#:template => :back # "registrations_contr/index"
+    end
+
+    # Demographic.create!(
+    #   user: @user,
+    #   gender: params[:demographic][:gender],
+    #   age: params[:demographic][:age],
+    #   religion: params[:demographic][:religion],
+    #   country: params[:demographic][:country],
+    #   state: params[:demographic][:state],
+    #   education_level: params[:demographic][:education_level]
+    #   )
+  end
 
   # DELETE /resource
   # def destroy

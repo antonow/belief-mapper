@@ -1,5 +1,13 @@
 renderD3WebUser = function() {
+  var current_url = window.location.href;
+  var unique_url = current_url.match(/[a-z0-9]+$/);
 
+  var url = "/users.json";
+  if (unique_url != "users") {
+    unique_url = "/"+unique_url[0];
+    console.log(unique_url);
+    url = "/users"+unique_url+".json"
+  }
 
   var width = 960,
     height = 600
@@ -40,7 +48,7 @@ renderD3WebUser = function() {
     }
   }
 
-  d3.json("/users.json", function(error, json) {
+  d3.json(url, function(error, json) {
     var edges = [];
 
     if (json.connections.length > 0)
@@ -128,8 +136,8 @@ renderD3WebUser = function() {
     // });
 
     node.append("text")
-      .attr("dx", 12)
-      .attr("dy", ".35em")
+      .attr("dx", 30)
+      .attr("dy", "2em")
       .style("fill", "#153D93")
       .text(function(d) {
         return d.name
