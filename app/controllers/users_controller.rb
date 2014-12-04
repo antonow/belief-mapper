@@ -10,7 +10,11 @@ class UsersController < ApplicationController
         @connections = Connection.where(:belief_1_id => belief_ids, :belief_2_id => belief_ids)
         @connections = @connections.to_a.compact
       }
-      format.html {}
+      format.html {
+        unless user_signed_in?
+          redirect_to '/'
+        end
+      }
     end
         # b.each {|bel| @beliefs << bel}
         # user_belief_ids = b.pluck(:id)
