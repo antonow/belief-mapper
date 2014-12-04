@@ -12,7 +12,7 @@ class Connection < ActiveRecord::Base
     for_a_belief_id(belief_id).each do |conn|
       linked_belief_id = (conn.belief_1_id != belief_id) ? conn.belief_1_id
                                                          : conn.belief_2_id
-      connection_strengths[linked_belief_id] = conn.count
+      connection_strengths[linked_belief_id] = conn.strong_connections
     end
     linked_beliefs = Belief.find(connection_strengths.keys)
     linked_beliefs.map {|belief| [belief, connection_strengths[belief.id]]}.sort_by(&:last).reverse

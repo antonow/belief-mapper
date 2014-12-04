@@ -4,6 +4,7 @@ class CreateConnections < ActiveRecord::Migration
       t.integer :belief_1_id
       t.integer :belief_2_id
       t.integer :count, :default => 0
+      t.integer :strong_connections, :default=> 0
 
       t.timestamps
     end
