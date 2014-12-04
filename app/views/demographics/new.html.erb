@@ -5,37 +5,6 @@
 
 <%= form_for :demographic, url: demographics_path do |f| %>
 
-  <div class="field">
-    <%= f.label :gender %><br />
-    <%= f.text_field(:gender, {include_blank: true}) %>
-  </div>
+  <%= render partial: "form", locals: { f: f } %>
 
-  <div class="field">
-    <%= f.label :age %><br />
-    <%= f.number_field :age %>
-  </div>
-
-  <div class="field">
-    <%= f.label :religion %><br/>
-    <%= f.text_field(:religion, {include_blank: true}) %>
-  </div>
-
-<div class="field">
-    <%=f.label :country %><br>
-    <select id="country" name ="demographic[country]"></select>
-    Select State: <select name ="demographic[state]" id ="state"></select>
-     <script language="javascript">
-    populateCountries("country", "state");
-     </script>
-  </div>
-
-  <div class="field">
-    <%= f.label :education_level %><br/>
-    <%= f.select(:education_level, all_education_levels, {include_blank: true}) %>
-  </div>
-  <br>
-
-  <div class="actions">
-    <%= f.submit "Save Changes" %>
-  </div>
 <% end %>

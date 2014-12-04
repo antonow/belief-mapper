@@ -51,7 +51,7 @@
 
 .graph {
   position: relative;
-  top: -128px;
+  top: -179px;
   height: 600px;
 }
 
@@ -70,7 +70,7 @@
 #graph-text {
   position: relative;
   left: 20px;
-  bottom: -140px;
+  bottom: -191px;
   pointer-events: none;
 }
 
@@ -83,12 +83,12 @@
 
 .view-options {
   position:relative;
-  width: 120px;
+  width: 100px;
   top: 600px;
 }
 
 #count {
-  width: 45px;
+  width: 55px;
 }
 
 hr {
@@ -144,4 +144,9 @@ hr {
 #comment-submit {
   position: relative;
   top: 13px;
+}
+
+.filter-button {
+  position: relative;
+  top: 3px;
 }
