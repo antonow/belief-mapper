@@ -33,8 +33,10 @@ class Belief < ActiveRecord::Base
   def list_top_connections
     top_connections = Connection.connected_belief_strengths(self)[0..9]
     passed_connections = []
-    top_connections.each do |conn|
-      passed_connections << [conn[0].name.capitalize, conn[0].user_count]
+    top_connections.each do |belief|
+      unless belief[0].user_count == 0
+        passed_connections << [belief[0].name.capitalize, belief[0].user_count]
+      end
     end
      passed_connections.sort
   end
@@ -54,25 +56,33 @@ class Belief < ActiveRecord::Base
   def group_demographics_by_age
     data_array = []
     self.belief_demographics.each do |demo|
-      data_array << [demo.age, 1]
+      unless demo.age.nil?
+        data_array << [demo.age]
+      end
     end
+    data_array = data_array.group_by {|i| i}.map{ |k,v| [k, v.count] }
     return data_array
   end
 
   def group_demographics_by_gender
     data_array = []
     self.belief_demographics.each do |demo|
-      data_array << [demo.gender, 1]
+      if demo.gender != ""
+        data_array << [demo.gender]
+      end
     end
+    data_array = data_array.group_by {|i| i}.map{ |k,v| [k, v.count] }
     return data_array
   end
 
   def group_demographics_by_religion
     data_array = []
     self.belief_demographics.each do |demo|
-      data_array << [demo.religion]
+      if demo.religion != ""
+        data_array << [demo.religion]
+      end
     end
-    data_array = data_array.group_by {|i| i}.values
+    data_array = data_array.group_by {|i| i}.map{ |k,v| [k, v.count] }
     return data_array
   end
 
@@ -80,14 +90,17 @@ class Belief < ActiveRecord::Base
   def top_connections_links
     top_connections = Connection.connected_belief_strengths(self)[0..9]
     link_connections = []
-    top_connections.each do |conn|
-      link_connections << [conn[0].name.capitalize, conn[0].id]
+    top_connections.each do |belief|
+      unless belief[0].user_count == 0
+        link_connections << [belief[0].name.capitalize, belief[0].id]
+      end
     end
      link_connections.sort
   end
 
   def rank
-    Belief.order('user_count DESC').index(self)
+    index = Belief.order('user_count DESC').index(self)
+    return index + 1
   end
 
   def self.total_beliefs
