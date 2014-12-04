@@ -136,8 +136,8 @@ renderD3WebUser = function() {
     // });
 
     node.append("text")
-      .attr("dx", 30)
-      .attr("dy", "2em")
+      .attr("dx", 12)
+      .attr("dy", ".35em")
       .style("fill", "#153D93")
       .text(function(d) {
         return d.name
