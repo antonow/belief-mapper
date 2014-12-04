@@ -2,7 +2,7 @@
 
 <%= flash[:error] %>
 
-<%= form_for(@user, url: edit_user_registration_path, html: { method: :put }) do |f| %>
+<%= form_for(@user, url: edit_user_registration_path, method: :put) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
