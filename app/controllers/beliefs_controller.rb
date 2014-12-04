@@ -1,6 +1,7 @@
 class BeliefsController < ApplicationController
   def index
     show_greater_than = 0
+
     respond_to do |format|
       format.html {
         unless user_signed_in?

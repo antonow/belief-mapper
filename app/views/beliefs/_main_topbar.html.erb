@@ -1,8 +1,14 @@
   <!-- QUESTION DIV BEGINS HERE -->
   <div class="row lead question_div">
     <!-- <div class="col-md-1"></div> -->
-    <% @belief = current_user.unexamined_beliefs.sample %>
+    <%@belief = current_user.unexamined_beliefs.sample %>
     <% unless @belief.nil? %>
+      <!-- <div class ="row last_question_response question_display">
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+      </div> -->
       <div class="row lead question_display">
           <% display = @belief.definition %>
           <% display += "in the " unless ['belief', 'doctrine'].include?(display.split(' ').first) %>

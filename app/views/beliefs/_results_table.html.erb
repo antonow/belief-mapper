@@ -5,9 +5,9 @@
     <tr>
       <th class="numsort">Name</th>
       <th class="numsort">Definition</th>
-      <th class="numsort">Number of Subscribers</th>
+      <th class="numsort">Number of Believers</th>
       <th class="numsort">Avg. Conviction</th>
-      <th colspan="1"></th>
+      <th colspan="1">Add/Remove Belief</th>
     </tr>
   </thead>
   <tbody>
@@ -20,9 +20,9 @@
       <td class="numsort"><%= result.user_count %></td>
       <td class="numsort"><%= result.avg_conviction%>%</td>
       <% unless your_beliefs.include?(result) %>
-        <td><%= button_tag 'Subscribe', :class => 'subscribe ' + result.id.to_s %></td>
+        <td><%= button_tag 'Add', :class => 'subscribe ' + result.id.to_s %></td>
       <% else %>
-        <td><%= button_to 'Unsubscribe', user_belief_path(result), method: :delete %></td>
+        <td><%= button_to 'Remove', user_belief_path(result), method: :delete %></td>
       <% end %>
           </tr>
   <% end %>

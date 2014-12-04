@@ -32,7 +32,6 @@
       <br>
 
     <hr>
-
   </ul>
   <br>
 
@@ -56,27 +55,30 @@
     }(document, 'script', 'facebook-jssdk'));
   </script>
 
+
+  <!-- Search div -->
   <hr><br>
-      <%= form_for :belief, url: beliefs_search_path, method: :post do |f| %>
-        <div class="field">
-          <input type="text" id="query" name="query" placeholder="Search All Beliefs" />
-          <%= f.submit "Search" %>
-        </div>
+        <%= form_for :belief, url: beliefs_search_path, method: :post do |f| %>
+          <div class="field">
+            <input type="text" id="query" name="query" placeholder="Search All Beliefs" />
+            <%= f.submit "Search" %>
+          </div>
+          <div class="actions">
+          </div><br>
+        <% end %>
+
+        <%= form_for :user_belief, url: user_belief_path(:user_belief), method: :delete do |f| %>
+          <div class="field">
+            <%= f.select(:name, current_user.held_beliefs.map { |belief| belief.name }, {include_blank: 'Select a belief to'}) %>
+          </div>
         <div class="actions">
-        </div><br>
-      <% end %>
+            <%= f.submit "Remove" %>
+          </div><br>
+        <% end %>
 
-      <%= form_for :user_belief, url: user_belief_path(:user_belief), method: :delete do |f| %>
-        <div class="field">
-          <%= f.select(:name, current_user.held_beliefs.map { |belief| belief.name }, {include_blank: 'Select a belief to'}) %>
-        </div>
-      <div class="actions">
-          <%= f.submit "Unsubscribe" %>
-        </div><br>
-      <% end %>
+  </div>
+  </div>
 
-</div>
-</div>
 
 <!--
   <p>Filter by</p>
