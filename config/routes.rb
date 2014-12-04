@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
+
   }
+
+  devise_scope :user do
+    get 'users/activate' => 'users/registrations#activate'
+  end
   # devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -47,8 +52,7 @@ Rails.application.routes.draw do
   get 'list', to: 'beliefs#list', as: :list_beliefs
   get 'users/skip' => 'users#skip'
 
-
-  resources :users, only: [:index, :skip]
+  resources :users, only: [:index, :skip, :show]
 
   resources :demographics, only: [:new, :create, :update, :edit]
 

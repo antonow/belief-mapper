@@ -8,6 +8,15 @@ class User < ActiveRecord::Base
   has_many :user_beliefs
   has_many :beliefs, through: :user_beliefs
 
+  before_create :assign_short_url
+
+   def assign_short_url
+      random_array = (0..9).to_a.map(&:to_s) + ("a".."z").to_a
+      random_string = ""
+      10.times { random_string += random_array.sample}
+      self.unique_url = random_string
+      # self.save
+   end
 
   def held_beliefs
     return self.beliefs.where("conviction > ?", 5)

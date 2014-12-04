@@ -1,0 +1,15 @@
+<h1>Your viewing: <%=@user.email%></h1>
+
+<div class="row">
+  <div class="graph users-graph">
+      <script>
+         $(function() {
+            renderD3WebUser();
+         });
+      </script>
+  </div>
+</div>
+
+<div>
+  <%= render partial: "beliefs/graph_explanation" %>
+</div>

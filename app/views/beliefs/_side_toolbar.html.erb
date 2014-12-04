@@ -2,12 +2,10 @@
 
 
   <ul class="nav nav-pills nav-stacked side_toolbar" >
-    <li role="presentation" class=""><a href="/">Home</a></li>
-    <% if user_signed_in? == false %>
-      <li role="presentation" class=""><a href="/users/sign_up">Sign up</a></li>
-    <%else%>
+    <% unless current_user.active == true %>
+    <% else %>
       <li role="presentation" class=""><a href="/users/edit">Edit My Account</a></li>
-    <%end%>
+    <% end %>
 
     <hr>
 
@@ -26,16 +24,22 @@
           <li><%= link_to category.name, category_path(category) %></li>
         <%end%>
       </ul>
+      <br>
 
     <hr>
 
   </ul>
   <br>
 
-  <a href="https://twitter.com/share" class="twitter-share-button" data-via="">Tweet</a>
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id))         {js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-  </script>
-  <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"></div>
+  <!-- Twitter Sharing -->
+  <p class="lead">Share Your Map</p>
+<% share_url = "https://warm-temple-3033.herokuapp.com/users/" + current_user.unique_url %>
+
+<a href="https://twitter.com/share" class="twitter-share-button" data-url=<%= share_url %> data-count="none">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  <!-- Facebook Sharing -->
+  <div class="fb-share-button" data-href=<%= share_url %> data-layout="button"></div>
   <div id="fb-root"></div>
   <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -46,8 +50,8 @@
     }(document, 'script', 'facebook-jssdk'));
   </script>
 
-  <hr>
-      <%= form_for :belief, url: beliefs_path, method: :get do |f| %>
+  <hr><br>
+      <%= form_for :belief, url: beliefs_search_path, method: :post do |f| %>
         <div class="field">
           <input type="text" id="query" name="query" placeholder="Search All Beliefs" />
           <%= f.submit "Search" %>
