@@ -14,37 +14,8 @@
     </div>
   </div>
 
-  <div class="panel panel-default">
+<div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
-<!--         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
- -->          <h3>How the Graph Works</h3>
-        </a>
-      </h4>
-    </div>
-<!--     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
- -->      <div class="panel-body lead">
-        <p><strong>Nodes </strong>represent beliefs.</p>
-        <p><strong>The size of nodes </strong>represent the number of people who share that belief.  The more people who hold the belief the larger the node.</strong></p>
-        <p><strong>Connectors </strong>represent a link between two beliefs.  The more frequently people hold two beliefs in common the thicker the connector lines.</p>
-        <p><strong>Colors of nodes </strong>identify which beliefs you have voted on.  The more intense the color the stronger your conviction in that belief.</p>
-        <p>
-            Weaker
-            <svg height="50" width="200" id="node-legend">
-              <circle cx="10" cy="25" r="10" fill="hsl(30, 40%, 50%)" />
-              <circle cx="40" cy="25" r="10" fill="hsl(25, 50%, 50%)" />
-              <circle cx="70" cy="25" r="10" fill="hsl(20, 60%, 50%)" />
-              <circle cx="100" cy="25" r="10" fill="hsl(15, 70%, 50%)" />
-              <circle cx="130" cy="25" r="10" fill="hsl(10, 80%, 50%)" />
-              <circle cx="160" cy="25" r="10" fill="hsl(5, 90%, 50%)" />
-            </svg>
-            Stronger
-        </p>
-      </div>
-     </div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
       <h4 class="panel-title">
 <!--         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
  -->          <h3>Getting Started</h3>
@@ -59,6 +30,45 @@
 
       </div>
     </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+<!--         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+ -->          <h3>How the Graph Works</h3>
+        </a>
+      </h4>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+<!--     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+ -->      <div class="panel-body lead">
+        <p><strong>Nodes </strong>represent beliefs.</p>
+        <p><strong>The size of nodes </strong>represent the number of people who share that belief.  The more people who hold the belief, the larger the node. Click the node to highlight its connections.</strong></p>
+        <p><strong>Connectors </strong>represent a link between two beliefs.  The more  people hold both beliefs, the thicker the connector line.</p>
+        <p><strong>Colors of nodes </strong>identify which beliefs you have voted on.  The more intense the color, the stronger your conviction in that belief.</p>
+
+
+        <p>
+            Weaker
+            <svg height="50" width="200" id="node-legend">
+              <circle cx="10" cy="25" r="10" fill="hsl(30, 40%, 50%)" />
+              <circle cx="40" cy="25" r="10" fill="hsl(25, 50%, 50%)" />
+              <circle cx="70" cy="25" r="10" fill="hsl(20, 60%, 50%)" />
+              <circle cx="100" cy="25" r="10" fill="hsl(15, 70%, 50%)" />
+              <circle cx="130" cy="25" r="10" fill="hsl(10, 80%, 50%)" />
+              <circle cx="160" cy="25" r="10" fill="hsl(5, 90%, 50%)" />
+            </svg>
+            Stronger
+        </p>
+      </div>
+        </div>
+
+          <div class="col-md-3">
+            <%= image_tag("MapDemo.png", class: "map-demo") %>
+          </div>
+      </div>
+     </div>
   </div>
 </div>
 

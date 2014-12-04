@@ -26,7 +26,8 @@
 <div class="view-options text">
 <%= form_for beliefs_path, method: 'get' do %>
   <div class="field">
-    <%= number_field_tag(:count) %> Quantity
+    Belief Quantity<br>
+    <%= number_field_tag(:count) %>
   </div>
   <div class="field">
     <select name="category">
@@ -39,7 +40,7 @@
     </select>
   </div>
   <div class="field">
-    <%= submit_tag("Show") %>
+    <%= submit_tag("Filter") %>
   </div>
 <% end %>
 <br>
