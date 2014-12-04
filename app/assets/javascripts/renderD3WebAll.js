@@ -84,8 +84,8 @@ d3.json("/beliefs/filter.json", function(error, json) {
       .attr("height", 16);
 
   node.append("text")
-      .attr("dx", 16)
-      .attr("dy", "1em")
+      .attr("dx", 12)
+      .attr("dy", ".35em")
       .style("fill", "#153D93")
       .text(function(d) { return d.name });
 
