@@ -2,7 +2,7 @@ json.beliefs @beliefs do |belief|
   json.id belief.id
   json.name belief.name
   json.definition belief.definition
-  json.count belief.user_count
+  json.count belief.user_count * 2
   if current_user.held_beliefs.include?(belief)
     json.hsl belief.avg_conviction
   else

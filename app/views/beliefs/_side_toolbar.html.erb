@@ -77,7 +77,7 @@
        </button>
        <ul class="dropdown-menu" role="menu">
         <% current_user.held_beliefs.each do |belief| %>
-         <li><a href="#"><%= belief.name %></a></li>
+         <li><%= link_to belief.name, user_belief_path(belief), :method => :delete %></li>
          <% end %>
        </ul>
 </div>
