@@ -20,7 +20,7 @@ class UserBeliefsController < ApplicationController
         belief.save
       end
       # if @count = user.beliefs.count >= 3
-      redirect_to :back
+      redirect_to users_path
       # end
     else
       puts "I got to the error"
