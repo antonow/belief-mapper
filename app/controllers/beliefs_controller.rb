@@ -1,9 +1,6 @@
 class BeliefsController < ApplicationController
   def index
     show_greater_than = 0
-    if user_signed_in? == false
-      redirect_to '/'
-    end
 
     respond_to do |format|
       format.html {
