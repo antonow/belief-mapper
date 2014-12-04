@@ -37,7 +37,8 @@ ActiveRecord::Schema.define(version: 20141201193658) do
   create_table "connections", force: true do |t|
     t.integer  "belief_1_id"
     t.integer  "belief_2_id"
-    t.integer  "count",       default: 0
+    t.integer  "count",              default: 0
+    t.integer  "strong_connections", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

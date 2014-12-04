@@ -23,6 +23,7 @@ class UserBeliefsController < ApplicationController
       redirect_to :back
       # end
     else
+      puts "I got to the error"
       redirect_to 'error'
     end
   end

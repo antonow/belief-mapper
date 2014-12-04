@@ -13,11 +13,17 @@ module UsersBeliefsHelper
         end
         if @conn = Connection.where(:belief_1_id => first_belief_id, :belief_2_id => second_belief_id).first
           @conn.count += 1
+          if user_belief.conviction > 50
+            @conn.strong_connections +=1
+          end
           @conn.save
           puts "======================================"
         else
           @conn = Connection.create(belief_1_id: first_belief_id, belief_2_id: second_belief_id)
           @conn.count += 1
+          if user_belief.conviction > 50
+            @conn.strong_connections +=1
+          end
           @conn.save
           puts "=================================="
         end
@@ -25,7 +31,7 @@ module UsersBeliefsHelper
     end
 
   end
-
+end
   # def create_connections_for(belief)
   #   # raise "create_connections_for method only works for beliefs" unless belief.class == Belief
   #   all_related_beliefs = []
@@ -52,4 +58,4 @@ module UsersBeliefsHelper
   #     end
   #   end
   # end
-end
+

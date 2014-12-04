@@ -12,7 +12,9 @@
 </p>
 
 <p>
-  Total number of users with belief: <%=@belief.user_count %>
+  Total number of users who strongly agree with this belief: <%=@belief.strong_convictions.count %>
+  <br>
+  Users who don't strongly agree with this belief: <%=@belief.user_count - @belief.strong_convictions.count %>
 </p>
 
 <p>
@@ -23,12 +25,13 @@
   Rank: <%=@belief.rank.to_s + "/" + Belief.total_beliefs.to_s %>
 </p>
 <h3>Closely Related Beliefs</h3>
+<p>This shows how many users hold this belief and also hold a related belief with more than 50% conviction.</p>
 <div class="row">
 
 <div class="col-md-3 connection-links ">
 <%@belief.top_connections_links.each do |conn|%>
 <br>
-<a href="/beliefs/<%=conn[0]%>"><%=conn[1]%></a>
+<a href="/beliefs/<%=conn[1]%>"><%=conn[0]%></a>
 <%end%>
 </div>
 <div class="col-md-9">
@@ -37,8 +40,8 @@
 </div>
 
 <div class="row">
-<div class="col-md-4"><h3> Religion <%= pie_chart @belief.all_stats_for("religion") %> </h3></div>
-<div class="col-md-4"><h3> Gender<%= pie_chart @belief.all_stats_for("gender") %> </h3></div>
-<div class="col-md-4"><h3> Education Level<%= pie_chart @belief.all_stats_for("education_level") %></h3></div>
+<div class="col-md-4"><h3> Religion <%= pie_chart @belief.group_demographics_by_religion%> </h3></div>
+<div class="col-md-4"><h3> Gender<%= pie_chart @belief.group_demographics_by_gender %> </h3></div>
+<div class="col-md-4"><h3> Age<%= pie_chart @belief.group_demographics_by_age %></h3></div>
 </div>
 

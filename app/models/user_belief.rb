@@ -15,4 +15,8 @@ class UserBelief < ActiveRecord::Base
     self.belief.save
   end
 
+
+
+
+
 end

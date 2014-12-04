@@ -36,7 +36,44 @@ class Belief < ActiveRecord::Base
     top_connections.each do |conn|
       passed_connections << [conn[0].name.capitalize, conn[0].user_count]
     end
-     passed_connections
+     passed_connections.sort
+  end
+
+  def strong_convictions
+    self.user_beliefs.where('conviction > 50').to_a
+  end
+
+  def belief_demographics
+    demo_array = []
+    self.strong_convictions.each do |ub|
+      demo_array << ub.user.demographic
+    end
+    return demo_array
+  end
+
+  def group_demographics_by_age
+    data_array = []
+    self.belief_demographics.each do |demo|
+      data_array << [demo.age, 1]
+    end
+    return data_array
+  end
+
+  def group_demographics_by_gender
+    data_array = []
+    self.belief_demographics.each do |demo|
+      data_array << [demo.gender, 1]
+    end
+    return data_array
+  end
+
+  def group_demographics_by_religion
+    data_array = []
+    self.belief_demographics.each do |demo|
+      data_array << [demo.religion]
+    end
+    data_array = data_array.group_by {|i| i}.values
+    return data_array
   end
 
 
@@ -44,9 +81,9 @@ class Belief < ActiveRecord::Base
     top_connections = Connection.connected_belief_strengths(self)[0..9]
     link_connections = []
     top_connections.each do |conn|
-      link_connections << [conn[0].id, conn[0].name.capitalize]
+      link_connections << [conn[0].name.capitalize, conn[0].id]
     end
-     link_connections
+     link_connections.sort
   end
 
   def rank
