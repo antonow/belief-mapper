@@ -34,11 +34,10 @@
       renderD3Web();
    });
 </script>
-<div class="view-options">
+<div class="view-options text">
 <%= form_for beliefs_path, method: 'get' do %>
   <div class="field">
-    <%= number_field_tag(:count) %>
-    <%= label_tag(:count, "Quantity") %>
+    <%= number_field_tag(:count) %> Quantity
   </div>
   <div class="field">
     <select name="category">
