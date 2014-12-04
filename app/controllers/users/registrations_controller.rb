@@ -16,7 +16,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new(
       email: params[:resource][:email],
       password: params[:resource][:password],
-      password_confirmation: params[:resource][:password_confirmation]
+      password_confirmation: params[:resource][:password_confirmation],
+      active: true
       )
 
     if params[:resource][:password] != params[:resource][:password_confirmation]

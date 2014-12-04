@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get 'users/activate' => 'users/registrations#activate'
+    put 'users/edit' => 'users/registrations#update'
   end
   # devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
