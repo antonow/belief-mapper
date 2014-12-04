@@ -1,7 +1,7 @@
 <script type= "text/javascript" src = "countries.js"></script>
 
 <h2>Demographics (optional)</h2>
-<hr>
+<hr><br>
 
 <%= form_for :demographic, url: demographics_path do |f| %>
 
@@ -33,9 +33,7 @@
     <%= f.label :education_level %><br/>
     <%= f.select(:education_level, all_education_levels, {include_blank: true}) %>
   </div>
-</div>
-</div>
-<hr>
+  <br>
 
   <div class="actions">
     <%= f.submit "Save Changes" %>
