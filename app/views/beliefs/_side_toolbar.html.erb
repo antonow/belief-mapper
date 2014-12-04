@@ -22,6 +22,10 @@
 
     <hr>
 
+    <li role="presentation"><%= link_to 'Discussion Board', comments_path%></li>
+
+    <hr>
+
     <li role="presentation"><%= link_to 'List Beliefs', list_beliefs_path%></li>
     <!-- <li role="presentation"><a href="#">List Belief By Category</a></li> -->
       <ul>
@@ -54,40 +58,27 @@
     fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   </script>
+  <br>
 
 
   <!-- Search div -->
   <hr><br>
-        <%= form_for :belief, url: beliefs_search_path, method: :post do |f| %>
-          <div class="field">
-            <input type="text" id="query" name="query" placeholder="Search All Beliefs" />
-            <%= f.submit "Search" %>
-          </div>
-          <div class="actions">
-          </div><br>
-        <% end %>
-
-        <%= form_for :user_belief, url: user_belief_path(:user_belief), method: :delete do |f| %>
-          <div class="field">
-            <%= f.select(:name, current_user.held_beliefs.map { |belief| belief.name }, {include_blank: 'Select a belief to'}) %>
-          </div>
+      <%= form_for :belief, url: beliefs_search_path, method: :post do |f| %>
+        <div class="field">
+          <input type="text" id="query" name="query" placeholder="Search All Beliefs" class="form-control"/>
+          <% f.submit "Search", :class => "btn btn-default" %>
+        </div>
         <div class="actions">
-            <%= f.submit "Remove" %>
-          </div><br>
-        <% end %>
+        </div><br>
+      <% end %>
 
-  </div>
-  </div>
-
-
-<!--
-  <p>Filter by</p>
-      <ul>
-        <li>Category</li>
-        <li>My Beliefs</li>
-        <li><%= check_box("filter", "button", {}, "yes", "no") %></li>
-        <li>Gender</li>
-        <li>Age</li>
-        <li>Location</li>
-        <li>Religious Affiliation</li>
-      </ul> -->
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+         <span data-bind="label">Remove a Belief</span>&nbsp;<span class="caret"></span>
+       </button>
+       <ul class="dropdown-menu" role="menu">
+        <% current_user.held_beliefs.each do |belief| %>
+         <li><a href="#"><%= belief.name %></a></li>
+         <% end %>
+       </ul>
+</div>
+</div>

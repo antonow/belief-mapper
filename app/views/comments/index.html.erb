@@ -1,0 +1,39 @@
+<h1>Discussion Board</h1>
+<p class="lead">Use this page to leave some feedback, suggest a belief that you didn't see, discuss definitions, or write anything else.</p>
+
+<hr><br>
+
+<%= form_for @comment, url: comments_path, :html => { method: :post, :class => "form-inline" } do |f| %>
+
+  <div class="field form-group">
+    <%= f.label :title %> (optional)<br />
+    <%= f.text_field :title, :class => "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :body %><br />
+    <%= f.text_field :body, :size => "100%", :class => "form-control" %>
+  </div>
+
+
+
+  <div class="actions form-group">
+    <%= f.submit "Submit", :class => "btn btn-primary", :id => "comment-submit" %>
+  </div>
+<% end %>
+
+<br>
+
+<% if @comments.nil? %>
+  <p class="lead">No comments to display yet.</p>
+<% else %>
+  <hr>
+  <% @comments.each do |comment| %>
+  <h4><%= comment.title %></h4>
+  <p><%= comment.user.username %></p>
+  <p><%= comment.body %></p>
+    <% unless @comments.last == comment %>
+      <hr>
+    <% end %>
+  <% end %>
+<% end %>
