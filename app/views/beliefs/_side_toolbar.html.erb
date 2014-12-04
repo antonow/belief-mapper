@@ -72,7 +72,7 @@
             <%= f.select(:name, current_user.held_beliefs.map { |belief| belief.name }, {include_blank: 'Select a belief to'}) %>
           </div>
         <div class="actions">
-            <%= f.submit "Unsubscribe" %>
+            <%= f.submit "Remove" %>
           </div><br>
         <% end %>
 

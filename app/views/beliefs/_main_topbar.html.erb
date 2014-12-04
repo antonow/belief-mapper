@@ -1,7 +1,7 @@
   <!-- QUESTION DIV BEGINS HERE -->
   <div class="row lead question_div">
     <!-- <div class="col-md-1"></div> -->
-    <% @belief = current_user.unexamined_beliefs.sample %>
+    <%@belief = current_user.unexamined_beliefs.sample %>
     <% unless @belief.nil? %>
       <div class="row lead question_display">
           <% display = @belief.definition %>
