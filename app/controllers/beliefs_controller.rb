@@ -48,6 +48,10 @@ class BeliefsController < ApplicationController
         render { render :json => {:beliefs => @beliefs,
                                   :connections => @connections }}
       }
+      format.all {
+        sign_out(current_user)
+        redirect_to new_user_session_path
+      }
     end
   end
 

@@ -19,15 +19,15 @@
         <!-- Only displays logout button if user is signed in -->
         <% if user_signed_in? %>
           <% if current_user.active == true %>
-            <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Log Out', destroy_user_session_path, method: :delete%></button>
+            <%= button_to 'Log Out', destroy_user_session_path, method: :delete, :class => "btn btn-default navbar-btn pull-right" %>
           <% else %>
-            <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Sign in', new_user_session_path %></button>
-            <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Sign up', users_activate_path %></button>
+            <%= button_to 'Sign in', new_user_session_path, :class => "btn btn-default navbar-btn pull-right" %>
+            <%= button_to 'Sign up', users_activate_path, method: :get, :class => "btn btn-default navbar-btn pull-right" %>
           <% end %>
         <!-- Displays sign in or sign up button if not logged in -->
         <% else %>
-          <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Sign in', new_user_session_path %></button>
-          <button type="button" class="btn btn-default navbar-btn pull-right"><%= link_to 'Sign up', new_user_registration_path %></button>
+          <%= button_to 'Sign in', new_user_session_path, :class => "btn btn-default navbar-btn pull-right" %>
+          <%= button_to 'Sign up', new_user_registration_path, method: :get, :class => "btn btn-default navbar-btn pull-right" %>
         <% end %>
       </div>
     </div>

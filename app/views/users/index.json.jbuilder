@@ -4,7 +4,6 @@
     json.name belief.name
     json.definition belief.definition
     json.count belief.user_count
-    json.category belief.category
     json.hsl belief.user_beliefs.find_by(user: current_user).conviction
   end
 

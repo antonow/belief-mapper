@@ -18,6 +18,14 @@ class User < ActiveRecord::Base
       # self.save
    end
 
+  def username
+    if self.active
+      self.email.match(/.+?(?=@)/)
+    else
+      "guest"
+    end
+  end
+
   def held_beliefs
     return self.beliefs.where("conviction > ?", 5)
   end
