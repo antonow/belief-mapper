@@ -7,7 +7,7 @@
 
   <div class="field">
     <%= f.label :gender %><br />
-    <%= f.select(:gender, all_genders, {include_blank: true}) %>
+    <%= f.text_field(:gender, {include_blank: true}) %>
   </div>
 
   <div class="field">
@@ -17,7 +17,7 @@
 
   <div class="field">
     <%= f.label :religion %><br/>
-    <%= f.select(:religion, all_religions, {include_blank: true}) %>
+    <%= f.text_field(:religion, {include_blank: true}) %>
   </div>
 
 <div class="field">

@@ -32,9 +32,11 @@ class UserBeliefsController < ApplicationController
     if params[:user_belief] != nil
       belief = Belief.find_by(name: params[:user_belief][:name])
     else
-      belief = UserBelief.find(params[:id])
+      belief = Belief.find(params[:id])
     end
     user_belief = current_user.user_beliefs.where(belief: belief).first.destroy
+    belief.user_count -= 1
+    belief.save
     redirect_to :back
   end
 
