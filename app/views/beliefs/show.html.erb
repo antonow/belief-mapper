@@ -24,17 +24,19 @@
 <p>
   Rank: <%=@belief.rank.to_s + "/" + Belief.total_beliefs.to_s %>
 </p>
+<% if @belief.user_count > 0 %>
 <h3>Closely Related Beliefs</h3>
 <p>This shows how many users hold this belief and also hold a related belief with more than 50% conviction.</p>
+
 <div class="row">
 
-<div class="col-md-3 connection-links ">
+<div class="col-md-2 connection-links ">
 <%@belief.top_connections_links.each do |conn|%>
 <br>
 <a href="/beliefs/<%=conn[1]%>"><%=conn[0]%></a>
 <%end%>
 </div>
-<div class="col-md-9">
+<div class="col-md-10">
 <p> <%= column_chart @belief.list_top_connections %></p>
 </div>
 </div>
@@ -44,4 +46,7 @@
 <div class="col-md-4"><h3> Gender<%= pie_chart @belief.group_demographics_by_gender %> </h3></div>
 <div class="col-md-4"><h3> Age<%= pie_chart @belief.group_demographics_by_age %></h3></div>
 </div>
+<% else %>
+<p>Not enough stats to display graphs yet.</p>
+<% end %>
 
