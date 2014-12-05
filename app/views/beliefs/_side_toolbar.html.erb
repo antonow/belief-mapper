@@ -42,9 +42,9 @@
   <!-- Twitter Sharing -->
   <div class="sidebar-bottom">
   <p class="lead">Share Your Map</p>
-<% share_url = "https://warm-temple-3033.herokuapp.com/users/" + current_user.unique_url %>
+<% share_url = "https://life-examined.herokuapp.com/users/" + current_user.unique_url %>
 
-<a href="https://twitter.com/share" class="twitter-share-button" data-url=<%= share_url %> data-count="none">Tweet</a>
+<a href="https://twitter.com/share" class="twitter-share-button" data-url=<%= share_url %> data-text="My belief map from Life Examined!" data-count="none">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
   <!-- Facebook Sharing -->
