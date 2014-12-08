@@ -15,7 +15,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def after_sign_in_path_for(user)
-    beliefs_path(current_user) #your path
+    beliefs_path #your path
   end
 
   # DELETE /resource/sign_out

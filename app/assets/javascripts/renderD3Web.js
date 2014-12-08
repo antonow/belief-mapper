@@ -16,19 +16,6 @@ renderD3Web = function() {
     }
   }
 
-  // var showFirst;
-  // var hideEdges;
-
-  // $("#max_nodes").mousemove(function () {
-  //   $("#text").text($("#max_nodes").val());
-  //   maxNodes = $("#max_nodes").val();
-  //   console.log(maxNodes);
-  //   showFirst(10);
-  //   hideEdges(25);
-  // });
-
-
-
   var width = 960,
     height = 600
 
@@ -152,7 +139,7 @@ renderD3Web = function() {
       .attr("height", 16);
 
     node.append("text")
-      .attr("dx", 12)
+      .attr("dx", function(d) { return (d.count * 2 + 5) })
       .attr("dy", ".35em")
       .style("fill", "#153D93")
       .text(function(d) {
