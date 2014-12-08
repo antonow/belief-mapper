@@ -54,10 +54,18 @@ class BeliefsController < ApplicationController
 
         @connections = Connection.where(:belief_1_id => belief_ids, :belief_2_id => belief_ids).where("strong_connections > ?", 0)
 
+        c_min_max = @connections.map { |conn| conn.strong_connections }.minmax
+        c_min = c_min_max[0]
+        c_range = c_min_max[1] - c_min
+        @c_divide_by = 1
+        if c_range > 5
+          @c_divide_by = c_range / 5
+        end
+
         render { render :json => {:beliefs => @beliefs,
                                   :connections => @connections,
-                                  :min => @min,
-                                  :divide_by => @divide_by }}
+                                  :divide_by => @divide_by,
+                                  :c_divide_by => @c_divide_by }}
       }
       format.all {
         sign_out(current_user)
