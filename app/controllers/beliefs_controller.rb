@@ -42,31 +42,28 @@ class BeliefsController < ApplicationController
           @beliefs = @beliefs.where(category_id: selected_category).where("user_count > ?", show_greater_than)
         end
 
-        belief_ids = @beliefs.map { |belief| belief.id }
+        min_max = @beliefs.map { |belief| belief.user_count }.minmax
+        min = min_max[0]
+        range = min_max[1] - min
+        @divide_by = 1
+        if range > 8
+          @divide_by = range / 8
+        end
 
-        @connections = Connection.where(:belief_1_id => belief_ids, :belief_2_id => belief_ids)
+        belief_ids = @beliefs.pluck(:id)
+
+        @connections = Connection.where(:belief_1_id => belief_ids, :belief_2_id => belief_ids).where("strong_connections > ?", 0)
+
         render { render :json => {:beliefs => @beliefs,
-                                  :connections => @connections }}
+                                  :connections => @connections,
+                                  :min => @min,
+                                  :divide_by => @divide_by }}
       }
       format.all {
         sign_out(current_user)
         redirect_to new_user_session_path
       }
     end
-  end
-
-
-  def user
-    b = current_user.beliefs
-    @beliefs = []
-    b.each {|bel| @beliefs << bel}
-    @connections = []
-    user_belief_ids = b.pluck(:id)
-    # @beliefs.each do |belief|
-    @connections = Connection.where(:belief_1_id => user_belief_ids, :belief_2_id => user_belief_ids)
-    @connections = @connections.to_a.compact
-    # @connections.uniq
-    @beliefs
   end
 
   def filter
