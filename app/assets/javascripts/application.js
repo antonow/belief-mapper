@@ -24,6 +24,24 @@
 // we turned of the requiring tree for some reason it works.
 
 $(document).ready(function(){
+	$('#core-belief').click(function(e) {
+		e.preventDefault();
+		outputUpdate(100);
+		$('#conviction').val(100);
+	});
+
+	$('#somewhat').click(function(e) {
+		e.preventDefault();
+		outputUpdate(50);
+		$('#conviction').val(50);
+	});
+
+	$('#not-at-all').click(function(e) {
+		e.preventDefault();
+		outputUpdate(0);
+		$('#conviction').val(0);
+	});
+
   $('.subscribe').click(function(e) {
     e.preventDefault();
     $('#' + this.classList[1]).show();
