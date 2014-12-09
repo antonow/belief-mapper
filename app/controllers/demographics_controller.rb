@@ -21,6 +21,7 @@ class DemographicsController < ApplicationController
 
   def update
     if current_user.demographic.update(demographic_params)
+      current_user.demographic.add_sorted_demographics
       redirect_to '/beliefs'
     else
       render :back

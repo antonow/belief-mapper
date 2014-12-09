@@ -2,33 +2,15 @@
 <% f.hidden_field :belief %>
   <div class='col-lg-10 col-md-10 col-sm-10 lead'>
   <div id='options'>
-    <div class='col-lg-4 col-md-4 col-sm-4' id='first'>Not at all</div>
-    <div class='col-lg-4 col-md-4 col-sm-4' id='second'>Somewhat</div>
-    <div class='col-lg-4 col-md-4 col-sm-4' id='third'>Core belief</div>
+    <div class='col-lg-4 col-md-4 col-sm-4' id='not-at-all'>Not at all</div>
+    <div class='col-lg-4 col-md-4 col-sm-4' id='somewhat'>Somewhat</div>
+    <div class='col-lg-4 col-md-4 col-sm-4' id='core-belief'>Core belief</div>
   </div>
   <input type="hidden" name="belief" value=<%=belief.id%>>
   <input type="range" name="conviction" id="conviction" value=0 min=0 max=100 list='levels' oninput="outputUpdate(value)">
   <output for='conviction' id='level'></output>
   </div>
   <br>
-  <script>
-    function outputUpdate(level) {
-      $('#first').css("font-weight", "bold")
-      $('#second').css("font-weight", "normal")
-      $('#third').css("font-weight", "normal")
-
-      if (level > 95) {
-        $('#first').css("font-weight", "normal")
-        $('#second').css("font-weight", "normal")
-        $('#third').css("font-weight", "bold")
-      } else if (level > 5) {
-        $('#first').css("font-weight", "normal")
-        $('#second').css("font-weight", "bold")
-        $('#third').css("font-weight", "normal")
-      };
-    }
-  </script>
-
   <div class="col-md-2 slider_buttons" >
   <button type="submit" class="btn btn-primary submit">Submit</button>
   <% if current_page?(:controller => 'users', :action => 'index') || current_page?(:controller => 'beliefs', :action => 'index') || current_page?(:controller => 'users', :action => 'skip') %>

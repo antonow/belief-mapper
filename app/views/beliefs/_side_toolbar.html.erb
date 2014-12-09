@@ -59,10 +59,13 @@
     }(document, 'script', 'facebook-jssdk'));
   </script>
   <br>
+</div>
+  
 
 
   <!-- Search div -->
   <hr><br>
+  <div class="sidebar-bottom">
       <%= form_for :belief, url: beliefs_search_path, method: :post do |f| %>
         <div class="field">
           <input type="text" id="query" name="query" placeholder="Search All Beliefs" class="form-control"/>

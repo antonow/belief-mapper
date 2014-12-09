@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
 
   def held_beliefs
-    return self.beliefs.where("conviction > ?", 5)
+    return self.beliefs.order("name ASC").where("conviction > ?", 5)
   end
 
   def starred_beliefs
