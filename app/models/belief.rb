@@ -48,7 +48,7 @@ class Belief < ActiveRecord::Base
   def belief_demographics
     demo_array = []
     self.strong_convictions.each do |ub|
-      demo_array << ub.user.demographic
+      demo_array << ub.user.demographic unless ub.user.demographic.nil?
     end
     return demo_array
   end
@@ -56,13 +56,9 @@ class Belief < ActiveRecord::Base
   def group_demographics_by_age
     data_array = []
     demographics = self.belief_demographics
-    # raise demographics.inspect
-    # return nil if demographics == nil
     demographics.each do |demo|
-      unless demo == nil
-        unless demo.age.nil?
-          data_array << [demo.age]
-        end
+      unless demo.age.nil?
+        data_array << [demo.age]
       end
     end
     data_array = data_array.group_by {|i| i}.map{ |k,v| [k, v.count] }
@@ -72,10 +68,8 @@ class Belief < ActiveRecord::Base
   def group_demographics_by_gender
     data_array = []
     self.belief_demographics.each do |demo|
-      unless demo == nil
-        if demo.gender != ""
-          data_array << [demo.gender]
-        end
+      unless demo.gender.nil?
+        data_array << [demo.gender_sorted]
       end
     end
     data_array = data_array.group_by {|i| i}.map{ |k,v| [k, v.count] }
@@ -84,12 +78,9 @@ class Belief < ActiveRecord::Base
 
   def group_demographics_by_religion
     data_array = []
-    # raise self.belief_demographics.inspect
     self.belief_demographics.each do |demo|
-      unless demo == nil
-        unless demo.religion == nil
-          data_array << [demo.religion]
-        end
+      unless demo.religion.nil?
+        data_array << [demo.religion_sorted]
       end
     end
     data_array = data_array.group_by {|i| i}.map{ |k,v| [k, v.count] }
