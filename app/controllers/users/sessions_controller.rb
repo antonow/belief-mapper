@@ -4,6 +4,7 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
+    sign_out(current_user)
     super
   end
 
