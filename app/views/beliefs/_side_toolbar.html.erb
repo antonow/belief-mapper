@@ -3,6 +3,7 @@
 
   <ul class="nav nav-pills nav-stacked side_toolbar" >
     <% unless current_user.active == true %>
+      <li role="presentation" class=""><a href="/users/sign_up">Create Account</a></li>
     <% else %>
       <li role="presentation" class=""><a href="/users/edit">Edit My Account</a></li>
     <% end %>

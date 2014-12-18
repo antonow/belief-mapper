@@ -27,7 +27,9 @@
         <!-- Displays sign in or sign up button if not logged in -->
         <% else %>
           <%= button_to 'Sign in', new_user_session_path, :class => "btn btn-default navbar-btn pull-right" %>
+          <% unless request.original_url.match('sign_up') %>
           <%= button_to 'Sign up', new_user_registration_path, method: :get, :class => "btn btn-default navbar-btn pull-right" %>
+          <% end %>
         <% end %>
       </div>
     </div>
