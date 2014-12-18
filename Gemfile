@@ -27,8 +27,12 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 gem 'devise'
-
 gem 'faker'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+end
 
 gem 'rails_12factor', group: :production
 

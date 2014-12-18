@@ -35,15 +35,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
       render :'devise/registrations/new'#:template => :back # "registrations_contr/index"
     end
 
-    Demographic.create!(
-      user: @user,
-      gender: params[:demographic][:gender],
-      age: params[:demographic][:age],
-      religion: params[:demographic][:religion],
-      country: params[:demographic][:country],
-      state: params[:demographic][:state],
-      education_level: params[:demographic][:education_level]
-      )
+    # unless params[:demographic].all? { |category, response| response == "" || response == "-1"} != ""
+    #   Demographic.create!(
+    #     user: @user,
+    #     gender: params[:demographic][:gender],
+    #     age: params[:demographic][:age],
+    #     religion: params[:demographic][:religion],
+    #     country: params[:demographic][:country],
+    #     state: params[:demographic][:state],
+    #     education_level: params[:demographic][:education_level]
+    #     )
+    # end
 
     # @user.save
     # sign_in @user

@@ -2,8 +2,8 @@ renderD3Web = function(baseUrl) {
   var maxNodes = 40;
   var current_url = window.location.href;
   var unique_url = current_url.match(/[a-z0-9]+$/);
-
-  if (unique_url != "users" && unique_url != "beliefs") {
+  console.log(unique_url);
+  if (unique_url != "users" && unique_url != "beliefs" && unique_url != 'ilter') {
     unique_url = "/"+unique_url[0];
     baseUrl = "/users"+unique_url+".json"
   }
@@ -14,6 +14,7 @@ renderD3Web = function(baseUrl) {
   } else {
     count = "?count=30";
   }
+  console.log(count);
   var category = current_url.match(/category=\d+/);
   if (category != null) {
     if (count != null) {
@@ -31,9 +32,9 @@ renderD3Web = function(baseUrl) {
     .attr("height", height);
 
   var force = d3.layout.force()
-    .gravity(.5)
+    .gravity(.01)
     .distance(300)
-    .charge(-10)
+    .charge(-100)
     .size([width, height]);
 
   function toQuintile(value) {
@@ -65,8 +66,8 @@ renderD3Web = function(baseUrl) {
 
 
   d3.json(baseUrl+count+category, function(error, json) {
-    // var data = json.beliefs;
-    // console.log(data);
+    var data = json.beliefs;
+    console.log(data);
     var edges = [];
     json.connections.forEach(function(e) {
       var sourceBelief = json.beliefs.filter(function(n) {
