@@ -4,6 +4,7 @@ class UserBelief < ActiveRecord::Base
 
   after_save do
     self.update_average_conviction
+    current_user.answered_question
   end
 
   after_destroy do

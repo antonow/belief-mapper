@@ -10,21 +10,25 @@
         </button>
       </div> -->
       <div class="row lead question_display">
+        <% if current_user.answered_questions == 8 %>
+          <%= render partial: "beliefs/demographics_prompter", locals: { belief: @belief } %>
+        <% else %>
           <% display = @belief.definition %>
           <% display += "in the " unless ['belief', 'doctrine'].include?(display.split(' ').first) %>
           <% display = display.sub(/belief /, "").sub(/doctrine /, "") %>
           <p>Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "")%>?</p>
-      </div>
-          <div class="row lead">
-            <%= render partial: "beliefs/slider_form", locals: { belief: @belief } %>
           </div>
+            <div class="row lead">
+              <%= render partial: "beliefs/slider_form", locals: { belief: @belief } %>
+            </div>
+            <%= render partial: "beliefs/progress_bar" %>
+          <% end %>
     <% else %>
     <!-- What displays if all the questions have been answered -->
-    <h1>Congrats you've answered all the beliefs!  For more beliefs view <%= link_to 'List Beliefs', list_beliefs_path%></h1>
+      <h1>Congratulations, you've answered all the questions we have for you!  There are more beliefs in the system. To view them, checkout the list of <%= link_to 'all beliefs', list_beliefs_path%></h1>
+      <%= render partial: "beliefs/progress_bar" %>
     <% end %>
   </div>
 
 
 
-<!-- PROGRESS BAR DIV BEGINS HERE -->
-<%= render partial: "beliefs/progress_bar" %>

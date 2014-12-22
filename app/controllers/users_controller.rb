@@ -25,6 +25,8 @@ class UsersController < ApplicationController
       format.html {
         unless user_signed_in?
           redirect_to '/'
+        else
+          @total_user_beliefs = current_user.held_beliefs.count
         end
       }
     end
@@ -35,7 +37,9 @@ class UsersController < ApplicationController
   end
 
   def skip
-      render :partial => "/beliefs/main_topbar"
+    current_user.increment_questions_answered
+    redirect_to beliefs_path
+    # render :partial => "/beliefs/main_topbar"
   end
 
   def show

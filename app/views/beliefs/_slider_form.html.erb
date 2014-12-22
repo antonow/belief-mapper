@@ -14,7 +14,7 @@
   <div class="col-md-2 slider_buttons" >
   <button type="submit" class="btn btn-primary submit">Submit</button>
   <% if current_page?(:controller => 'users', :action => 'index') || current_page?(:controller => 'beliefs', :action => 'index') || current_page?(:controller => 'users', :action => 'skip') %>
-  <a href="" class="btn btn-primary submit" role="button">Skip</a>
+  <a href="/users/skip" class="btn btn-primary submit" role="button">Skip</a>
   <% end %>
   </div>
   <% end %>

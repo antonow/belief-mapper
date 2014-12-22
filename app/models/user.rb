@@ -52,6 +52,8 @@ class User < ActiveRecord::Base
     ((self.beliefs_answered.count.to_f / starred_beliefs.count.to_f) * 100).to_i.to_s + "%"
   end
 
-
+  def increment_questions_answered
+    self.update_attribute(:answered_questions, self.answered_questions + 1)
+  end
 
 end

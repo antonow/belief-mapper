@@ -1,33 +1,34 @@
 <div class="field form-group">
     <%= f.label :gender %><br />
-    <%= f.text_field :gender %>
+    <%= f.text_field :gender, hide_label: true %>
   </div>
 
   <div class="field">
     <%= f.label :age %><br />
-    <%= f.number_field :age %>
+    <%= f.number_field :age, hide_label: true %>
   </div>
 
   <div class="field">
     <%= f.label :religion %><br/>
-    <%= f.text_field(:religion) %>
+    <%= f.text_field(:religion, hide_label: true) %>
   </div>
 
 <div class="field">
     <%=f.label :country %><br>
-    <select id="country" name ="demographic[country]"></select>
-    Select State: <select name ="demographic[state]" id ="state"></select>
+    <select id="country" class="form-control" name ="demographic[country]"></select><br>
+    <strong>Select State: </strong><br><select name="demographic[state]" id ="state" class="form-control"></select>
      <script language="javascript">
     populateCountries("country", "state");
      </script>
   </div>
 
   <div class="field">
-    <%= f.label :education_level %><br/>
-    <%= f.select(:education_level, all_education_levels, {include_blank: true}) %>
+    <%= f.label :education_level %><br />
+    <%= f.select(:education_level, all_education_levels, include_blank: true, hide_label: true) %>
+    <br>
   </div>
   <br>
 
   <div class="actions">
-    <%= f.submit "Save Changes" %>
+    <%= f.submit "Save", class: "btn btn-primary" %>
   </div>

@@ -28,8 +28,10 @@
     <input type="text" value=<%= resource.id.to_s %> name="id" hidden>
   </div>
 
+  <br>
+
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Save", class: "btn btn-primary" %>
   </div>
 <% end %>
 
@@ -39,10 +41,5 @@
     <% else %>
     <p><%= link_to 'Edit My Demographic Information', edit_demographic_path(current_user.demographic.id) %></p>
     <% end %>
-
-<hr>
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
