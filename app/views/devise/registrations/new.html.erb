@@ -1,18 +1,18 @@
 <script type= "text/javascript" src = "countries.js"></script>
 
 <h2>Sign up</h2>
-<hr>
+<hr><br>
 
 <%= devise_error_messages! %>
 <%= flash[:error] %>
 
-<%= form_for :resource, url: user_registration_path do |f| %>
+<%= bootstrap_form_for(:resource, layout: :inline, url: user_registration_path, control_col: "col-sm-5") do |f| %>
 
 
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true, hide_label: true %>
   </div>
 
   <div class="field">
@@ -20,13 +20,14 @@
     <% if @validatable %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", hide_label: true %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", hide_label: true %>
   </div>
+  <br>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
