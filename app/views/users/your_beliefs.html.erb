@@ -1,0 +1,33 @@
+<h1>Listing all your beliefs</h1>
+
+<%= link_to 'Return to Graph', beliefs_path %><br><br>
+<% your_beliefs = current_user.held_beliefs %>
+<table class="table table-hover table-striped" id="resultTable">
+  <thead>
+    <tr>
+      <th class="numsort">Name</th>
+      <th class="numsort">Definition</th>
+      <th class="numsort">Number of Believers</th>
+      <th class="numsort">Your Conviction</th>
+      <th colspan="1">Add/Remove Belief</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @results.each do |result| %>
+    <tr class="tablerow">
+    	<% belief = result.belief %>
+      <td class="numsort"><%= link_to belief.name, belief_path(belief) %></td>
+      <td class="numsort"><%= belief.definition %>
+        <div id=<%= belief.id.to_s %> class="table-slider" hidden><br><%= render partial: "beliefs/slider_form", locals: { belief: belief } %></div>
+</td>
+      <td class="numsort"><%= belief.user_count %></td>
+      <td class="numsort"><%= result.conviction %>%</td>
+      <% unless your_beliefs.include?(belief) %>
+        <td><%= button_tag 'Add', :class => 'subscribe ' + result.id.to_s %></td>
+      <% else %>
+        <td><%= button_to 'Remove', user_belief_path(belief), method: :delete %></td>
+      <% end %>
+          </tr>
+  <% end %>
+  </tbody>
+</table>

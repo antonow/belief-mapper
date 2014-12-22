@@ -79,18 +79,14 @@ class BeliefsController < ApplicationController
   @connections = Connection.all
   end
 
-  def results
-    raise 'here'
-  end
-
-  def show
-    @belief = Belief.find(params[:id])
-  end
-
   def search
     @results = Belief.search(params[:query])
     @query = params[:query]
     render "results"
+  end
+
+  def show
+    @belief = Belief.find(params[:id])
   end
 
   def autocomplete
@@ -98,7 +94,7 @@ class BeliefsController < ApplicationController
   end
 
   def list
-    @results = Belief.all.order(name: :asc)
+    @results = Belief.all.order(user_count: :desc)
     render "list"
   end
 

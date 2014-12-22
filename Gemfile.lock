@@ -33,6 +33,7 @@ GEM
     bcrypt (3.1.9)
     bootstrap-sass (3.3.1.0)
       sass (~> 3.2)
+    bootstrap_form (2.2.0)
     builder (3.2.2)
     capybara (2.4.1)
       mime-types (>= 1.16)
@@ -159,6 +160,7 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bootstrap-sass (~> 3.3.1.0)
+  bootstrap_form
   capybara
   chartkick
   coffee-rails (~> 4.0.0)

@@ -27,7 +27,11 @@ class User < ActiveRecord::Base
   end
 
   def held_beliefs
-    return self.beliefs.order("name ASC").where("conviction > ?", 5)
+    self.beliefs.order("name ASC").where("conviction > ?", 5)
+  end
+
+  def held_beliefs_by_conviction
+    self.user_beliefs.order("conviction DESC").where("conviction > ?", 5).limit(30).map { |user_belief| Belief.find(user_belief.belief_id) }
   end
 
   def starred_beliefs
@@ -40,7 +44,7 @@ class User < ActiveRecord::Base
 
   # returns every belief that the user has answered.
   def beliefs_answered
-    return self.beliefs
+    self.beliefs
   end
 
   # returns the percentage of questions answered.

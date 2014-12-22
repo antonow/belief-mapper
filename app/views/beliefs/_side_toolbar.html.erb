@@ -16,9 +16,9 @@
     <hr>
 
     <%if request.fullpath.to_s.include?("users")%>
-      <li role="presentation" class=<%="active" if request.fullpath == "/beliefs" %>><%= link_to 'Display All Belief Map', beliefs_path %></li>
+      <li role="presentation" class=<%="active" if request.fullpath == "/beliefs" %>><%= link_to 'Display Top Beliefs', beliefs_path %></li>
     <% elsif request.fullpath.to_s.include?("beliefs") %>
-      <li role="presentation" class=<%="active" if request.fullpath == "/users" %>><%= link_to 'Display Your Belief Map', users_path %></li>
+      <li role="presentation" class=<%="active" if request.fullpath == "/users" %>><%= link_to 'Display Your Beliefs', users_path %></li>
     <%end%>
 
     <hr>
@@ -27,9 +27,9 @@
 
     <hr>
 
-    <li role="presentation"><%= link_to 'List Beliefs', list_beliefs_path%></li>
-    <!-- <li role="presentation"><a href="#">List Belief By Category</a></li> -->
+    <li role="presentation"><%= link_to 'List All Beliefs', list_beliefs_path%></li>
       <ul>
+        <li><%= link_to 'Your Beliefs', :controller => "users", :action => "your_beliefs" %></li>
         <% Category.all.each do |category|%>
           <li><%= link_to category.name, category_path(category) %></li>
         <%end%>

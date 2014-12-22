@@ -2,9 +2,9 @@ class UsersController < ApplicationController
   def index
     respond_to do |format|
       format.json {
-        @beliefs = current_user.held_beliefs
+        @beliefs = current_user.held_beliefs_by_conviction
         @connections = []
-
+  
         min_max = @beliefs.map { |belief| belief.user_count }.minmax
         min = min_max[0]
         range = min_max[1] - min
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
           @divide_by = range / 8
         end
 
-        belief_ids = @beliefs.pluck(:id)
+        belief_ids = @beliefs.map { |belief| belief.id }
 
         @connections = Connection.where(:belief_1_id => belief_ids, :belief_2_id => belief_ids).where("strong_connections > ?", 0)
 
@@ -28,6 +28,10 @@ class UsersController < ApplicationController
         end
       }
     end
+  end
+
+  def your_beliefs
+    @results = current_user.user_beliefs.order('conviction DESC')
   end
 
   def skip
