@@ -77,10 +77,10 @@
       <% end %>
 
       <div class="btn-group dropup">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
            <span data-bind="label">Remove a Belief</span>&nbsp;<span class="caret"></span>
         </button>
-        <ul class="dropup dropdown-menu" role="menu">
+        <ul class="dropdown-menu" role="menu">
           <% current_user.held_beliefs.each do |belief| %>
            <li><%= link_to belief.name, user_belief_path(belief), :method => :delete %></li>
            <% end %>
