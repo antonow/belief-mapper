@@ -12,7 +12,10 @@ class UserBeliefsController < ApplicationController
     else
       user = current_user
     end
-    user_belief = UserBelief.new(belief: belief, user: user, conviction: params[:conviction])
+    user_belief = UserBelief.find_or_create_by(belief: belief, user: user)
+    user_belief.conviction = params[:conviction]
+    user_belief.skipped = false
+    
     if user_belief.save!
       if user_belief.conviction > 5
         generate_new_connections(user_belief)

@@ -6,15 +6,12 @@
     <div class='col-lg-4 col-md-4 col-sm-4' id='somewhat'>Somewhat</div>
     <div class='col-lg-4 col-md-4 col-sm-4' id='core-belief'>Core belief</div>
   </div>
-  <input type="hidden" name="belief" value=<%=belief.id%>>
+  <input type="hidden" name="belief" id="belief_id" value=<%=belief.id%>>
   <input type="range" name="conviction" id="conviction" value=0 min=0 max=100 list='levels' oninput="outputUpdate(value)">
   <output for='conviction' id='level'></output>
   </div>
   <br>
   <div class="col-md-2 slider_buttons" >
   <button type="submit" class="btn btn-primary submit">Submit</button>
-  <% if current_page?(:controller => 'users', :action => 'index') || current_page?(:controller => 'beliefs', :action => 'index') || current_page?(:controller => 'users', :action => 'skip') %>
-  <a href="/users/skip" class="btn btn-primary submit" role="button">Skip</a>
-  <% end %>
   </div>
   <% end %>

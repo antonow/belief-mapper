@@ -22,6 +22,8 @@
           <p>Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "")%>?</p>
           <div class="row lead">
             <%= render partial: "beliefs/slider_form", locals: { belief: @belief } %>
+            <a href="#" id="refresh_this" class="skip btn btn-primary submit" role="button">Skip</a>
+  <script type="text/javascript">bindRefreshButton();</script>
           </div>
           <%= render partial: "beliefs/progress_bar" %>
         <% end %>

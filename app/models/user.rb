@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
 
   # returns the percentage of questions answered.
   def percent_answered
-    ((self.beliefs_answered.count.to_f / starred_beliefs.count.to_f) * 100).to_i.to_s + "%"
+    ((self.answered_questions.to_f / starred_beliefs.count.to_f) * 100).to_i.to_s + "%"
   end
 
   def increment_questions_answered

@@ -13,21 +13,26 @@
     </tr>
   </thead>
   <tbody>
-  <% @results.each do |result| %>
+  <% @answered.each do |result| %>
     <tr class="tablerow">
     	<% belief = result.belief %>
       <td class="numsort"><%= link_to belief.name, belief_path(belief) %></td>
       <td class="numsort"><%= belief.definition %>
         <div id=<%= belief.id.to_s %> class="table-slider" hidden><br><%= render partial: "beliefs/slider_form", locals: { belief: belief } %></div>
-</td>
+      </td>
       <td class="numsort"><%= belief.user_count %></td>
       <td class="numsort"><%= result.conviction %>%</td>
       <% unless your_beliefs.include?(belief) %>
-        <td><%= button_tag 'Add', :class => 'subscribe ' + result.id.to_s %></td>
+        <td><%= button_tag 'Add', :class => 'subscribe ' + result.id.to_s + ' btn btn-default' %></td>
       <% else %>
-        <td><%= button_to 'Remove', user_belief_path(belief), method: :delete %></td>
+        <td><%= button_to 'Remove', user_belief_path(belief), :class => 'btn btn-danger', method: :delete %></td>
       <% end %>
           </tr>
   <% end %>
   </tbody>
 </table>
+
+<br>
+<h2>Skipped Questions</h2>
+
+<%= render "/beliefs/results_table", locals: { results: @results } %>

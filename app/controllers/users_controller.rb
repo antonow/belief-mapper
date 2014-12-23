@@ -33,13 +33,21 @@ class UsersController < ApplicationController
   end
 
   def your_beliefs
-    @results = current_user.user_beliefs.order('conviction DESC')
+    all_beliefs = current_user.user_beliefs
+    @answered = all_beliefs.where(skipped: false).order('conviction DESC')
+    @results = all_beliefs.where(skipped: true).map { |user_belief| user_belief.belief }
+  end
+
+  def refresh_question
+    render :partial => "/beliefs/main_topbar"
   end
 
   def skip
-    current_user.increment_questions_answered
-    redirect_to beliefs_path
-    # render :partial => "/beliefs/main_topbar"
+    belief = Belief.find(params["id"].to_i)
+    UserBelief.create(user: current_user, belief: belief, skipped: true)
+    respond_to do |format|
+      format.json { head :ok }
+    end
   end
 
   def show

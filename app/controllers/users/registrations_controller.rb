@@ -69,9 +69,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
+
     @user = User.find(params[:id].to_i)
     @user.active = true
-
+    
     if params[:user][:password] != params[:user][:password_confirmation]
       flash[:error] = "Passwords do not match."
       render :'devise/registrations/activate' #:template => :back # "registrations_contr/index
@@ -86,6 +87,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       flash[:error] = "We could not create an account for you."
       render :'devise/registrations/activate'#:template => :back # "registrations_contr/index"
     end
+
 
     # Demographic.create!(
     #   user: @user,

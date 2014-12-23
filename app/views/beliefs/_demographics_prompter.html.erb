@@ -37,7 +37,10 @@
 
       <span class="actions col-lg-3"><br>
         <%= f.submit "Save", class: "btn btn-primary" %>
-        <a href="/users/skip" class="btn btn-default" role="button">No Thanks</a>
+        <a href="" id="refresh_this" class="btn btn-default" role="button">No Thanks</a>
       </span>
+      
+      <script type="text/javascript">bindRefreshButton();</script>
+
       
   <% end %>

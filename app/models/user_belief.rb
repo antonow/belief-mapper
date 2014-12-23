@@ -4,7 +4,7 @@ class UserBelief < ActiveRecord::Base
 
 
   after_save do
-    self.update_average_conviction
+    self.update_average_conviction unless self.skipped
     self.user.increment_questions_answered
   end
 
@@ -14,7 +14,7 @@ class UserBelief < ActiveRecord::Base
 
   def update_average_conviction
     total = 0
-    self.belief.user_beliefs.each do |ub|
+    self.belief.user_beliefs.where(skipped: false).each do |ub|
       total += ub.conviction
     end
     if belief.user_beliefs.count == 0

@@ -23,6 +23,20 @@
 
 // we turned of the requiring tree for some reason it works.
 
+function bindRefreshButton() {
+	$('#refresh_this').click(function(e) {
+		if (this.classList[0] == 'skip') {
+			beliefId = $('#belief_id').val();
+			$.ajax({
+				type: "POST",
+			  url: "/users/skip",
+			  data: {id: beliefId}
+			});
+		}
+    $('.refresh').load('/users/refresh_question');
+  });
+}
+
 $(document).ready(function(){
 	$('#core-belief').click(function(e) {
 		e.preventDefault();
@@ -48,10 +62,6 @@ $(document).ready(function(){
     $('#' + this.classList[1]).show();
   });
 
-  $('#skip').click(function(e) {
-    e.preventDefault();
-    $('#refresh').load('/users/skip');
-  })
 });
 
 
