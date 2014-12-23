@@ -20,9 +20,9 @@
       <td class="numsort"><%= result.user_count %></td>
       <td class="numsort"><%= result.avg_conviction%>%</td>
       <% unless your_beliefs.include?(result) %>
-        <td><%= button_tag 'Add', :class => 'subscribe ' + result.id.to_s %></td>
+        <td><%= button_tag 'Add', :class => 'subscribe ' + result.id.to_s + ' btn btn-default' %></td>
       <% else %>
-        <td><%= button_to 'Remove', user_belief_path(result), method: :delete %></td>
+        <td><%= button_to 'Remove', user_belief_path(result), :class => 'btn btn-danger', method: :delete %></td>
       <% end %>
           </tr>
   <% end %>

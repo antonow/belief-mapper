@@ -44,6 +44,7 @@ $(document).ready(function(){
 
   $('.subscribe').click(function(e) {
     e.preventDefault();
+    $('.table-slider').hide();
     $('#' + this.classList[1]).show();
   });
 

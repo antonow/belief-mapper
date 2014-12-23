@@ -12,7 +12,11 @@
   <div class="col-lg-10 graph users-graph">
     <% if (defined?(@results)).nil? %>
     <span id="users-text" class="lead">
-      <p>Displaying <% if @total_user_beliefs > 30 %>your top 30 <% else %> all your<% end %> beliefs</p>
+      <% unless @total_user_beliefs <= 0 %>
+        <p>Displaying <% if @total_user_beliefs > 30 %>your top 30 <% else %> all your<% end %> beliefs</p>
+      <% else %>
+        <p>No beliefs to display yet. Answer more questions!</p>
+      <% end %>
 </span>
 <script>
    $(function() {
