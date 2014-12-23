@@ -2,11 +2,7 @@
 
 
   <ul class="nav nav-pills nav-stacked side_toolbar" >
-    <% unless current_user.active == true %>
-      <li role="presentation" class=""><a href="/users/sign_up">Create Account</a></li>
-    <% else %>
-      <li role="presentation" class=""><a href="/users/edit">Edit My Account</a></li>
-    <% end %>
+    
 
     <% if current_user.demographic.nil? %>
       <li role="presentation" class=""><%= link_to 'Add Demographics', new_demographic_path %></li>
@@ -80,7 +76,7 @@
         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
            <span data-bind="label">Remove a Belief</span>&nbsp;<span class="caret"></span>
         </button>
-        <ul class="dropdown-menu" role="menu">
+        <ul class="dropdown-menu scroll-menu" role="menu">
           <% current_user.held_beliefs.each do |belief| %>
            <li><%= link_to belief.name, user_belief_path(belief), :method => :delete %></li>
            <% end %>

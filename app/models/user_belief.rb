@@ -2,9 +2,10 @@ class UserBelief < ActiveRecord::Base
   belongs_to :user
   belongs_to :belief
 
+
   after_save do
     self.update_average_conviction
-    current_user.answered_question
+    self.user.increment_questions_answered
   end
 
   after_destroy do

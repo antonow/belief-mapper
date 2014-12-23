@@ -36,6 +36,7 @@
   text-align: left;
   position: relative;
   left: 35px;
+  width: 98%;
 }
 
 .slider_buttons{
@@ -159,4 +160,10 @@ hr {
   position: relative;
   top: 8px;
   right: 4px;
+}
+
+.scroll-menu {
+    height: auto;
+    max-height: 600px;
+    overflow-x: hidden;
 }

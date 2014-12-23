@@ -1,5 +1,4 @@
   <p>Would you mind answering a few questions about yourself to contribute to the statistics?</p>
-  <% if current_user.demographic.nil? %>
     <% demographics = Demographic.new %>
     <%= bootstrap_form_for(demographics, layout: :inline, control_col: "col-sm-3") do |f| %>
       <span class="field col-lg-3">
@@ -38,7 +37,6 @@
 
       <span class="actions col-lg-3"><br>
         <%= f.submit "Save", class: "btn btn-primary" %>
-
         <a href="/users/skip" class="btn btn-default" role="button">No Thanks</a>
       </span>
       
