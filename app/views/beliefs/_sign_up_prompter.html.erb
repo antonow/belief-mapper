@@ -1,0 +1,38 @@
+  <h3>You've answered a lot of questions. Would you like to sign up?</h3>
+  <p>Signing up allows you to return to your belief map in the future and ensures that your answers are counted in the statistics.</p><br>
+
+  <% if current_user.demographic.nil? %>
+    <% @user = current_user %>
+    <%= bootstrap_form_for(@user, layout: :inline, url: edit_user_registration_path, method: :put) do |f| %>
+
+      <span class="field col-lg-3">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, :value => "", hide_label: true %>
+      </span>
+
+      <span class="field col-lg-3">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "off", hide_label: true %>
+      </span>
+
+      <span class="field col-lg-3">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off", hide_label: true %>
+      </span>
+
+      <span class="field">
+        <input type="text" value=<%= @user.id.to_s %> name="id" hidden>
+      </span>
+
+      <br>
+
+      <span class="actions col-lg-3">
+        <%= f.submit "Save", class: "btn btn-primary" %>
+        <a href="" id="refresh_this" class="btn btn-default" role="button">No Thanks</a>
+      </span>
+
+      <script type="text/javascript">bindRefreshButton();</script>
+
+    <% end %>
+  <% end %>
+  <br>

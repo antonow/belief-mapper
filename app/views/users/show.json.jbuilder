@@ -13,9 +13,5 @@ end
 json.connections @connections do |connection|
   json.source connection.belief_1_id
   json.target connection.belief_2_id
-  if connection.count > 0
-    json.value connection.count * 3
-  else
-    json.value 0
-  end
+  json.value connection.count / @c_divide_by + 1
 end

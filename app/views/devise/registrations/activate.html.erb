@@ -2,12 +2,12 @@
 
 <%= flash[:error] %>
 
-<%= form_for(@user, url: edit_user_registration_path, method: :put) do |f| %>
+<%= bootstrap_form_for(@user, layout: :inline, url: edit_user_registration_path, method: :put) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, :value => "" %>
+    <%= f.email_field :email, autofocus: true, :value => "", hide_label: true %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -16,20 +16,22 @@
 
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", hide_label: true %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", hide_label: true %>
   </div>
 
   <div class="field">
     <input type="text" value=<%= resource.id.to_s %> name="id" hidden>
   </div>
 
+  <br>
+
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Save", class: "btn btn-primary" %>
   </div>
 <% end %>
 
@@ -39,10 +41,5 @@
     <% else %>
     <p><%= link_to 'Edit My Demographic Information', edit_demographic_path(current_user.demographic.id) %></p>
     <% end %>
-
-<hr>
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>

@@ -3,9 +3,9 @@
 
 <body>
 <% if (defined?(@results)).nil? %>
-  <div id='refresh'>
+  <span class="refresh">
     <%= render partial: "main_topbar", locals: { belief: @belief } %>
-  </div>
+  </span>
   <hr id="top-line">
 <% end %>
 

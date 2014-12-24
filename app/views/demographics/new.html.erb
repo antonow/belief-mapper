@@ -3,7 +3,7 @@
 <h2>Demographics (optional)</h2>
 <hr><br>
 
-<%= form_for :demographic, url: demographics_path do |f| %>
+<%= bootstrap_form_for :demographic, layout: :inline, url: demographics_path do |f| %>
 
   <%= render partial: "form", locals: { f: f } %>
 

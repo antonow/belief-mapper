@@ -13,6 +13,10 @@
  *= require_tree .
  */
 
+/*
+*= require rails_bootstrap_forms
+*/
+
 /*.container {
   background-color: black;
   color: white;
@@ -32,14 +36,24 @@
   text-align: left;
   position: relative;
   left: 35px;
+  width: 98%;
 }
 
 .slider_buttons{
+  position: relative;
+  top: 23px;
+}
+
+.skip {
+  position: relative;
+  top: -26px;
+  left: 90px;
 }
 
 .question_div{
   position: relative;
-  margin-bottom: 0px;
+  bottom: 20px;
+  margin-bottom: -35px;
   z-index: 100;
 }
 
@@ -57,8 +71,15 @@
 
 .users-graph {
   position: relative;
-  top: -67px;
+  top: -68px;
   height: 600px;
+}
+
+.show-graph {
+  position: relative;
+  top: -90px;
+  height: 600px;
+  margin-bottom: -90px;
 }
 
 .results {
@@ -150,3 +171,16 @@ hr {
   position: relative;
   top: 3px;
 }
+
+.nav-field {
+  position: relative;
+  top: 8px;
+  right: 4px;
+}
+
+.scroll-menu {
+  height: auto;
+  max-height: 600px;
+  overflow-x: hidden;
+}
+

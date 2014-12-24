@@ -1,0 +1,51 @@
+  <p>Would you mind answering a few questions about yourself to contribute to the statistics?</p>
+    <% demographics = Demographic.new %>
+    <%= bootstrap_form_for(demographics, layout: :inline, control_col: "col-sm-3") do |f| %>
+      <div class="row">
+      <span class="field col-lg-3">
+        <%= f.label :gender %><br>
+        <%= f.text_field :gender, hide_label: true %>
+      </span>
+
+      <span class="field col-lg-3">
+        <%= f.label :age %><br>
+        <%= f.number_field :age, hide_label: true %>
+      </span>
+
+      <span class="field col-lg-6">
+        <%=f.label :country %><br>
+        <select id="country" class="form-control" name ="demographic[country]"></select>
+      </span>
+      </div>
+
+      <div class="row">
+      <span class="field col-lg-3">
+        <%= f.label :religion %><br>
+        <%= f.text_field(:religion, hide_label: true) %>
+      </span>
+
+      <span class="field col-lg-3">
+        <%= f.label :education %>
+        <%= f.select(:education_level, all_education_levels, include_blank: true, hide_label: true) %>
+      </span>
+
+      <span class="field col-lg-3">
+        <%= f.label :state %><br>
+        <select name="demographic[state]" id ="state" class="form-control"></select>
+         <script language="javascript">
+        populateCountries("country", "state");
+         </script>
+      </span>
+
+
+      <span class="actions col-lg-3"><br>
+        <%= f.submit "Save", class: "btn btn-primary" %>
+        <a href="" id="refresh_this" class="btn btn-default" role="button">No Thanks</a>
+      </span>
+      </div>
+      <br>
+      
+      <script type="text/javascript">bindRefreshButton();</script>
+
+      
+  <% end %>

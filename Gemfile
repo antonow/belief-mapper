@@ -28,6 +28,7 @@ gem 'spring',        group: :development
 
 gem 'devise'
 gem 'faker'
+gem 'bootstrap_form'
 
 group :development, :test do
   gem 'rspec-rails'

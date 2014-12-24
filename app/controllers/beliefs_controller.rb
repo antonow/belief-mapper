@@ -10,7 +10,7 @@ class BeliefsController < ApplicationController
           if params[:query].present?
             @results = Belief.search(params[:query])
           else
-            max = Belief.where("user_count > ?", show_greater_than).count
+            max = Belief.count
             if params[:category].present?
               selected_category = params[:category]
               unless ["All", "Category"].include?(selected_category)
@@ -34,12 +34,12 @@ class BeliefsController < ApplicationController
         @count = 30
         if params[:count].present?
           @count = params[:count].to_i unless params[:count].to_i <= 0
-          @beliefs = @beliefs.limit(@count).where("user_count > ?", show_greater_than)
+          @beliefs = @beliefs.limit(@count)
         end
 
         selected_category = params[:category]
         if selected_category.present? && !["All", "Category"].include?(selected_category)
-          @beliefs = @beliefs.where(category_id: selected_category).where("user_count > ?", show_greater_than)
+          @beliefs = @beliefs.where(category_id: selected_category)
         end
 
         min_max = @beliefs.map { |belief| belief.user_count }.minmax
@@ -52,7 +52,7 @@ class BeliefsController < ApplicationController
 
         belief_ids = @beliefs.pluck(:id)
 
-        @connections = Connection.where(:belief_1_id => belief_ids, :belief_2_id => belief_ids).where("strong_connections > ?", 0)
+        @connections = Connection.where(:belief_1_id => belief_ids, :belief_2_id => belief_ids).where("strong_connections >= ?", MIN_CONN_COUNT)
 
         c_min_max = @connections.map { |conn| conn.strong_connections }.minmax
         c_min = c_min_max[0]
@@ -79,18 +79,14 @@ class BeliefsController < ApplicationController
   @connections = Connection.all
   end
 
-  def results
-    raise 'here'
-  end
-
-  def show
-    @belief = Belief.find(params[:id])
-  end
-
   def search
     @results = Belief.search(params[:query])
     @query = params[:query]
     render "results"
+  end
+
+  def show
+    @belief = Belief.find(params[:id])
   end
 
   def autocomplete
@@ -98,7 +94,7 @@ class BeliefsController < ApplicationController
   end
 
   def list
-    @results = Belief.all.order(name: :asc)
+    @results = Belief.all.order(user_count: :desc)
     render "list"
   end
 

@@ -1,0 +1,16 @@
+<div class="pull-right">
+	<% @user = User.new %>
+	<%= bootstrap_form_for(@user, layout: :inline, url: user_session_path, control_col: "col-sm-3") do |f| %>
+	  <span class="field nav-field">
+	    <%= f.email_field :email, hide_label: :true, placeholder: "Email" %>
+	  </span>
+
+	  <span class="field nav-field">
+	    <%= f.password_field :password, hide_label: :true, placeholder: "Password" %>
+	  </span>
+
+	  <span class="actions">
+	    <%= f.submit "Log in", :class => 'btn btn-default navbar-btn pull-right' %>
+	  </span>
+	<% end %>
+</div>

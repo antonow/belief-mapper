@@ -3,7 +3,9 @@
 
 <body>
 <% if (defined?(@results)).nil? %>
-  <%= render partial: "/beliefs/main_topbar", locals: { belief: @belief } %>
+  <span class="refresh">
+    <%= render partial: "/beliefs/main_topbar", locals: { belief: @belief } %>
+  </span>
   <hr>
 <% end %>
 
@@ -12,13 +14,19 @@
   <div class="col-lg-10 graph users-graph">
     <% if (defined?(@results)).nil? %>
     <span id="users-text" class="lead">
-<p>Displaying all your beliefs</p>
+      <% unless @total_user_beliefs <= 0 %>
+        <p>Displaying <% if @total_user_beliefs > 30 %>your top 30 <% else %> all your<% end %> beliefs</p>
+      <% else %>
+        <p>No beliefs to display yet. Answer more questions!</p>
+      <% end %>
 </span>
-<script>
-   $(function() {
-      renderD3Web("/users.json");
-   });
-</script>
+<span id="renderD3">
+  <script>
+     $(function() {
+        renderD3Web("/users.json");
+     });
+  </script>
+</span>
 <% else %>
   <div class="results">
     <%= render partial: "/beliefs/results_table", locals: { results: @results } %>

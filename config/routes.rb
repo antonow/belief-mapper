@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
-
   }
 
   devise_scope :user do
@@ -51,9 +50,11 @@ Rails.application.routes.draw do
   # end
 
   get 'list', to: 'beliefs#list', as: :list_beliefs
-  get 'users/skip' => 'users#skip'
+  get 'users/refresh_question' => 'users#refresh_question'
+  post 'users/skip' => 'users#skip'
+  get 'users/your_beliefs' => 'users#your_beliefs'
 
-  resources :users, only: [:index, :skip, :show]
+  resources :users, only: [:index, :skip, :show, :your_beliefs]
 
   resources :demographics, only: [:new, :create, :update, :edit]
 
