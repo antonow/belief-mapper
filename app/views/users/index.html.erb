@@ -20,11 +20,13 @@
         <p>No beliefs to display yet. Answer more questions!</p>
       <% end %>
 </span>
-<script>
-   $(function() {
-      renderD3Web("/users.json");
-   });
-</script>
+<span id="renderD3">
+  <script>
+     $(function() {
+        renderD3Web("/users.json");
+     });
+  </script>
+</span>
 <% else %>
   <div class="results">
     <%= render partial: "/beliefs/results_table", locals: { results: @results } %>

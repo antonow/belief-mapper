@@ -40,12 +40,20 @@
 }
 
 .slider_buttons{
+  position: relative;
+  top: 23px;
+}
+
+.skip {
+  position: relative;
+  top: -26px;
+  left: 90px;
 }
 
 .question_div{
   position: relative;
-  bottom: 50px;
-  margin-bottom: -50px;
+  bottom: 20px;
+  margin-bottom: -35px;
   z-index: 100;
 }
 
@@ -63,8 +71,15 @@
 
 .users-graph {
   position: relative;
-  top: -67px;
+  top: -68px;
   height: 600px;
+}
+
+.show-graph {
+  position: relative;
+  top: -90px;
+  height: 600px;
+  margin-bottom: -90px;
 }
 
 .results {
@@ -169,8 +184,3 @@ hr {
   overflow-x: hidden;
 }
 
-.skip {
-  position: relative;
-  top: -49px;
-  left: 90px;
-}

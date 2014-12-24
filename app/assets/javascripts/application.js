@@ -37,6 +37,29 @@ function bindRefreshButton() {
   });
 }
 
+function bindSubmitButton() {
+	$('.slider-submit').click(function(e) {
+		e.preventDefault();
+		conviction = $('#conviction').val();
+		beliefId = $('#belief_id').val();
+
+		$.ajax({
+			type: "POST",
+		  url: "/user_beliefs",
+		  data: {belief: beliefId,
+		  			 conviction: conviction}
+		});
+
+    $('.refresh').load('/users/refresh_question');
+
+		if (parseInt(conviction) > 5) {
+			// renderD3Web("/users.json");
+			location.reload();
+	    // $('#renderD3').html('<script>$(function() {renderD3Web("/users.json");} );</script>');
+		}
+	});
+}
+
 $(document).ready(function(){
 	$('#core-belief').click(function(e) {
 		e.preventDefault();

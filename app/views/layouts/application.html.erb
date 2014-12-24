@@ -30,9 +30,9 @@
           <% end %>
         <!-- Displays sign in or sign up button if not logged in -->
         <% else %>
-          <%= button_to 'Sign up', new_user_registration_path, method: :get, :class => "btn btn-default navbar-btn pull-right" %>
-            <%= render partial: "layouts/sign_in_form" %>
           <% unless request.original_url.match('sign_up') %>
+            <%= button_to 'Sign up', new_user_registration_path, method: :get, :class => "btn btn-default navbar-btn pull-right" %>
+            <%= render partial: "layouts/sign_in_form" %>
           <% end %>
         <% end %>
       </div>
@@ -43,8 +43,9 @@
 
 
 <div class='container'>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+<!--   <p class="notice">ruby just notice</p>
+  <p class="alert">ruby just alert</p>
+ --> 
   <%= yield %>
 
 <br>

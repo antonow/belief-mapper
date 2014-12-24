@@ -1,13 +1,23 @@
-<h1>Viewing Someone Else's Belief Map</h1>
-<h3>Sign Up to Create Your Own</h3>
+<h1>You're Viewing a Belief Map</h1>
 <div class="row">
-  <div class="graph users-graph">
-      <script>
-         $(function() {
-            renderD3Web("/users.json");
-         });
-      </script>
-  </div>
+  <div class="col-lg-10">
+	  <div class="graph show-graph">
+	      <script>
+	         $(function() {
+	            renderD3Web("/users.json");
+	         });
+	      </script>
+	  </div>
+	</div>
+	<div class="col-lg-2 toolbar show-graph">
+		<div class="panel-body lead">
+			<br>
+      <p><strong>Hovering</strong> over a belief displays its definition.</p>
+      <p><strong>Clicking</strong> on a belief displays only that particular belief's connections.</p>
+      <p><strong>Double-clicking</strong> on any belief displays all connections again.</p>
+      <p><strong>Dragging</strong> nodes around is also possible!</p>
+    </div>
+	</div>
 </div>
 
 <div>

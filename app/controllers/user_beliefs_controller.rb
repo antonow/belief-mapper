@@ -1,5 +1,5 @@
 class UserBeliefsController < ApplicationController
-  # include ApplicationHelper
+
   include UsersBeliefsHelper
 
   require 'faker'
@@ -12,21 +12,19 @@ class UserBeliefsController < ApplicationController
     else
       user = current_user
     end
-    user_belief = UserBelief.find_or_create_by(belief: belief, user: user)
+    user_belief = UserBelief.find_or_initialize_by(belief: belief, user: user)
     user_belief.conviction = params[:conviction]
     user_belief.skipped = false
-    
+
     if user_belief.save!
       if user_belief.conviction > 5
         generate_new_connections(user_belief)
         belief.user_count += 1
         belief.save
       end
-      # if @count = user.beliefs.count >= 3
+
       redirect_to users_path
-      # end
     else
-      puts "I got to the error"
       redirect_to 'error'
     end
   end
@@ -43,8 +41,5 @@ class UserBeliefsController < ApplicationController
     redirect_to :back
   end
 
-  # def create_belief?
-  #   params[:conviction].to_i > 5
-  # end
 end
 

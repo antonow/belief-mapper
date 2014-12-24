@@ -10,8 +10,8 @@
   <input type="range" name="conviction" id="conviction" value=0 min=0 max=100 list='levels' oninput="outputUpdate(value)">
   <output for='conviction' id='level'></output>
   </div>
-  <br>
   <div class="col-md-2 slider_buttons" >
-  <button type="submit" class="btn btn-primary submit">Submit</button>
+  <button class="btn btn-primary submit slider-submit">Submit</button>
+  <script type="text/javascript">bindSubmitButton()</script>
   </div>
   <% end %>
