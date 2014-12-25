@@ -25,8 +25,16 @@
 
 function bindRefreshButton() {
 	$('#refresh_this').click(function(e) {
+		e.preventDefault();
 		if (this.classList[0] == 'skip') {
 			beliefId = $('#belief_id').val();
+			$.ajax({
+				type: "POST",
+			  url: "/users/skip",
+			  data: {id: beliefId}
+			});
+		} else if (this.classList[0] == 'skip-other') {
+			beliefId = "other";
 			$.ajax({
 				type: "POST",
 			  url: "/users/skip",
@@ -48,14 +56,19 @@ function bindSubmitButton() {
 		  url: "/user_beliefs",
 		  data: {belief: beliefId,
 		  			 conviction: conviction}
-		});
-
-    $('.refresh').load('/users/refresh_question');
+		})
+			.done(function() {
+				if (parseInt(conviction) > 5) {
+					window.location.href = "/users";
+				}
+			});
 
 		if (parseInt(conviction) > 5) {
 			// renderD3Web("/users.json");
-			location.reload();
+			window.location.href = "/users";
 	    // $('#renderD3').html('<script>$(function() {renderD3Web("/users.json");} );</script>');
+		} else {
+	    $('.refresh').load('/users/refresh_question');
 		}
 	});
 }

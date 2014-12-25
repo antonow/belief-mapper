@@ -1,5 +1,5 @@
   <h3>You've answered a lot of questions. Would you like to sign up?</h3>
-  <p>Signing up allows you to return to your belief map in the future and ensures that your answers are counted in the statistics.</p><br>
+  <p>Signing up allows you to return to your belief map in the future and ensures that your answers are counted in the statistics.</p>
 
   <% if current_user.demographic.nil? %>
     <% @user = current_user %>
@@ -28,11 +28,12 @@
 
       <span class="actions col-lg-3">
         <%= f.submit "Save", class: "btn btn-primary" %>
-        <a href="" id="refresh_this" class="btn btn-default" role="button">No Thanks</a>
+        <a href="" id="refresh_this" class="skip-other btn btn-default" role="button">No Thanks</a>
       </span>
 
       <script type="text/javascript">bindRefreshButton();</script>
 
     <% end %>
   <% end %>
+  <br>
   <br>

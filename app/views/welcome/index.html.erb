@@ -1,21 +1,20 @@
 <div class="jumbotron">
   <h1>Life Examined</h1>
   <p>Create a visual web of your beliefs. Categorize your belief system.</p>
-  <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Get Started Now</a></p> -->
 
   <hr>
-  <% @count = 0 %>
-  <!-- <p>Answer 3 more questions to see your map</p> -->
-  <h3>Question</h3>
+  <h3>Question</h3><br>
+  <div class="refresh row lead question_div question_display">
   <% display = @belief.definition %>
   <% display = "in the " + display unless ['belief', 'doctrine', 'theory'].include?(display.split(' ').first) %>
   <% display = display.sub(/belief /, "").sub(/doctrine /, "").sub(/theory /, "") %>
   <p>Do you believe <%= display %>?</p>
   <!-- + " - " + @belief.id.to_s -->
-  <br>
-  <br>
   <%= render partial: "/beliefs/slider_form", locals: { belief: @belief } %>
-  <br>
+  <a href="#" id="refresh_this" class="btn btn-primary submit skip" role="button">Skip</a>
+  <script type="text/javascript">bindRefreshButton();</script>
+  </div>
+
 </div>
 
 <%= render partial: "/beliefs/graph_explanation" %>

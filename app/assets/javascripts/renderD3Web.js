@@ -22,7 +22,10 @@ renderD3Web = function(baseUrl) {
     } else {
       category = "?"+category[0];
     }
+  } else {
+    category = "";
   }
+  console.log(category);
 
   var width = 960,
     height = 600
@@ -152,6 +155,9 @@ renderD3Web = function(baseUrl) {
       .style("fill", "#153D93")
       .text(function(d) {
         return d.name
+      })
+      .on("click", function() {
+        
       });
 
     node.on("click", function(d) {

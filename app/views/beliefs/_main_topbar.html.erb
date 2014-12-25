@@ -1,9 +1,6 @@
   <!-- QUESTION DIV BEGINS HERE -->
   <div class="row lead question_div">
     <!-- <div class="col-md-1"></div> -->
-    <% belief_id = current_user.unexamined_beliefs.sample %>
-    <% unless belief_id.nil? %>
-      <% @belief = Belief.find(belief_id) %>
       <!-- <div class ="row last_question_response question_display">
         <button type="button" class="close" data-dismiss="alert">
           <span aria-hidden="true">&times;</span>
@@ -12,31 +9,42 @@
       </div> -->
       <div class="row lead question_display">
         <br>
-        <% user = current_user %>
-        <% if user.answered_questions == 10 && user.demographic.nil? %>
-          <%= render partial: "beliefs/demographics_prompter" %>
-        <% elsif user.answered_questions == 20 && user.active == false %>
-          <%= render partial: "beliefs/sign_up_prompter" %>
+
+        <% if user_signed_in? %>
+
+          <% belief_id = current_user.unexamined_beliefs.sample if user_signed_in? %>
+          <% @belief = Belief.find(belief_id) %>
+          <% user = current_user %>
+
+          <% if user.answered_questions == 10 && user.demographic.nil? %>
+            <%= render partial: "beliefs/demographics_prompter" %>
+          <% elsif user.answered_questions == 20 && user.active == false %>
+            <%= render partial: "beliefs/sign_up_prompter" %>
+          <% else %>
+            <% if user.percent_answered_int < 100 %>
+              <p>Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "")%>?</p>
+              <div class="row lead">
+                <%= render partial: "beliefs/slider_form", locals: { belief: @belief } %>
+                <a href="#" id="refresh_this" class="skip btn btn-primary submit" role="button">Skip</a>
+                <script type="text/javascript">bindRefreshButton();</script>
+              </div>
+            <% else %>
+              <h1>Congratulations, you've answered all the questions we have for you!</h1>
+              <p>You've skipped <%= current_user.user_beliefs.where(skipped: true).count %> questions. Check out <%= link_to 'your skipped questions', "/users/your_beliefs#your_skipped_questions" %> if you'd like to revisit them.
+                There are also more beliefs in the system than we've asked you about. To view them, checkout the list of <%= link_to 'all beliefs', list_beliefs_path%>.</p><br>
+            <% end %>
+            <%= render partial: "beliefs/progress_bar" %>
+          <% end %>
         <% else %>
-          <% display = @belief.definition %>
-          <% display += "in the " unless ['belief', 'doctrine'].include?(display.split(' ').first) %>
-          <% display = display.sub(/belief /, "").sub(/doctrine /, "") %>
+          <% @belief = Belief.all.where(starred: true).sample %>
           <p>Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "")%>?</p>
           <div class="row lead">
             <%= render partial: "beliefs/slider_form", locals: { belief: @belief } %>
             <a href="#" id="refresh_this" class="skip btn btn-primary submit" role="button">Skip</a>
             <script type="text/javascript">bindRefreshButton();</script>
           </div>
-          <%= render partial: "beliefs/progress_bar" %>
         <% end %>
       </div>
-    <% else %>
-    <!-- What displays if all the questions have been answered -->
-      <h1>Congratulations, you've answered all the questions we have for you!</h1>
-      <p>You've skipped <%= current_user.user_beliefs.where(skipped: true).count %> questions. Check out <%= link_to 'your skipped questions', "/users/your_beliefs#your_skipped_questions" %> if you'd like to revisit them.
-        There are also more beliefs in the system than we've asked you about. To view them, checkout the list of <%= link_to 'all beliefs', list_beliefs_path%>.</p><br>
-      <%= render partial: "beliefs/progress_bar" %><br>
-    <% end %>
   </div>
 
 
