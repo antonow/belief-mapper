@@ -10,8 +10,8 @@ class UsersController < ApplicationController
           min = min_max[0]
           range = min_max[1] - min
           @divide_by = 1
-          if range > 8
-            @divide_by = range / 8
+          if range >= MAX_BELIEF_SIZE_RANGE
+            @divide_by = range / MAX_BELIEF_SIZE_RANGE
           end
 
           belief_ids = @beliefs.map { |belief| belief.id }
@@ -28,21 +28,18 @@ class UsersController < ApplicationController
             if c_range > 5
               @c_divide_by = c_range / 5
             end
-
-            render { render :json => {:beliefs => @beliefs,
-                                      :connections => @connections,
-                                      :divide_by => @divide_by,
-                                      :c_divide_by => @c_divide_by }}
           else
-            @divide_by = 1
-            render { render :json => {:beliefs => @beliefs,
-                                    :divide_by => @divide_by }}
+            @c_divide_by = 1
           end
         else
           @divide_by = 1
-          render { render :json => {:beliefs => @beliefs,
-                                    :divide_by => @divide_by }}
+          @c_divide_by = 1
         end
+
+        render { render :json => {:beliefs => @beliefs,
+                                  :connections => @connections,
+                                  :divide_by => @divide_by,
+                                  :c_divide_by => @c_divide_by }}
       }
       format.html {
         unless user_signed_in?
@@ -87,8 +84,8 @@ class UsersController < ApplicationController
         min = min_max[0]
         range = min_max[1] - min
         @divide_by = 1
-        if range > 8
-          @divide_by = range / 8
+        if range >= MAX_BELIEF_SIZE_RANGE
+          @divide_by = range / MAX_BELIEF_SIZE_RANGE
         end
 
         belief_ids = @beliefs.map { |belief| belief.id }

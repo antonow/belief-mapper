@@ -46,8 +46,8 @@ class BeliefsController < ApplicationController
         min = min_max[0]
         range = min_max[1] - min
         @divide_by = 1
-        if range > 8
-          @divide_by = range / 8
+        if range >= MAX_BELIEF_SIZE_RANGE
+          @divide_by = range / MAX_BELIEF_SIZE_RANGE
         end
 
         belief_ids = @beliefs.pluck(:id)
