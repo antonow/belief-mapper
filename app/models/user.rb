@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   end
 
   def held_beliefs_by_conviction
-    self.user_beliefs.order("conviction DESC").where("conviction > ?", 5).limit(DEFAULT_MAX_BELIEFS).map { |user_belief| Belief.find(user_belief.belief_id) }
+    self.user_beliefs.order("conviction DESC").where("conviction > ?", 5).limit(USER_MAX_BELIEFS).map { |user_belief| Belief.find(user_belief.belief_id) }
   end
 
   def unexamined_beliefs

@@ -1,36 +1,32 @@
 module UsersBeliefsHelper
 
   def generate_new_connections(user_belief)
-    new_belief_id = user_belief.belief.id
-    user_belief.user.beliefs.each do |other_belief|
-      unless new_belief_id == other_belief.id
-        if new_belief_id < other_belief.id
-          first_belief_id = new_belief_id
-          second_belief_id = other_belief.id
-        else
-          first_belief_id = other_belief.id
-          second_belief_id = new_belief_id
-        end
-        if @conn = Connection.where(:belief_1_id => first_belief_id, :belief_2_id => second_belief_id).first
+    if user_belief.conviction > 5
+      new_belief_id = user_belief.belief.id
+      user_belief.user.beliefs.each do |other_belief|
+        unless new_belief_id == other_belief.id
+          if new_belief_id < other_belief.id
+            first_belief_id = new_belief_id
+            second_belief_id = other_belief.id
+          else
+            first_belief_id = other_belief.id
+            second_belief_id = new_belief_id
+          end
+
+          @conn = Connection.find_or_create_by(:belief_1_id => first_belief_id, :belief_2_id => second_belief_id)
           @conn.count += 1
-          if user_belief.conviction > 50
+          if user_belief.conviction > 50 && UserBelief.where(user: user_belief.user, belief: other_belief).first.conviction > 50
             @conn.strong_connections +=1
           end
+            
           @conn.save
           puts "======================================"
-        else
-          @conn = Connection.create(belief_1_id: first_belief_id, belief_2_id: second_belief_id)
-          @conn.count += 1
-          if user_belief.conviction > 50
-            @conn.strong_connections +=1
-          end
-          @conn.save
-          puts "=================================="
         end
       end
     end
-
   end
+
+
 end
   # def create_connections_for(belief)
   #   # raise "create_connections_for method only works for beliefs" unless belief.class == Belief

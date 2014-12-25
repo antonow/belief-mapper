@@ -4,29 +4,31 @@ include UsersBeliefsHelper
 
 
 
-# belief = Belief.new
-# # 'phrontisteryisms.txt'
-# category = ""
-# File.open( 'refactored_isms.txt' ).each_with_index do |line, index|
-#   text = line.chomp
-#   if index.even?
-#     if text[0] == "*"
-#       belief.starred = true
-#       belief.name = text[1..-1]
-#     else
-#       belief.name = text
-#     end
-#   else
-#     if ["Religion", "Philosophy", "Politics", "Other"].include?(text)
-#       category = Category.create!(name: text)
-#     else
-#       belief.definition = text
-#       belief.category = category
-#       belief.save!
-#       belief = Belief.new
-#     end
-#   end
-# end
+belief = Belief.new
+category = ""
+File.open( 'refactored_isms.txt' ).each_with_index do |line, index|
+  text = line.chomp
+  if index.even?
+    if text[0] == "*"
+      belief.starred = true
+      belief.name = text[1..-1]
+    else
+      belief.name = text
+    end
+  else
+    if ["Religion", "Philosophy", "Politics", "Other"].include?(text)
+      category = Category.create!(name: text)
+    else
+      belief.definition = text
+      belief.category = category
+      belief.save!
+      belief = Belief.new
+    end
+  end
+end
+
+
+
 
 50.times do
   demographic = Demographic.create!(:gender => all_genders.sample, :age => rand(5..110), :religion => all_religions.sample, :country => "USA", :state => all_states.sample, :education_level => all_education_levels.sample)
@@ -56,3 +58,5 @@ Belief.all.each do |belief|
   end
   belief.save
 end
+
+

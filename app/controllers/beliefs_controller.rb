@@ -29,7 +29,7 @@ class BeliefsController < ApplicationController
         end
       }
       format.json {
-        @beliefs = Belief.order('user_count DESC')
+        @beliefs = Belief.order('user_count DESC').where('avg_conviction > ?', 60)
         @category = nil
         @count = 30
         if params[:count].present?
@@ -42,24 +42,31 @@ class BeliefsController < ApplicationController
           @beliefs = @beliefs.where(category_id: selected_category)
         end
 
-        min_max = @beliefs.map { |belief| belief.user_count }.minmax
-        min = min_max[0]
-        range = min_max[1] - min
+        @connections = []
         @divide_by = 1
-        if range >= MAX_BELIEF_SIZE_RANGE
-          @divide_by = range / MAX_BELIEF_SIZE_RANGE
-        end
-
-        belief_ids = @beliefs.pluck(:id)
-
-        @connections = Connection.where(:belief_1_id => belief_ids, :belief_2_id => belief_ids).where("strong_connections >= ?", MIN_CONN_COUNT)
-
-        c_min_max = @connections.map { |conn| conn.strong_connections }.minmax
-        c_min = c_min_max[0]
-        c_range = c_min_max[1] - c_min
         @c_divide_by = 1
-        if c_range > 5
-          @c_divide_by = c_range / 5
+
+        unless @beliefs.count <= 1
+          min_max = @beliefs.map { |belief| belief.user_count }.minmax
+          min = min_max[0]
+          range = min_max[1] - min
+          if range >= MAX_BELIEF_SIZE_RANGE
+            @divide_by = range / MAX_BELIEF_SIZE_RANGE
+          end
+
+          belief_ids = @beliefs.pluck(:id)
+
+          @connections = Connection.where(:belief_1_id => belief_ids, :belief_2_id => belief_ids).where("strong_connections >= ?", MIN_CONN_COUNT)
+
+          unless @connections.count <= 1
+            c_min_max = @connections.map { |conn| conn.strong_connections }.minmax
+            c_min = c_min_max[0]
+            c_range = c_min_max[1] - c_min
+            @c_divide_by = 1
+            if c_range > 5
+              @c_divide_by = c_range / 5
+            end
+          end
         end
 
         render { render :json => {:beliefs => @beliefs,
