@@ -31,7 +31,7 @@
   <% @comments.each do |comment| %>
   <h4><%= comment.title %></h4>
   <p><%= comment.user.username %></p>
-  <p><%= comment.body %></p>
+  <p><%=raw comment.body %></p>
     <% unless @comments.last == comment %>
       <hr>
     <% end %>

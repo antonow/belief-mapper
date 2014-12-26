@@ -12,6 +12,7 @@
 //
 //= require d3
 //= require jquery
+//= require jquery-ui/tooltip
 //= require jquery_ujs
 //= require underscore
 //= require bootstrap-sprockets
@@ -74,6 +75,10 @@ function bindSubmitButton() {
 }
 
 $(document).ready(function(){
+
+	// $(".tooltip").tooltip();
+	$("a[rel=tooltip]").tooltip();
+
 	$('#core-belief').click(function(e) {
 		e.preventDefault();
 		outputUpdate(100);

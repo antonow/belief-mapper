@@ -6,14 +6,20 @@ class CommentsController < ApplicationController
   end
 
   def create
-    if params[:comment][:title] != nil
-      @comment = Comment.create!(title: params[:comment][:title], body: params[:comment][:body], user: current_user)
-      @comment = Comment.new
-    else
-      @comment = Comment.new(body: params[:body])
+    body = params[:comment][:body]
+    unless body.nil? || body.match(/href/)
+      if params[:comment][:title] != nil
+        @comment = Comment.create!(title: params[:comment][:title], body: body, user: current_user)
+        @comment.linkify_comment
+      else
+        @comment = Comment.create!(body: body)
+      end
     end
     @comments = Comment.all.reverse
-    render 'index'
+    # @comment = Comment.new
+    redirect_to comments_path
   end
+
+
 
 end

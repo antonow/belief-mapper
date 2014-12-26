@@ -13,13 +13,13 @@ class User < ActiveRecord::Base
 
   before_create :assign_short_url
 
-   def assign_short_url
-      random_array = (0..9).to_a.map(&:to_s) + ("a".."z").to_a
-      random_string = ""
-      10.times { random_string += random_array.sample}
-      self.unique_url = random_string
-      # self.save
-   end
+  def assign_short_url
+    random_array = (0..9).to_a.map(&:to_s) + ("a".."z").to_a
+    random_string = ""
+    10.times { random_string += random_array.sample}
+    self.unique_url = random_string
+    # self.save
+  end
 
   def username
     if self.active

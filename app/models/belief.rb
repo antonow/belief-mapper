@@ -107,4 +107,8 @@ class Belief < ActiveRecord::Base
   def self.total_beliefs
     all.count
   end
+
+  def self.all_names
+    self.all.map(&:name)
+  end
 end

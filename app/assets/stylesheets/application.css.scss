@@ -17,6 +17,10 @@
 *= require rails_bootstrap_forms
 */
 
+/*
+*= require jquery-ui/tooltip
+*/
+
 /*.container {
   background-color: black;
   color: white;
@@ -184,3 +188,6 @@ hr {
   overflow-x: hidden;
 }
 
+[role~="tooltip"] {
+  font-size: 1em;
+}

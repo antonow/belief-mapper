@@ -15,7 +15,7 @@
     <% if (defined?(@results)).nil? %>
     <span id="users-text" class="lead">
       <% unless @total_user_beliefs <= 0 %>
-        <p>Displaying <% if @total_user_beliefs > 30 %>your top 30 <% else %> all your<% end %> beliefs</p>
+        <p>Displaying <% if @total_user_beliefs > USER_MAX_BELIEFS %>your top <%= USER_MAX_BELIEFS %> <% else %> all your<% end %> beliefs</p>
       <% else %>
         <p>No beliefs to display yet. Answer more questions!</p>
       <% end %>

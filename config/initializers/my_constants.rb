@@ -2,7 +2,7 @@
 # Run this to restart server: touch tmp/restart.txt
 
 DEFAULT_MAX_BELIEFS = 30
-USER_MAX_BELIEFS = 15
+USER_MAX_BELIEFS = 20
 
 MIN_CONN_COUNT = 0 # smallest connection strength to display
 
