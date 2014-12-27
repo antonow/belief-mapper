@@ -94,6 +94,8 @@ class BeliefsController < ApplicationController
 
   def show
     @belief = Belief.find(params[:id])
+    @comment = Comment.new
+    @comments = Comment.tagged_with(@belief.name)
   end
 
   def autocomplete

@@ -34,11 +34,11 @@ class Belief < ActiveRecord::Base
     top_connections = Connection.connected_belief_strengths(self)[0..9]
     passed_connections = []
     top_connections.each do |belief|
-      unless belief[0].user_count == 0
-        passed_connections << [belief[0].name.capitalize, belief[0].user_count]
+      unless belief[1] == 0
+        passed_connections << [belief[0].name.capitalize, belief[1]]
       end
     end
-     passed_connections.sort
+    passed_connections
   end
 
   def strong_convictions
@@ -96,7 +96,7 @@ class Belief < ActiveRecord::Base
         link_connections << [belief[0].name.capitalize, belief[0].id]
       end
     end
-     link_connections.sort
+    link_connections
   end
 
   def rank

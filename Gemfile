@@ -31,6 +31,7 @@ gem 'spring',        group: :development
 gem 'devise'
 gem 'faker'
 gem 'bootstrap_form'
+gem 'acts-as-taggable-on', '~> 3.4'
 
 group :development, :test do
   gem 'rspec-rails'
