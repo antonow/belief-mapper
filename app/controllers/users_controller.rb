@@ -13,7 +13,7 @@ class UsersController < ApplicationController
           if range >= MAX_BELIEF_SIZE_RANGE
             @divide_by = range / MAX_BELIEF_SIZE_RANGE
           end
-
+          
           belief_ids = @beliefs.map { |belief| belief.id }
 
           @connections = Connection.where(:belief_1_id => belief_ids,
@@ -68,6 +68,7 @@ class UsersController < ApplicationController
     else
       belief = Belief.find(params["id"].to_i)
       UserBelief.create(user: current_user, belief: belief, skipped: true)
+      # user.skipped_belief_ids << user_belief.belief_id
     end
     respond_to do |format|
       format.json { head :ok }

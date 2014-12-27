@@ -8,10 +8,10 @@ adevism
 denial of gods of mythology and legend
 adiaphorism
 doctrine of theological indifference or latitudinarianism
-*adoptionism
+adoptionism
 belief that Christ was the adopted and not natural son of God
 *agnosticism
-doctrine that we can know nothing beyond material phenomena
+doctrine that we cannot know whether or not gods exist
 *annihilationism
 doctrine that the wicked are utterly destroyed after death
 anthropotheism
@@ -434,6 +434,8 @@ socialism
 system of social organization that advocates the vesting of the ownership and control of the means of production and distribution, of capital, land, etc., in the community as a whole
 syndicalism
 a system of economic organization in which industries are owned and managed by the workers
+*nationalism
+belief that your home country is superior to everyone else's
 
 Other
 animism
@@ -478,3 +480,13 @@ zoomorphism
 the conception of a god or man in animal form
 zootheism
 the attribution of divine qualities to animals
+*vegetarianism
+belief that animals should not be eaten
+*veganism
+belief that animals and animal products (like eggs or milk) should not be eaten
+pescatarianism
+belief that meat should not be eaten with the exception of fish and other seafood
+*monogamy
+belief that you should only be in a relationship with one person at a time
+*polygamy
+belief that you can be married to more than one person

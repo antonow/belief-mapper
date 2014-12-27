@@ -21,6 +21,9 @@ class UserBeliefsController < ApplicationController
         generate_new_connections(user_belief)
         belief.user_count += 1
         belief.save
+        # user.held_belief_ids << user_belief.belief_id
+      # else
+        # user.not_at_all_belief_ids << user_belief.belief_id
       end
 
       redirect_to users_path
