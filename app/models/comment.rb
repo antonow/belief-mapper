@@ -11,7 +11,7 @@ class Comment < ActiveRecord::Base
 		    belief = Belief.find_by(name: match)
 		    self.update(body: self.body.gsub(/(?<!>)#{match}(?!<)/, "<a href='beliefs/#{belief.id}' rel='tooltip' title='#{belief.definition}'>#{match}</a>"))
       else # if this 'ism' doesn' exist in the system yet
-		    self.update(body: self.body.gsub(/(?<!>)#{match}(?!<)/, "<a href='beliefs/new' rel='tooltip' title='This belief is pending'>#{match}</a>"))
+		    self.update(body: self.body.gsub(/(?<!>)#{match}(?!<)/, "<a href='#' rel='tooltip' title='This belief is pending'>#{match}</a>"))
 		  end
       self.tag_list.add(match)
       self.save

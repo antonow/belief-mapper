@@ -1,21 +1,20 @@
 <%= form_for @comment, url: comments_path, :html => { method: :post, :class => "form-inline" } do |f| %>
 
-
+  <input hidden name="belief_id" value=<%= @belief.id %>>
 
   <div class="field form-group">
     <% f.label :write_something %>
     <%= f.text_field :body, :size => "87%", :class => "form-control", placeholder: "Write your comment here...", hide_label: true %>
   </div>
 
-
-
   <div class="actions form-group">
     <%= f.submit "Submit", :class => "btn btn-primary" %>
   </div>
 <% end %>
 
-<% if @comments.nil? %>
-  <p class="lead">No comments to display yet.</p>
+<% if @comments == [] %>
+  <br>
+  <p>No comments yet.</p>
 <% else %>
   <% @comments.each do |comment| %>
   <h4><%= comment.title %></h4>

@@ -12,12 +12,19 @@ class CommentsController < ApplicationController
         @comment = Comment.create!(title: params[:comment][:title], body: body, user: current_user)
         @comment.linkify_comment
       else
-        @comment = Comment.create!(body: body)
+        @comment = Comment.create!(body: body, user: current_user)
+        @comment.linkify_comment
+      end
+
+      if params[:belief_id]
+        belief = Belief.find(params[:belief_id])
+        @comment.tag_list.add(belief.name)
+        @comment.save
       end
     end
     @comments = Comment.all.reverse
     # @comment = Comment.new
-    redirect_to comments_path
+    redirect_to :back
   end
 
 

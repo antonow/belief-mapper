@@ -13,27 +13,26 @@ class UsersController < ApplicationController
           if range >= MAX_BELIEF_SIZE_RANGE
             @divide_by = range / MAX_BELIEF_SIZE_RANGE
           end
-          
-          belief_ids = @beliefs.map { |belief| belief.id }
-
-          @connections = Connection.where(:belief_1_id => belief_ids,
-                                          :belief_2_id => belief_ids
-                                          ).where("strong_connections >= ?", MIN_CONN_COUNT)
-
-          unless @connections.count <= 1
-            c_min_max = @connections.map { |conn| conn.strong_connections }.minmax
-            c_min = c_min_max[0]
-            c_range = c_min_max[1] - c_min
-            @c_divide_by = 1
-            if c_range > 5
-              @c_divide_by = c_range / 5
-            end
-          else
-            @c_divide_by = 1
-          end
         else
           @divide_by = 1
+        end
+          
+        belief_ids = @beliefs.map { |belief| belief.id }
+
+        @connections = Connection.where(:belief_1_id => belief_ids,
+                                        :belief_2_id => belief_ids
+                                        ).where("strong_connections >= ?", MIN_CONN_COUNT)
+
+        if @connections.count > 1
+          c_min_max = @connections.map { |conn| conn.strong_connections }.minmax
+          c_min = c_min_max[0]
+          c_range = c_min_max[1] - c_min
           @c_divide_by = 1
+          if c_range > 5
+            @c_divide_by = c_range / 5
+          end
+        elsif @connections.count == 1
+          @c_divide_by = @connections.first.strong_connections / 5
         end
 
         render { render :json => {:beliefs => @beliefs,
