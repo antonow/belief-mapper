@@ -70,6 +70,7 @@ function bindSubmitButton() {
 	    // $('#renderD3').html('<script>$(function() {renderD3Web("/users.json");} );</script>');
 		} else {
 	    $('.refresh').load('/users/refresh_question');
+	    $('#refresh-'+beliefId).empty();
 		}
 	});
 }
@@ -99,8 +100,11 @@ $(document).ready(function(){
 
   $('.subscribe').click(function(e) {
     e.preventDefault();
-    $('.table-slider').hide();
-    $('#' + this.classList[1]).show();
+    $('.table-slider').empty();
+
+    $('#refresh-'+this.classList[1]).load('/users/refresh_question?sliderOnly=true&id=' + this.classList[1]);
+
+    // $('#' + this.classList[1]).show();
   });
 
 });

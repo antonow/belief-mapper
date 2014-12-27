@@ -5,16 +5,14 @@ class UsersController < ApplicationController
         @beliefs = current_user.held_beliefs_by_conviction
         @connections = []
 
+        @divide_by = 1
         unless @beliefs.count <= 1
           min_max = @beliefs.map { |belief| belief.user_count }.minmax
           min = min_max[0]
           range = min_max[1] - min
-          @divide_by = 1
           if range >= MAX_BELIEF_SIZE_RANGE
             @divide_by = range / MAX_BELIEF_SIZE_RANGE
           end
-        else
-          @divide_by = 1
         end
           
         belief_ids = @beliefs.map { |belief| belief.id }
@@ -22,6 +20,8 @@ class UsersController < ApplicationController
         @connections = Connection.where(:belief_1_id => belief_ids,
                                         :belief_2_id => belief_ids
                                         ).where("strong_connections >= ?", MIN_CONN_COUNT)
+
+        @c_divide_by = 1
 
         if @connections.count > 1
           c_min_max = @connections.map { |conn| conn.strong_connections }.minmax
@@ -34,6 +34,9 @@ class UsersController < ApplicationController
         elsif @connections.count == 1
           @c_divide_by = @connections.first.strong_connections / 5
         end
+
+        @divide_by = 1 if @divide_by <= 0
+        @c_divide_by = 1 if @c_divide_by <= 0
 
         render { render :json => {:beliefs => @beliefs,
                                   :connections => @connections,
@@ -57,8 +60,13 @@ class UsersController < ApplicationController
   end
 
   def refresh_question
-    # current_user.increment_questions_answered 
-    render :partial => "/beliefs/main_topbar"
+    # current_user.increment_questions_answered
+    if params[:sliderOnly]
+      @belief = Belief.find(params[:id].to_i)
+      render partial: "beliefs/slider_form", locals: { belief: @belief }
+    else
+      render :partial => "/beliefs/main_topbar"
+    end
   end
 
   def skip

@@ -15,7 +15,7 @@
     <tr class="tablerow">
       <td class="numsort"><%= link_to result.name, belief_path(result) %></td>
       <td class="numsort"><%= result.definition %>
-        <div id=<%= result.id.to_s %> class="table-slider" hidden><br><%= render partial: "beliefs/slider_form", locals: { belief: result } %></div>
+        <div id=<%= "refresh-" + result.id.to_s %> class="table-slider"></div>
 </td>
       <td class="numsort"><%= result.user_count %></td>
       <td class="numsort"><%= result.avg_conviction%>%</td>
