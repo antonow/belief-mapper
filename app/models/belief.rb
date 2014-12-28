@@ -60,19 +60,25 @@ class Belief < ActiveRecord::Base
 
   def group_demographics_by_age
     data_hash = {}
-    counter = 1
-    99.times do
+    counter = 3
+    120.times do
       data_hash[counter] = 0
       counter += 1
     end
+    min_age = 20
+    max_age = 40
     demographics = self.belief_demographics
     unless demographics.nil?
       demographics.each do |demo|
-        unless demo.age.nil?
-          data_hash[demo.age] += 1
+        age = demo.age
+        unless age.nil?
+          min_age = age if age < min_age
+          max_age = age if age > max_age
+          data_hash[age] += 1
         end
       end
     end
+    data_hash.delete_if { |k,v| k < min_age - 1 || k > max_age + 1 }
     # data_array = data_array.group_by {|i| i}.map{ |k,v| [k[0], v.count] }
     return data_hash
   end
