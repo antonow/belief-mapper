@@ -24,16 +24,28 @@
 
 <br>
 
-<% if @comments.nil? %>
-  <p class="lead">No comments to display yet.</p>
-<% else %>
-  <hr>
-  <% @comments.each do |comment| %>
-  <h4><%= comment.title %></h4>
-  <p><%= comment.user.username %></p>
-  <p><%=raw comment.body %></p>
-    <% unless @comments.last == comment %>
-      <hr>
+<div class="row">
+  <div class="col-md-6">
+  <% if @comments.nil? %>
+    <p class="lead">No comments to display yet.</p>
+  <% else %>
+    <% @comments.each do |comment| %>
+    <h4><%= comment.title %></h4>
+    <div class="pull-right"><%= "posted in " + comment.tags.first.name unless comment.tags.first.nil?%></div>
+    <p><%= comment.user.username %></p>
+    <p><%=raw comment.body %></p>
+      <% unless @comments.last == comment %>
+        <hr>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
+  </div>
+  <div class="col-md-6"><br>
+    <h4>Most Popular Tags</h4>
+    <ol>
+      <% ActsAsTaggableOn::Tag.most_used.each do |tag| %>
+        <li><%= tag.name %></li>
+      <% end %>
+    </ol>
+  </div>
+</div>
