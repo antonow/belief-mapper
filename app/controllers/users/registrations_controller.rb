@@ -63,15 +63,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    # super
+    @user = current_user
+  end
 
   # PUT /resource
   def update
 
     @user = User.find(params[:id].to_i)
     @user.active = true
+    @user.email = params[:user][:email]
+    @user.password = params[:user][:password]
     
     if params[:user][:password] != params[:user][:password_confirmation]
       flash[:error] = "Passwords do not match."
