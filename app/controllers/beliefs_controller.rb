@@ -93,7 +93,7 @@ class BeliefsController < ApplicationController
   end
 
   def show
-    @belief = Belief.find(params[:id])
+    @belief = Belief.friendly.find(params[:id])
     @comment = Comment.new
     @comments = Comment.tagged_with(@belief.name)
   end

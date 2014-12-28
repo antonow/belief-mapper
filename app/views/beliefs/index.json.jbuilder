@@ -13,5 +13,5 @@ end
 json.connections @connections do |connection|
   json.source connection.belief_1_id
   json.target connection.belief_2_id
-  json.value connection.strong_connections / @c_divide_by + 1
+  json.value connection.strong_connections / @c_divide_by + MIN_CONN_SIZE
 end

@@ -9,29 +9,45 @@ class UserBelief < ActiveRecord::Base
   end
 
   after_destroy do
-    self.update_average_conviction
+    self.update_average_conviction(:down => true)
   end
 
-  def update_average_conviction
-    belief = self.belief
-    current_average = belief.avg_conviction
-    current_total = belief.user_count
+  def update_average_conviction(options={})
+    default_options = {
+      :down => :false
+    }
 
-    belief.avg_conviction = (current_total * current_average + self.conviction) / (current_total + 1)
+    belief = self.belief
+    current_total = belief.user_count
+    current_average = belief.avg_conviction
+
+    if options[:down]
+      if current_total <= 1
+        belief.avg_conviction = 0
+      else
+        belief.avg_conviction = (current_total * current_average - self.conviction) / (current_total - 1)
+      end
+    else
+      if current_total <= 0
+        belief.avg_conviction = self.conviction
+      else
+        belief.avg_conviction = ((current_total - 1) * current_average + self.conviction) / current_total
+      end
+    end
     belief.save!
   end
 
-  def calculate_average_conviction # more precise but takes much longer
+  def calculate_average_conviction
     total = 0
-    self.belief.user_beliefs.where(skipped: false).each do |ub|
+    self.user_beliefs.where(skipped: false).each do |ub|
       total += ub.conviction
     end
-    if belief.user_beliefs.count == 0
-      belief.avg_conviction = 0
+    if self.user_beliefs.count == 0
+      self.avg_conviction = 0
     else
-      self.belief.avg_conviction = total/belief.user_beliefs.count
+      self.avg_conviction = total/self.user_beliefs.count
     end
-    self.belief.save
+    self.save
   end
 
 end

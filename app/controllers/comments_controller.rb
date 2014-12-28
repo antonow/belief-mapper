@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
   def index
     @comment = Comment.new
-    @comments = Comment.all.reverse
+    @comments = Comment.order('created_at DESC')
   end
 
   def create

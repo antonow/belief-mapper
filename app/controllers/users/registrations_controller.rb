@@ -82,7 +82,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     elsif @user.save
       session[:user_id] = @user.id
-      flash[:success] = "Welcome to Life Examined!"
+      flash[:success] = "Welcome to Belief Mapper!"
       sign_in @user, :bypass => true
       redirect_to users_path
 
