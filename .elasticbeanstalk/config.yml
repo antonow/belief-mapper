@@ -1,0 +1,5 @@
+branch-defaults:
+  master:
+    environment: null
+global:
+  profile: eb-cli

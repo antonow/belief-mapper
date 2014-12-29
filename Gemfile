@@ -34,6 +34,8 @@ gem 'bootstrap_form'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'friendly_id', '~> 5.0.4'
 
+gem 'puma'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
