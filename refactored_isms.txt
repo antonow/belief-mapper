@@ -110,11 +110,11 @@ sacramentarianism
 belief that sacraments have unusual properties
 *solifidianism
 belief that faith alone, without the performance of good works, is all that is necessary for salvation
-*stercoranism
+stercoranism
 belief that the consecrated Eucharist is digested and evacuated
 *synergism
 belief that salvation involves some form of cooperation between divine grace and human freedom
-*terminism
+terminism
 doctrine that there is a time limit for repentance
 *thanatism
 belief that the soul dies with the body
@@ -126,11 +126,11 @@ theopantism
 belief that God is the only reality
 *theopsychism
 belief that the soul is of a divine nature
-*thnetopsychism
+thnetopsychism
 belief that the soul dies with the body, to be reborn on the day of judgement
 *tolerationism
 belief in the toleration of religious differences
-*totemism
+totemism
 belief that a person has a special kinship with another physical being, such as an animal or plant
 *transmigrationism
 belief that the soul passes into another body at death
@@ -138,10 +138,10 @@ tritheism
 belief that the members of the Trinity are separate gods
 triumphalism
 belief in the superiority of one particular religious creed
-*ubiquitarianism
+ubiquitarianism
 belief that Christ is present in everything
 *universalism
-belief in universal salvation
+doctrine that all sinful and alienated human souls will ultimately be reconciled to God because of divine love and mercy
 
 Philosophy
 *absurdism
@@ -185,7 +185,7 @@ doctrine that the experience of the senses is the only source of knowledge
 *epiphenomenalism
 doctrine that mental processes are epiphenomena of brain activity
 *eternalism
-the belief that matter has existed eternally
+belief that matter has existed eternally
 eudaemonism
 ethical belief that happiness equals morality
 euhemerism
@@ -222,7 +222,7 @@ belief that human interests and mind are paramount
 doctrine that the highest moral obligation is to improve human welfare
 hylicism
 theory that matter is the principle of evil
-*hylomorphism
+hylomorphism
 belief that matter is cause of the universe
 *hylotheism
 belief that the universe is purely material
@@ -357,7 +357,7 @@ doctrine that objects of cognition are real
 *reductionism
 belief that complex phenomena are reducible to simple ones
 *representationalism
-doctrine that ideas rather than external objects are basis of knowledge
+doctrine that ideas rather than external objects are the basis of knowledge
 *scientism
 belief that the methods of science are universally applicable
 *self-determinism
@@ -392,11 +392,11 @@ tychism
 theory that accepts role of pure chance
 *utilitarianism
 belief that the best way to act is to maximize total utility for the greatest number of people
-*vitalism
+vitalism
 doctrine that there is a vital force behind life
 *voluntarism
 belief that the will dominates the intellect and emotion
-*zoism
+zoism
 doctrine that life originates from a single vital principle
 
 Politics
@@ -483,7 +483,7 @@ the attribution of divine qualities to animals
 *vegetarianism
 belief that animals should not be eaten
 *veganism
-belief that animals and animal products (like eggs or milk) should not be eaten
+belief that animals and animal products (like eggs and dairy) should not be eaten
 pescatarianism
 belief that meat should not be eaten with the exception of fish and other seafood
 *monogamy
