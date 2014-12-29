@@ -6,6 +6,8 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # config.secret_key = 'c13c37d741263ed8c5f7a7b0dd97fcc0cbd675f361ea2a7bff928b3a98513fc39a5e7f5aab0fdb3b84342d046222a58a9918db60a5f76b6979b8c285f45590dd'
 
+  config.secret_key = 'b02cb5c04cf612ed88891085d877fc58d9645e24aa3201a4214d2a6befdf3e96517f376c699659fb5a3d0fbc35e3b93e9894f4051e9a1b96a627ea90943c5292'
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
@@ -257,5 +259,5 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
-  
+
 end
