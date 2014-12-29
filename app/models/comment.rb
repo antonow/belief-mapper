@@ -15,7 +15,6 @@ class Comment < ActiveRecord::Base
 		    self.update(body: self.body.gsub(/(?<!>)#{match}(?!<)/, "<a href='#' rel='tooltip' title='This belief is pending'>#{match}</a>"))
 		  end
       self.tag_list.add(match)
-      self.recent_tags << match
       self.save
 	  end
     # indexes = []
