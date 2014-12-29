@@ -1,4 +1,5 @@
 class Users::PasswordsController < Devise::PasswordsController
+  skip_before_filter :require_login
   # GET /resource/password/new
   # def new
   #   super

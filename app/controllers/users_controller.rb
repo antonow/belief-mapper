@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_filter :require_login, :only=>[:skip, :refresh_question, :show]
+
   def index
     respond_to do |format|
       format.json {
@@ -6,14 +8,22 @@ class UsersController < ApplicationController
         @connections = []
 
         @divide_by = 1
-        unless @beliefs.count <= 1
+        @subtract = 0
+
+        if @beliefs.count > 1
           min_max = @beliefs.map { |belief| belief.user_count }.minmax
           min = min_max[0]
-          range = min_max[1] - min
+          max = min_max[1]
+          range = max - min
           if range >= MAX_BELIEF_SIZE_RANGE
             @divide_by = range / MAX_BELIEF_SIZE_RANGE
           end
+          @subtract = max - MAX_BELIEF_SIZE
+        elsif @beliefs.count == 1
+          @subtract = @beliefs.first.user_count - MAX_BELIEF_SIZE
         end
+
+        @subtract = 0 if @subtract < 0
           
         belief_ids = @beliefs.map { |belief| belief.id }
 
@@ -22,24 +32,29 @@ class UsersController < ApplicationController
                                         ).where("strong_connections >= ?", MIN_CONN_COUNT)
 
         @c_divide_by = 1
+        @c_subtract = 0
 
         if @connections.count > 1
           c_min_max = @connections.map { |conn| conn.strong_connections }.minmax
           c_min = c_min_max[0]
           c_range = c_min_max[1] - c_min
-          @c_divide_by = 1
-          if c_range > 5
-            @c_divide_by = c_range / 5
+          if c_range > MAX_CONN_SIZE_RANGE
+            @c_divide_by = c_range / MAX_CONN_SIZE_RANGE
           end
+          @c_subtract = max - MAX_CONN_SIZE
         elsif @connections.count == 1
-          @c_divide_by = @connections.first.strong_connections / 5
+          @c_subtract = @connections.first.count - MAX_CONN_SIZE
         end
+
+        @c_subtract = 0 if @c_subtract < 0
 
         @divide_by = 1 if @divide_by <= 0
         @c_divide_by = 1 if @c_divide_by <= 0
 
         render { render :json => {:beliefs => @beliefs,
                                   :connections => @connections,
+                                  :subtract => @subtract,
+                                  :c_subtract => @c_subtract,
                                   :divide_by => @divide_by,
                                   :c_divide_by => @c_divide_by }}
       }
@@ -88,34 +103,56 @@ class UsersController < ApplicationController
         @user = User.find_by(unique_url: params[:id])
         @beliefs = @user.held_beliefs_by_conviction
 
-        min_max = @beliefs.map { |belief| belief.user_count }.minmax
-        min = min_max[0]
-        range = min_max[1] - min
         @divide_by = 1
-        if range >= MAX_BELIEF_SIZE_RANGE
-          @divide_by = range / MAX_BELIEF_SIZE_RANGE
+        if @beliefs.count > 1
+          min_max = @beliefs.map { |belief| belief.user_count }.minmax
+          min = min_max[0]
+          max = min_max[1]
+          range = max - min
+          if range >= MAX_BELIEF_SIZE_RANGE
+            @divide_by = range / MAX_BELIEF_SIZE_RANGE
+          end
+          @subtract = max - MAX_BELIEF_SIZE
+        elsif @beliefs.count == 1
+          @subtract = @beliefs.first.user_count - MAX_BELIEF_SIZE
         end
 
+        @subtract = 0 if @subtract < 0 || @subtract.nil?
+          
         belief_ids = @beliefs.map { |belief| belief.id }
 
         @connections = Connection.where(:belief_1_id => belief_ids,
                                         :belief_2_id => belief_ids
                                         ).where("strong_connections >= ?", MIN_CONN_COUNT)
 
-        c_min_max = @connections.map { |conn| conn.strong_connections }.minmax
-        c_min = c_min_max[0]
-        c_range = c_min_max[1] - c_min
         @c_divide_by = 1
-        if c_range > 5
-          @c_divide_by = c_range / 5
+        if @connections.count > 1
+          c_min_max = @connections.map { |conn| conn.strong_connections }.minmax
+          c_min = c_min_max[0]
+          c_range = c_min_max[1] - c_min
+          if c_range > MAX_CONN_SIZE_RANGE
+            @c_divide_by = c_range / MAX_CONN_SIZE_RANGE
+          end
+          @c_subtract = max - MAX_CONN_SIZE
+        elsif @connections.count == 1
+          @c_subtract = @connections.first.count - MAX_CONN_SIZE
         end
+
+        @c_subtract = 0 if @c_subtract < 0 || @c_subtract.nil?
+
+        @divide_by = 1 if @divide_by <= 0
+        @c_divide_by = 1 if @c_divide_by <= 0
 
         render { render :json => {:beliefs => @beliefs,
                                   :connections => @connections,
+                                  :subtract => @subtract,
+                                  :c_subtract => @c_subtract,
                                   :divide_by => @divide_by,
                                   :c_divide_by => @c_divide_by }}
       }
-      format.html {}
+      format.html {
+        redirect_to root_path if User.find_by(unique_url: params[:id]).nil?
+      }
     end
   end
 

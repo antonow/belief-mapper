@@ -2,6 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 # skip_before_filter  :verify_authenticity_token
+  skip_before_filter :require_login
 
   # GET /resource/sign_up
   # def new

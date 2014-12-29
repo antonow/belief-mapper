@@ -18,7 +18,7 @@ class BeliefsController < ApplicationController
                 max = @category.total_beliefs
               end
             end
-            @count = 30
+            @count = DEFAULT_MAX_BELIEFS
             if params[:count].present?
               @count = params[:count].to_i unless params[:count].to_i <= 0
               if @count >= max
@@ -29,48 +29,70 @@ class BeliefsController < ApplicationController
         end
       }
       format.json {
-        @beliefs = Belief.order('user_count DESC').where('avg_conviction > ?', 60)
+        @beliefs = Belief.order('user_count DESC').where('avg_conviction > ?', 5)
         @category = nil
-        @count = 30
-        if params[:count].present?
-          @count = params[:count].to_i unless params[:count].to_i <= 0
-          @beliefs = @beliefs.limit(@count)
-        end
+        @count = DEFAULT_MAX_BELIEFS
 
         selected_category = params[:category]
         if selected_category.present? && !["All", "Category"].include?(selected_category)
           @beliefs = @beliefs.where(category_id: selected_category)
         end
 
+        if params[:count].present?
+          @count = params[:count].to_i unless params[:count].to_i <= 0
+          @beliefs = @beliefs.limit(@count)
+        end
+
         @connections = []
         @divide_by = 1
-        @c_divide_by = 1
+        @subtract = 0
 
-        unless @beliefs.count <= 1
+        if @beliefs.count > 1
           min_max = @beliefs.map { |belief| belief.user_count }.minmax
           min = min_max[0]
-          range = min_max[1] - min
+          max = min_max[1]
+          range = max - min
           if range >= MAX_BELIEF_SIZE_RANGE
             @divide_by = range / MAX_BELIEF_SIZE_RANGE
           end
-
-          belief_ids = @beliefs.pluck(:id)
-
-          @connections = Connection.where(:belief_1_id => belief_ids, :belief_2_id => belief_ids).where("strong_connections >= ?", MIN_CONN_COUNT)
-
-          unless @connections.count <= 1
-            c_min_max = @connections.map { |conn| conn.strong_connections }.minmax
-            c_min = c_min_max[0]
-            c_range = c_min_max[1] - c_min
-            @c_divide_by = 1
-            if c_range > 5
-              @c_divide_by = c_range / 5
-            end
-          end
+          @subtract = max - MAX_BELIEF_SIZE
+        elsif @beliefs.count == 1
+          @subtract = @beliefs.first.user_count - MAX_BELIEF_SIZE
         end
+
+        @subtract = 0 if @subtract < 0
+          
+        belief_ids = @beliefs.map { |belief| belief.id }
+
+        @connections = Connection.where(:belief_1_id => belief_ids,
+                                        :belief_2_id => belief_ids
+                                        ).where("strong_connections >= ?", MIN_CONN_COUNT)
+
+        @c_divide_by = 1
+        @c_subtract = 0
+
+        if @connections.count > 1
+          c_min_max = @connections.map { |conn| conn.strong_connections }.minmax
+          c_min = c_min_max[0]
+          c_max = c_min_max[1]
+          c_range = c_max - c_min
+          if c_range >= MAX_CONN_SIZE_RANGE
+            @c_divide_by = c_range / MAX_CONN_SIZE_RANGE
+          end
+          @c_subtract = c_max - MAX_CONN_SIZE
+        elsif @connections.count == 1
+          @c_subtract = @connections.first.strong_connections - MAX_CONN_SIZE
+        end
+
+        @c_subtract = 0 if @c_subtract < 0
+
+        @divide_by = 1 if @divide_by <= 0
+        @c_divide_by = 1 if @c_divide_by <= 0
 
         render { render :json => {:beliefs => @beliefs,
                                   :connections => @connections,
+                                  :subtract => @subtract,
+                                  :c_subtract => @c_subtract,
                                   :divide_by => @divide_by,
                                   :c_divide_by => @c_divide_by }}
       }
@@ -106,8 +128,6 @@ class BeliefsController < ApplicationController
     @results = Belief.all.order(user_count: :desc)
     render "list"
   end
-
-
 
   def filter_params
     params.require(:filter).permit(:gender, :religion, :education_level)
