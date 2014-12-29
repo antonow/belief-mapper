@@ -18,12 +18,12 @@
     	<% belief = result.belief %>
       <td class="numsort"><%= link_to belief.name, belief_path(belief) %></td>
       <td class="numsort"><%= belief.definition %>
-        <div id=<%= belief.id.to_s %> class="table-slider" hidden><br><%= render partial: "beliefs/slider_form", locals: { belief: belief } %></div>
+        <div id=<%= "refresh-" + belief.id.to_s %> class="table-slider"></div>
       </td>
       <td class="numsort"><%= belief.user_count %></td>
       <td class="numsort"><%= result.conviction %>%</td>
       <% unless your_beliefs.include?(belief) %>
-        <td><%= button_tag 'Add', :class => 'subscribe ' + result.id.to_s + ' btn btn-default' %></td>
+        <td><%= button_tag 'Add', :class => 'subscribe ' + belief.id.to_s + ' btn btn-default' %></td>
       <% else %>
         <td><%= button_to 'Remove', user_belief_path(belief), :class => 'btn btn-danger', method: :delete %></td>
       <% end %>

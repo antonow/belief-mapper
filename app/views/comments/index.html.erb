@@ -24,16 +24,49 @@
 
 <br>
 
-<% if @comments.nil? %>
-  <p class="lead">No comments to display yet.</p>
-<% else %>
-  <hr>
-  <% @comments.each do |comment| %>
-  <h4><%= comment.title %></h4>
-  <p><%= comment.user.username %></p>
-  <p><%= comment.body %></p>
-    <% unless @comments.last == comment %>
-      <hr>
+<div class="row">
+  <div class="col-md-7">
+  <% if @comments.nil? %>
+    <p class="lead">No comments to display yet.</p>
+  <% else %>
+    <% @comments.each do |comment| %>
+    <h4><%= comment.title %></h4>
+    <div class="pull-right"><%=raw "posted in " + link_to(comment.tags.first.name, belief_path(comment.tags.first.name))  unless comment.tags.first.nil?%></div>
+    <p><%= comment.user.username %></p>
+    <p><%=raw comment.body %></p>
+      <% unless @comments.last == comment %>
+        <hr>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
+  </div>
+  <div class="col-md-5"><br>
+    <div class="col-md-6">
+    <h4>Most Recent Tags</h4>
+    <ol>
+      <% ActsAsTaggableOn::Tagging.all.order('created_at DESC').map(&:tag_id).uniq.each do |tag_id| %>
+        <% belief_name = ActsAsTaggableOn::Tag.find(tag_id).name %>
+        <li><%= link_to belief_name, belief_path(belief_name) %></li>
+      <% end %>
+    </ol>
+    </div>
+    <div class="col-md-6">
+    <h4>Most Popular Tags</h4>
+    <ol>
+      <% ActsAsTaggableOn::Tag.most_used.each do |tag| %>
+        <li><%= link_to tag.name, belief_path(tag.name) %></li>
+      <% end %>
+    </ol>
+    </div>
+    <div class="col-md-12">
+    <br>
+    <hr>
+    <br>
+    <h5 class="centered">How Tagging Works</h5><br>
+    <ul>
+    <p>Adding the name of any belief to a comment will automatically give it the corresponding tag.</p>
+    <p>Posting a comment on a belief-specific page will also automatically tag it appropriately.</p>
+    </ul>
+    </div>
+  </div>
+</div>

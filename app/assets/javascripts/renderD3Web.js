@@ -2,7 +2,6 @@ renderD3Web = function(baseUrl) {
   var maxNodes = 40;
   var current_url = window.location.href;
   var unique_url = current_url.match(/[a-z0-9]+$/);
-  console.log(unique_url);
   if (unique_url != "users" && unique_url != "beliefs" && unique_url != 'ilter') {
     unique_url = "/"+unique_url[0];
     baseUrl = "/users"+unique_url+".json"
@@ -14,7 +13,7 @@ renderD3Web = function(baseUrl) {
   } else {
     count = "?count=30";
   }
-  console.log(count);
+
   var category = current_url.match(/category=\d+/);
   if (category != null) {
     if (count != null) {
@@ -25,7 +24,6 @@ renderD3Web = function(baseUrl) {
   } else {
     category = "";
   }
-  console.log(category);
 
   var width = 960,
     height = 600
@@ -70,7 +68,6 @@ renderD3Web = function(baseUrl) {
 
   d3.json(baseUrl+count+category, function(error, json) {
     var data = json.beliefs;
-    console.log(data);
     var edges = [];
     json.connections.forEach(function(e) {
       var sourceBelief = json.beliefs.filter(function(n) {
@@ -156,8 +153,8 @@ renderD3Web = function(baseUrl) {
       .text(function(d) {
         return d.name
       })
-      .on("click", function() {
-        
+      .on("click", function(d) {
+        window.location.href = ('/beliefs/' + d.id);
       });
 
     node.on("click", function(d) {

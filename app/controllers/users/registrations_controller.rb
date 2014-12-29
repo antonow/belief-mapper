@@ -2,6 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 # skip_before_filter  :verify_authenticity_token
+  skip_before_filter :require_login
 
   # GET /resource/sign_up
   # def new
@@ -63,15 +64,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    # super
+    @user = current_user
+  end
 
   # PUT /resource
   def update
 
     @user = User.find(params[:id].to_i)
     @user.active = true
+    @user.email = params[:user][:email]
+    @user.password = params[:user][:password]
     
     if params[:user][:password] != params[:user][:password_confirmation]
       flash[:error] = "Passwords do not match."
@@ -79,7 +83,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     elsif @user.save
       session[:user_id] = @user.id
-      flash[:success] = "Welcome to Life Examined!"
+      flash[:success] = "Welcome to Belief Mapper!"
       sign_in @user, :bypass => true
       redirect_to users_path
 

@@ -4,7 +4,7 @@
   <%= stylesheet_link_tag    'application'%>
   <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
-  <title>Life Examined</title>
+  <title>Belief Mapper</title>
 </head>
 <body>
 
@@ -13,17 +13,15 @@
       <div class="container">
         <a href="/">
           <%= image_tag("logo-image-only.jpg", :alt => "logo", class: "navbar-brand")%>
-          <div class="logo_text navbar-brand">life examined</div>
+          <div class="logo_text navbar-brand">Belief Mapper</div>
         </a>
       <div class="header_buttons">
         <!-- Only displays logout button if user is signed in -->
         <% if user_signed_in? %>
           <% if current_user.active == true %>
             <%= button_to 'Log Out', destroy_user_session_path, method: :delete, :class => "btn btn-default navbar-btn pull-right" %>
-            <%= button_to 'My Account', edit_user_registration_path, :class => "btn btn-default navbar-btn pull-right" %>
+            <%= button_to 'My Account', edit_user_registration_path, method: :get, :class => "btn btn-default navbar-btn pull-right" %>
               
-              <!-- <li role="presentation" class=""><a href="/users/sign_up">Sign Up</a></li> -->
-
           <% else %>
             <%= button_to 'Sign up', users_activate_path, method: :get, :class => "btn btn-default navbar-btn pull-right" %>
             <%= render partial: "layouts/sign_in_form" %>
@@ -50,7 +48,7 @@
 
 <br>
   <hr><br>
-  <p class="centered">Life Examined</p>
+  <p class="centered">Belief Mapper</p>
   <br>
   <br>
 </div>

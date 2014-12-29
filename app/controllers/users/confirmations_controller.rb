@@ -1,4 +1,5 @@
 class Users::ConfirmationsController < Devise::ConfirmationsController
+  skip_before_filter :require_login
   # GET /resource/confirmation/new
   # def new
   #   super

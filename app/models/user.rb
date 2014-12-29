@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
+  # attr_accessor :held_belief_ids, :skipped_belief_ids, :not_at_all_belief_ids
 
   include BeliefsHelper
+
+  # @held_belief_ids = []
+  # @skipped_belief_ids = []
+  # @not_at_all_belief_ids = []
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -13,13 +18,13 @@ class User < ActiveRecord::Base
 
   before_create :assign_short_url
 
-   def assign_short_url
-      random_array = (0..9).to_a.map(&:to_s) + ("a".."z").to_a
-      random_string = ""
-      10.times { random_string += random_array.sample}
-      self.unique_url = random_string
-      # self.save
-   end
+  def assign_short_url
+    random_array = (0..9).to_a.map(&:to_s) + ("a".."z").to_a
+    random_string = ""
+    10.times { random_string += random_array.sample}
+    self.unique_url = random_string
+    # self.save
+  end
 
   def username
     if self.active
@@ -30,11 +35,13 @@ class User < ActiveRecord::Base
   end
 
   def held_beliefs
-    self.beliefs.order("name ASC").where("conviction > ?", 5)
+    belief_ids = self.user_beliefs.where("conviction > ?", 5).map { |user_belief| user_belief.belief_id }
+    beliefs = Belief.where(:id => belief_ids).order("name ASC")
   end
 
   def held_beliefs_by_conviction
-    self.user_beliefs.order("conviction DESC").where("conviction > ?", 5).limit(DEFAULT_MAX_BELIEFS).map { |user_belief| Belief.find(user_belief.belief_id) }
+    belief_ids = self.user_beliefs.where("conviction > ?", 5).order("conviction DESC").limit(USER_MAX_BELIEFS).map { |user_belief| user_belief.belief_id }
+    beliefs = Belief.where(:id => belief_ids)
   end
 
   def unexamined_beliefs

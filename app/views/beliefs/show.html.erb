@@ -1,52 +1,64 @@
-<%= link_to 'Return to Graph', beliefs_path %><br><br>
+<%= link_to 'Return to Graph', beliefs_path %><br>
 
-<h1> <%=@belief.name.capitalize%></h1>
+<div class="row">
+	<div class="col-md-5">
 
-<p>
-  Category: <%= link_to @belief.category.name, category_path(@belief.category) %>
+		<h1> <%=@belief.name.capitalize%></h1>
 
-</p>
+		<p>
+		  <strong>Category:</strong> <%= link_to @belief.category.name, category_path(@belief.category) %>
+		</p>
 
-<p>
-  Definition: <%=@belief.definition%>
-</p>
+		<p>
+		  <strong>Definition:</strong> <%=@belief.definition%>
+		</p>
 
-<p>
-  Total number of users who strongly agree with this belief: <%=@belief.strong_convictions.count %>
-  <br>
-  Users who don't strongly agree with this belief: <%=@belief.user_count - @belief.strong_convictions.count %>
-</p>
+		<p>
+		  # of users who <strong>strongly agree</strong> with this belief: <%=@belief.strong_convictions.count %>
+		  <br>
+		  # of users who <strong>don't strongly agree</strong> with this belief: <%=@belief.user_count - @belief.strong_convictions.count %>
+		</p>
 
-<p>
-  Average Conviction: <%=@belief.avg_conviction.to_i%>%
-</p>
+		<p>
+		  <strong>Average Conviction:</strong> <%=@belief.avg_conviction.to_i%>%
+		</p>
 
-<p>
-  Rank: <%=@belief.rank.to_s + "/" + Belief.total_beliefs.to_s %>
-</p>
+		<p>
+		  <strong>Rank:</strong> <%=@belief.rank.to_s + "/" + Belief.total_beliefs.to_s %>
+		</p>
+		<br>
+
+		<h3>Closely Related Beliefs</h3>
+		<p>This is based on how many users hold this belief and also hold a related belief with more than 50% conviction.</p>
+		<% if @belief.user_count > 0 %>
+			<ol>
+				<%@belief.top_connections_links.each do |conn|%>
+					<li><a href="/beliefs/<%=conn[0]%>"><%=conn[0]%></a></li>
+				<%end%>
+			</ol>
+		<% else %>
+			<p>No closely related beliefs.</p>
+		<% end %>
+		<br>
+			<!-- column_chart @belief.list_top_connections just wrap in ruby-->
+	</div>
+
+	<div class="col-md-7" style="overflow:auto; height:400px;">
+		<h3>Discussion Board</h3>
+		<%= render partial: "belief_discussion", locals: { belief: @belief } %>
+	</div>
+</div>
+
+
 <% if @belief.user_count > 0 %>
-<h3>Closely Related Beliefs</h3>
-<p>This shows how many users hold this belief and also hold a related belief with more than 50% conviction.</p>
-
-<div class="row">
-
-<div class="col-md-2 connection-links ">
-<%@belief.top_connections_links.each do |conn|%>
-<br>
-<a href="/beliefs/<%=conn[1]%>"><%=conn[0]%></a>
-<%end%>
-</div>
-<div class="col-md-10">
-<p> <%= column_chart @belief.list_top_connections %></p>
-</div>
-</div>
-
-<div class="row">
-<div class="col-md-4"><h3> Religion <%= pie_chart @belief.group_demographics_by_religion%> </h3></div>
-<div class="col-md-4"><h3> Gender<%= pie_chart @belief.group_demographics_by_gender %> </h3></div>
-<div class="col-md-4"><h3> Age<%= pie_chart @belief.group_demographics_by_age %></h3></div>
-</div>
+	<div class="row">
+		<div class="col-md-4"><h3> Religion <%= pie_chart @belief.group_demographics_by_religion%> </h3></div>
+		<div class="col-md-4"><h3> Gender<%= pie_chart @belief.group_demographics_by_gender %> </h3></div>
+		<div class="col-md-4"><h3> Education<%= pie_chart @belief.group_demographics_by_education %> </h3></div>
+		<div class="col-md-4"></div>
+	</div>
+	<h3> Age<%= column_chart @belief.group_demographics_by_age %></h3>
 <% else %>
-<p>Not enough stats to display graphs yet.</p>
+	<p>Not enough stats to display graphs for this belief yet.</p>
 <% end %>
 

@@ -17,6 +17,10 @@
 *= require rails_bootstrap_forms
 */
 
+/*
+*= require jquery-ui/tooltip
+*/
+
 /*.container {
   background-color: black;
   color: white;
@@ -47,7 +51,7 @@
 .skip {
   position: relative;
   top: -26px;
-  left: 90px;
+  left: 92px;
 }
 
 .question_div{
@@ -135,6 +139,7 @@ hr {
   width: 150%;
   position: relative;
   left: -20%;
+  top: 15px;
 }
 
 .link {
@@ -184,3 +189,6 @@ hr {
   overflow-x: hidden;
 }
 
+[role~="tooltip"] {
+  font-size: 1em;
+}

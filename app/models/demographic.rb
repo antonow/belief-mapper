@@ -1,7 +1,8 @@
 class Demographic < ActiveRecord::Base
   belongs_to :user
 
-  validates :age, numericality: { greater_than: 2 }
+  validates :age, numericality: { greater_than: 2,
+                                  less_than: 125 }
 
   after_create do
     self.add_sorted_demographics

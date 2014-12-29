@@ -1,7 +1,8 @@
 class Users::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
 
-
+  skip_before_filter :require_login
+  
   # GET /resource/sign_in
   def new
     sign_out(current_user)
