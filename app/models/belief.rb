@@ -53,7 +53,7 @@ class Belief < ActiveRecord::Base
   def belief_demographics
     demo_array = []
     self.strong_convictions.each do |ub|
-      demo_array << ub.user.demographic unless ub.user.demographic.nil?
+      demo_array << ub.user.demographic unless ub.user.nil? || ub.user.demographic.nil?
     end
     return demo_array
   end
