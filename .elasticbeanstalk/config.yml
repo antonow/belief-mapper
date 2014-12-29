@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: null
+    environment: belief-mapper-env
 global:
   application_name: belief-mapper
   default_ec2_keyname: aws-eb

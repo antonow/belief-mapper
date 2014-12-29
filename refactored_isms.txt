@@ -149,7 +149,7 @@ doctrine that we live in an irrational universe
 *academicism
 doctrine that nothing can be known
 *accidentalism
-theory that events do not have causes
+belief that events do not have causes
 aestheticism
 doctrine that beauty is central to other moral principles
 agapism
@@ -217,7 +217,7 @@ belief that all phenomena are historically determined
 *holism
 doctrine that the parts of any thing must be understood in relation to the whole
 *humanism
-belief that human interests and mind are paramount
+belief that people are basically good and that problems can be solved using reason instead of religion
 *humanitarianism
 doctrine that the highest moral obligation is to improve human welfare
 hylicism
@@ -489,6 +489,6 @@ belief that meat should not be eaten with the exception of fish and other seafoo
 *monogamy
 belief that you should only be in a relationship with one person at a time
 *polygamy
-belief that you can be married to more than one person
+belief that you should be allowed to be married to more than one person
 *feminism
 belief that women should have social, political, legal, and economic rights equal to those of men
