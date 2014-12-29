@@ -85,7 +85,9 @@ class Belief < ActiveRecord::Base
 
   def group_demographics_by_education
     data_array = []
-    self.belief_demographics.each do |demo|
+    demographics = self.belief_demographics
+    unless demographics.nil?
+      demographics.each do |demo|
       unless demo.education_level.nil?
         data_array << [demo.education_level]
       end
@@ -96,7 +98,9 @@ class Belief < ActiveRecord::Base
 
   def group_demographics_by_gender
     data_array = []
-    self.belief_demographics.each do |demo|
+    demographics = self.belief_demographics
+    unless demographics.nil?
+      demographics.each do |demo|
       unless demo.gender.nil?
         data_array << [demo.gender_sorted]
       end
