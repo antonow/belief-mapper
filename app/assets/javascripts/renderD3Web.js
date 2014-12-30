@@ -154,7 +154,7 @@ renderD3Web = function(baseUrl) {
         return d.name
       })
       .on("click", function(d) {
-        window.location.href = ('/beliefs/' + d.id);
+        window.location.href = ('/beliefs/' + d.name);
       });
 
     node.on("click", function(d) {
