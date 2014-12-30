@@ -59,11 +59,9 @@ class UsersController < ApplicationController
                                   :c_divide_by => @c_divide_by }}
       }
       format.html {
-        unless user_signed_in?
-          redirect_to '/'
-        else
+        
           @total_user_beliefs = current_user.held_beliefs.count
-        end
+    
       }
     end
   end

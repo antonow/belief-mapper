@@ -1,4 +1,5 @@
 class Users::UnlocksController < Devise::UnlocksController
+  skip_before_filter :require_login
   # GET /resource/unlock/new
   # def new
   #   super

@@ -5,7 +5,7 @@ class Users::SessionsController < Devise::SessionsController
   
   # GET /resource/sign_in
   def new
-    sign_out(current_user)
+    # sign_out(current_user)
     super
   end
 
@@ -16,7 +16,7 @@ class Users::SessionsController < Devise::SessionsController
     puts current_user
   end
 
-  def after_sign_in_path_for(user)
+  def after_sign_in_path_for(resource)
     beliefs_path #your path
   end
 

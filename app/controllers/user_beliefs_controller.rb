@@ -10,6 +10,8 @@ class UserBeliefsController < ApplicationController
     if (current_user == nil)
       user = User.create!(:email => Faker::Internet.email, :password => 'password', :password_confirmation => 'password')
       sign_in(user)
+      puts "======== ****"
+      puts current_user
     else
       user = current_user
     end
@@ -23,14 +25,11 @@ class UserBeliefsController < ApplicationController
         belief.user_count += 1
         belief.save
         generate_new_connections(user_belief)
+        redirect_to users_path
         # user.held_belief_ids << user_belief.belief_id
       # else
         # user.not_at_all_belief_ids << user_belief.belief_id
       end
-
-      redirect_to users_path
-    else
-      redirect_to 'error'
     end
   end
 

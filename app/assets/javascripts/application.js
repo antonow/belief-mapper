@@ -64,11 +64,7 @@ function bindSubmitButton() {
 				}
 			});
 
-		if (parseInt(conviction) > 5) {
-			// renderD3Web("/users.json");
-			window.location.href = "/users";
-	    // $('#renderD3').html('<script>$(function() {renderD3Web("/users.json");} );</script>');
-		} else {
+		if (parseInt(conviction) <= 5) {
 	    $('.refresh').load('/users/refresh_question');
 	    $('#refresh-'+beliefId).empty();
 		}
