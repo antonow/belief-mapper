@@ -1,0 +1,15 @@
+app: belief-mapper
+region: us-east-1
+# http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html
+solution_stack_name: 64bit Amazon Linux 2013.09 running Ruby 1.9.3
+
+development:
+  strategy: inplace_update
+  options:
+    aws:autoscaling:launchconfiguration:
+      InstanceType: t1.micro
+
+production:
+  options:
+    aws:autoscaling:launchconfiguration:
+      InstanceType: t1.small

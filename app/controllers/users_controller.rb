@@ -85,12 +85,14 @@ class UsersController < ApplicationController
   end
 
   def skip
-    if params["id"] == "other"
-      current_user.increment_questions_answered
-    else
-      belief = Belief.find(params["id"].to_i)
-      UserBelief.create(user: current_user, belief: belief, skipped: true)
-      # user.skipped_belief_ids << user_belief.belief_id
+    unless user_signed_in? == false
+      if params[:id] == "other"
+        current_user.increment_questions_answered
+      else
+        belief = Belief.find(params[:id].to_i)
+        UserBelief.create(user: current_user, belief: belief, skipped: true)
+        # user.skipped_belief_ids << user_belief.belief_id
+      end
     end
     respond_to do |format|
       format.json { head :ok }

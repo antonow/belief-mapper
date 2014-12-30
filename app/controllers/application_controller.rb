@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 	private
 
   def require_login
-    unless user_signed_in?
+    unless current_user != nil
       redirect_to root_path
     end
   end

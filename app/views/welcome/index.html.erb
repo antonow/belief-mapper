@@ -1,14 +1,16 @@
 <div class="jumbotron">
   <h1>Belief Mapper</h1>
   <p>Create a visual web of your beliefs. Categorize your belief system.</p>
-
+  <%= user_signed_in? %>
   <hr>
   <h3>Question</h3><br>
   <div class="refresh row lead question_div question_display">
-  <% display = @belief.definition %>
-  <% display = "in the " + display unless ['belief', 'doctrine', 'theory'].include?(display.split(' ').first) %>
-  <% display = display.sub(/belief /, "").sub(/doctrine /, "").sub(/theory /, "") %>
-  <p>Do you believe <%= display %>?</p>
+    <% belief_hash = { 170 => "Do you believe that all phenomena are reducible to verifiable assertions?", 222 => "Do you believe in ghosts?" } %>
+    <% selected = Hash[belief_hash.to_a.sample(1)] %>
+    <% @belief = selected.keys[0] %>
+    <% question = selected.values[0] %>
+
+  <p><%= question %></p>
   <!-- + " - " + @belief.id.to_s -->
   <%= render partial: "/beliefs/slider_form", locals: { belief: @belief } %>
   <a href="#" id="refresh_this" class="btn btn-primary submit skip" role="button">Skip</a>

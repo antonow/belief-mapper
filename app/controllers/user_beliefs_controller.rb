@@ -27,11 +27,9 @@ class UserBeliefsController < ApplicationController
       # else
         # user.not_at_all_belief_ids << user_belief.belief_id
       end
-
       redirect_to users_path
-    else
-      redirect_to 'error'
     end
+
   end
 
   def destroy

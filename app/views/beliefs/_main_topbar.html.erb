@@ -24,7 +24,7 @@
             <% if user.percent_answered_int < 100 %>
               <p>Do you believe <%= @belief.definition.sub(/belief /, "").sub(/doctrine /, "")%>?</p>
               <div class="row lead">
-                <%= render partial: "beliefs/slider_form", locals: { belief: @belief } %>
+                <%= render partial: "beliefs/slider_form", locals: { belief: belief_id } %>
                 <a href="#" id="refresh_this" class="skip btn btn-primary submit" role="button">Skip</a>
                 <a href=<%= belief_path(@belief.name) %> class="skip btn btn-primary submit glyphicon glyphicon-comment" title="See the discussion regarding this belief"></a>
                 <script type="text/javascript">bindRefreshButton();</script>
