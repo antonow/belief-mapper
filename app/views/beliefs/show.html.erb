@@ -29,7 +29,7 @@
 		<br>
 
 		<h3>Closely Related Beliefs</h3>
-		<p>This is based on how many users hold this belief and also hold a related belief with more than 50% conviction.</p>
+		<p>This is based on the number of users hold this belief and the related belief each with more than 50% conviction.</p>
 		<% if @belief.user_count > 0 %>
 			<ol>
 				<%@belief.top_connections_links.each do |conn|%>
@@ -40,7 +40,7 @@
 			<p>No closely related beliefs.</p>
 		<% end %>
 		<br>
-			<!-- column_chart @belief.list_top_connections just wrap in ruby-->
+			<!-- column_chart @belief.top_connections_links just wrap in ruby-->
 	</div>
 
 	<div class="col-md-7" style="overflow:auto; height:460px;">

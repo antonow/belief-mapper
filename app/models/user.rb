@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
     if self.active
       self.email.match(/.+?(?=@)/)
     else
-      "guest"
+      "guest " + (self.id + 3).to_s
     end
   end
 

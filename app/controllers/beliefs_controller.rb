@@ -44,10 +44,12 @@ class BeliefsController < ApplicationController
         end
 
         @connections = []
+        count = @beliefs.count
+
         @divide_by = 1
         @subtract = 0
 
-        if @beliefs.count > 1
+        if count > 1
           min_max = @beliefs.map { |belief| belief.user_count }.minmax
           min = min_max[0]
           max = min_max[1]
@@ -55,8 +57,9 @@ class BeliefsController < ApplicationController
           if range >= MAX_BELIEF_SIZE_RANGE
             @divide_by = range / MAX_BELIEF_SIZE_RANGE
           end
-          @subtract = max - MAX_BELIEF_SIZE
-        elsif @beliefs.count == 1
+          @divide_by = 1 if @divide_by <= 0
+          @subtract = max / @divide_by - MAX_BELIEF_SIZE
+        elsif count == 1
           @subtract = @beliefs.first.user_count - MAX_BELIEF_SIZE
         end
 
@@ -66,7 +69,8 @@ class BeliefsController < ApplicationController
 
         @connections = Connection.where(:belief_1_id => belief_ids,
                                         :belief_2_id => belief_ids
-                                        ).where("strong_connections >= ?", MIN_CONN_COUNT)
+                                        ).order('strong_connections DESC').limit(count * CONN_MULTIPLIER)
+        # where("strong_connections >= ?", MIN_CONN_COUNT)
 
         @c_divide_by = 1
         @c_subtract = 0
@@ -79,15 +83,13 @@ class BeliefsController < ApplicationController
           if c_range >= MAX_CONN_SIZE_RANGE
             @c_divide_by = c_range / MAX_CONN_SIZE_RANGE
           end
-          @c_subtract = c_max - MAX_CONN_SIZE
+          @c_divide_by = 1 if @c_divide_by <= 0
+          @c_subtract = (c_max / @c_divide_by) - MAX_CONN_SIZE
         elsif @connections.count == 1
           @c_subtract = @connections.first.strong_connections - MAX_CONN_SIZE
         end
 
         @c_subtract = 0 if @c_subtract < 0
-
-        @divide_by = 1 if @divide_by <= 0
-        @c_divide_by = 1 if @c_divide_by <= 0
 
         render { render :json => {:beliefs => @beliefs,
                                   :connections => @connections,

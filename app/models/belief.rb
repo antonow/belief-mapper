@@ -35,17 +35,6 @@ class Belief < ActiveRecord::Base
     results
   end
 
-  def list_top_connections
-    top_connections = Connection.connected_belief_strengths(self)[0..9]
-    passed_connections = []
-    top_connections.each do |belief|
-      unless belief[1] == 0
-        passed_connections << [belief[0].name.capitalize, belief[1]]
-      end
-    end
-    passed_connections
-  end
-
   def strong_convictions
     self.user_beliefs.where('conviction > 50').to_a
   end

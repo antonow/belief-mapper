@@ -8,13 +8,8 @@ class CommentsController < ApplicationController
   def create
     body = params[:comment][:body]
     unless body.nil? || body.match(/href/)
-      if params[:comment][:title] != nil
-        @comment = Comment.create!(title: params[:comment][:title], body: body, user: current_user)
-        @comment.linkify_comment
-      else
-        @comment = Comment.create!(body: body, user: current_user)
-        @comment.linkify_comment
-      end
+      @comment = Comment.create!(body: body, user: current_user)
+      @comment.linkify_comment
 
       if params[:belief_id]
         belief = Belief.find(params[:belief_id])
@@ -27,6 +22,9 @@ class CommentsController < ApplicationController
     redirect_to :back
   end
 
-
+  def destroy
+    Comment.find(params[:id].to_i).destroy
+    redirect_to :back
+  end
 
 end
