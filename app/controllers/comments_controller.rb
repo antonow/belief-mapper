@@ -11,18 +11,18 @@ class CommentsController < ApplicationController
       @comment = Comment.create!(body: body, user: current_user)
       
       if params[:belief_id]
-        belief = Belief.find(params[:belief_id])
+        belief = Belief.find(params[:belief_id].to_i)
         @comment.tag_list.add(belief.name)
       end
 
-      unless params[:comment_id] == ""
-        parent_comment = Comment.find(params[:comment_id])
+      unless params[:comment_id].nil? || params[:comment_id] == ""
+        parent_comment = Comment.find(params[:comment_id].to_i)
         parent_comment.replies << @comment
         @comment.tag_list.add(parent_comment.tag_list)
       end
 
+      @comment.save
       @comment.linkify_comment
-      # @comment.save
 
     end
     @comments = Comment.all.reverse
@@ -31,7 +31,17 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    Comment.find(params[:id].to_i).destroy
+    comment = Comment.find(params[:id].to_i)
+    
+    comment.tags.each do |tag|
+      tag.taggings_count -= 1
+      if tag.taggings_count <= 0
+        tag.destroy
+      end
+    end
+
+    comment.destroy
+      
     redirect_to :back
   end
 

@@ -44,7 +44,7 @@
 	</div>
 
 	<div class="col-md-7" style="overflow:auto; height:460px;">
-		<h3>Discussion Board</h3>
+		<h3 class="inline">Discussion Board for <%= @belief.name.capitalize %> </h3><%= link_to 'See All', comments_path %><br><br>
 		<%= render partial: "comments/belief_discussion", locals: { belief: @belief } %>
 	</div>
 </div>
