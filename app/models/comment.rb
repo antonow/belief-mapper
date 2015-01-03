@@ -1,6 +1,8 @@
 class Comment < ActiveRecord::Base
 
   belongs_to :user
+  belongs_to :reply_to, class_name: "Comment", foreign_key: "comment_id"
+  has_many :replies, class_name: "Comment"
 
   acts_as_taggable
   scope :by_join_date, order("created_at DESC")

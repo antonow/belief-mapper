@@ -196,3 +196,20 @@ hr {
 .login-top {
   margin-left: 4px;
 }
+
+.comment {
+  list-style-type: none;
+  width: 104%;
+  position: relative;
+  right: 4%;
+}
+
+#comment-divider {
+  position: relative;
+  bottom: 4px;
+}
+
+.comment-container {
+  position: relative;
+  right: 10px;
+}

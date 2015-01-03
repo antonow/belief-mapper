@@ -1,0 +1,16 @@
+<% @comment = Comment.new %>
+<%= form_for @comment, url: comments_path, :html => { method: :post, :class => "form-inline centered" } do |f| %>
+
+  <div class="field form-group">
+    <% f.label :body %>
+    <%= f.text_area :body, :size => "85%", placeholder: "Leave a comment...", :class => "form-control", hide_label: true %>
+  </div>
+
+  <div class="actions form-group">
+    <%= f.submit "Submit", :class => "btn btn-primary" %>
+  </div>
+
+  <input hidden name="comment_id" value=<%= @reply_to unless @reply_to.nil? %> >
+
+<% end %>
+<br>

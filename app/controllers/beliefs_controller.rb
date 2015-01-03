@@ -126,6 +126,10 @@ class BeliefsController < ApplicationController
     render json: Belief.search(params[:query], fields: [{name: :text_start}], limit: 10).map(&:name)
   end
 
+  def beliefs
+    redirect_to belief_path(params[:id])
+  end
+
   def list
     @results = Belief.all.order(user_count: :desc)
     render "list"

@@ -12,16 +12,13 @@
   </div>
 <% end %>
 
+<br>
 <% if @comments == [] %>
-  <br>
   <p>No comments yet.</p>
 <% else %>
+  <ul class="comment-container">
   <% @comments.each do |comment| %>
-  <h4><%= comment.title %></h4>
-  <p><%= comment.user.username %></p>
-  <p><%=raw comment.body %></p>
-    <% unless @comments.last == comment %>
-      <hr>
-    <% end %>
+    <%= render partial: "comments/show", locals: { comment: comment } %>
   <% end %>
+  </ul>
 <% end %>
