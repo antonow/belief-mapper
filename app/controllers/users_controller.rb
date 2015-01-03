@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :require_login, :only=>[:show, :skip, :refresh_question, :show]
+  skip_before_filter :require_login, :only=>[:show, :skip, :refresh_question]
 
   def index
     respond_to do |format|

@@ -39,9 +39,13 @@ class Belief < ActiveRecord::Base
     self.user_beliefs.where('conviction > 50').to_a
   end
 
+  def some_convictions
+    self.user_beliefs.where('conviction > 5').to_a
+  end
+
   def belief_demographics
     demo_array = []
-    self.strong_convictions.each do |ub|
+    self.some_convictions.each do |ub|
       demo_array << ub.user.demographic unless ub.user.nil? || ub.user.demographic.nil?
     end
     return demo_array
