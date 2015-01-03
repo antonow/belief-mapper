@@ -207,9 +207,15 @@ hr {
 #comment-divider {
   position: relative;
   bottom: 4px;
+  right: 3%;
+  width: 105%;
 }
 
 .comment-container {
   position: relative;
   right: 10px;
+}
+
+.inline {
+  display: inline;
 }
