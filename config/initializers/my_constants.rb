@@ -1,7 +1,7 @@
 # Restart server after making changes to see them
 # Run this to restart server: touch tmp/restart.txt
 
-DEFAULT_MAX_BELIEFS = 25
+DEFAULT_MAX_BELIEFS = 20
 USER_MAX_BELIEFS = 20
 
 CONN_MULTIPLIER = 2 # a multiplier of 2 means there are twice as many connections as beliefs

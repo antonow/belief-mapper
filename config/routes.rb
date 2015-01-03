@@ -29,9 +29,12 @@ Rails.application.routes.draw do
   # post 'login' => 'my_sessions#create'
 
 
+  get 'users/refresh_question' => 'users#refresh_question'
+  post 'users/skip' => 'users#skip'
+  get 'users/your_beliefs' => 'users#your_beliefs'
 
 
-  resources :beliefs, only: [:index, :filter, :results, :search, :user, :show]
+  resources :beliefs, only: [:index, :filter, :results, :search, :user, :show, :beliefs]
   get 'beliefs' => 'beliefs#index'
   get 'beliefs/user' => 'beliefs#user'
   get 'beliefs/filter' => 'beliefs#filter'
@@ -41,9 +44,6 @@ Rails.application.routes.draw do
   get 'list', to: 'beliefs#list', as: :list_beliefs
 
   resources :users, only: [:index, :skip, :show, :your_beliefs]
-  get 'users/refresh_question' => 'users#refresh_question'
-  post 'users/skip' => 'users#skip'
-  get 'users/your_beliefs' => 'users#your_beliefs'
 
 
   resources :demographics, only: [:new, :create, :update, :edit]
