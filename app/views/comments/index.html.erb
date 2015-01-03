@@ -6,34 +6,16 @@
 
 <div class="row">
   <div class="col-md-7">
-  <%= form_for @comment, url: comments_path, :html => { method: :post, :class => "form-inline centered" } do |f| %>
+  <%= render partial: "form" %>
 
-    <div class="field form-group">
-      <% f.label :body %>
-      <%= f.text_area :body, :size => "85%", placeholder: "Leave a comment...", :class => "form-control", hide_label: true %>
-    </div>
-
-
-
-    <div class="actions form-group">
-      <%= f.submit "Submit", :class => "btn btn-primary" %>
-    </div>
-  <% end %>
-
-  <br>
   <% if @comments.nil? %>
     <p class="lead">No comments to display yet.</p>
   <% else %>
+    <ul class="comment-container">
     <% @comments.each do |comment| %>
-    <h4><%= comment.title %></h4>
-    <div class="pull-right"><%=raw "posted in " + link_to(comment.tags.first.name, belief_path(comment.tags.first.name))  unless comment.tags.first.nil?%><br>
-      <%= button_to 'delete', comment_path(comment), method: "delete", :class=> "pull-right pull-down btn-sm btn btn-danger", data: { confirm: "Confirm please" } if comment.user == current_user %></div>
-    <p><%= comment.user.username %></p>
-    <p><%=simple_format comment.body %></p>
-      <% unless @comments.last == comment %>
-        <hr>
-      <% end %>
+      <%= render partial: "show", locals: { comment: comment } %>
     <% end %>
+    </ul>
   <% end %>
   </div>
   <div class="col-md-5"><br>

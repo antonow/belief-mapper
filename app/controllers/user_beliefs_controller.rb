@@ -29,6 +29,10 @@ class UserBeliefsController < ApplicationController
         # user.held_belief_ids << user_belief.belief_id
       # else
         # user.not_at_all_belief_ids << user_belief.belief_id
+      else
+        respond_to do |format|
+          format.json { head :ok }
+        end
       end
     end
   end

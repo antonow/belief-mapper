@@ -101,6 +101,12 @@ $(document).ready(function(){
     $('#refresh-'+this.classList[1]).load('/users/refresh_question?sliderOnly=true&id=' + this.classList[1]);
   });
 
+  $('.reply').click(function(e) {
+  	e.preventDefault();
+    $('.reply-form').hide();
+  	$('#reply-form-'+this.classList[1]).show().load('/comments/form?comment_id=' + this.classList[1]);
+  })
+
 });
 
 

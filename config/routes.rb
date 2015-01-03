@@ -29,39 +29,29 @@ Rails.application.routes.draw do
   # post 'login' => 'my_sessions#create'
 
 
+  get 'users/refresh_question' => 'users#refresh_question'
+  post 'users/skip' => 'users#skip'
+  get 'users/your_beliefs' => 'users#your_beliefs'
 
 
-  resources :beliefs, only: [:index, :filter, :results, :search, :user, :show]
+  resources :beliefs, only: [:index, :filter, :results, :search, :user, :show, :beliefs]
   get 'beliefs' => 'beliefs#index'
   get 'beliefs/user' => 'beliefs#user'
   get 'beliefs/filter' => 'beliefs#filter'
   get 'beliefs/results' => 'beliefs#results'
   post 'beliefs/search' => 'beliefs#search'
-
-  # get 'beliefs/list', to: 'beliefs#list', as: :beliefs_list
-
-  # resources :beliefs do
-  #   collection do
-  #     get 'list'
-  #   end
-  # end
-
-  # resources :beliefs do
-  #   get 'list', on: :collection
-  # end
-
+  get 'beliefs/beliefs/:id' => 'beliefs#beliefs'
   get 'list', to: 'beliefs#list', as: :list_beliefs
-  get 'users/refresh_question' => 'users#refresh_question'
-  post 'users/skip' => 'users#skip'
-  get 'users/your_beliefs' => 'users#your_beliefs'
 
   resources :users, only: [:index, :skip, :show, :your_beliefs]
+
 
   resources :demographics, only: [:new, :create, :update, :edit]
 
   resources :categories, only: [:index, :show]
 
-  resources :comments, only: [:index, :create, :destroy]
+  resources :comments, only: [:index, :create, :destroy, :form]
+  get 'comments/form' => 'comments#form'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

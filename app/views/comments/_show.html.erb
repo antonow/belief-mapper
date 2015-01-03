@@ -1,0 +1,26 @@
+<li class="comment">
+
+  <% unless @comments.first == comment %>
+    <hr id="comment-divider">
+  <% end %>
+
+  <div class="pull-right">
+    <%=raw "posted in " + link_to(comment.tags.first.name, belief_path(comment.tags.first.name))  unless comment.tags.first.nil? || !!(request.original_url=~ /beliefs/) %><br>
+    <% if comment.user == current_user %>
+      <%= button_to 'Delete', comment_path(comment), method: "delete", :class=> "pull-right btn-sm btn btn-danger", data: { confirm: "Confirm please" } %>
+    <% else %>
+      <%= button_tag 'Reply', :class => 'reply ' + comment.id.to_s + " pull-right btn-sm btn btn-default" %>
+    <% end %>
+  </div>
+  <p><%= comment.user.username %></p>
+  <p><%=raw comment.body %></p>
+  <div id=<%= "reply-form-" + comment.id.to_s %> class="reply-form"></div>
+
+  <ul>
+  <% comment.replies.each do |reply| %>
+    <div>
+      <%= render partial: "comments/show", locals: { comment: reply } %>
+    </div>
+  <% end %>
+  </ul>
+</li>
