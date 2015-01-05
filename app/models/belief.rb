@@ -6,10 +6,12 @@ class Belief < ActiveRecord::Base
 
   validates :user_count, numericality: { greater_than_or_equal: 0 }
 
-  include ApplicationHelper
-
+  has_paper_trail :only => [:name, :definition]
+  
   extend FriendlyId
   friendly_id :name, use: :slugged
+
+  include ApplicationHelper
 
   def self.search(query)
     where("definition like ? OR name like ?", "%#{query}%", "%#{query}%")
@@ -67,7 +69,7 @@ class Belief < ActiveRecord::Base
         unless age.nil?
           min_age = age if age < min_age
           max_age = age if age > max_age
-          data_hash[age] += 1
+          data_hash[age] += 1 unless data_hash[age].nil?
         end
       end
     end
@@ -81,7 +83,7 @@ class Belief < ActiveRecord::Base
     demographics = self.belief_demographics
     unless demographics.nil?
       demographics.each do |demo|
-        data_array << [demo.education_level] unless demo.education_level.nil?
+        data_array << [demo.education_level] unless demo.education_level.nil?  || demo.education_level == ""
       end
     end
     data_array = data_array.group_by {|i| i}.map{ |k,v| [k, v.count] }
@@ -93,7 +95,7 @@ class Belief < ActiveRecord::Base
     demographics = self.belief_demographics
     unless demographics.nil?
       demographics.each do |demo|
-        data_array << [demo.gender_sorted] unless demo.gender_sorted.nil?
+        data_array << [demo.gender_sorted] unless demo.gender_sorted.nil? || demo.gender_sorted == ""
       end
     end
     data_array = data_array.group_by {|i| i}.map{ |k,v| [k, v.count] }
@@ -105,7 +107,7 @@ class Belief < ActiveRecord::Base
     demographics = self.belief_demographics
     unless demographics.nil?
       demographics.each do |demo|
-        data_array << [demo.religion_sorted] unless demo.religion_sorted.nil?
+        data_array << [demo.religion_sorted] unless demo.religion_sorted.nil? || demo.religion_sorted == ""
       end
     end
     data_array = data_array.group_by {|i| i}.map{ |k,v| [k, v.count] }

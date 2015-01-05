@@ -31,23 +31,10 @@ class UserBelief < ActiveRecord::Base
       if current_total <= 0
         belief.avg_conviction = self.conviction
       else
-        belief.avg_conviction = ((current_total - 1) * current_average + self.conviction) / current_total
+        belief.avg_conviction = (current_total * current_average + self.conviction) / (current_total + 1)
       end
     end
     belief.save!
-  end
-
-  def calculate_average_conviction
-    total = 0
-    self.user_beliefs.where(skipped: false).each do |ub|
-      total += ub.conviction
-    end
-    if self.user_beliefs.count == 0
-      self.avg_conviction = 0
-    else
-      self.avg_conviction = total/self.user_beliefs.count
-    end
-    self.save
   end
 
 end
