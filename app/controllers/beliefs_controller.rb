@@ -40,8 +40,8 @@ class BeliefsController < ApplicationController
 
         if params[:count].present?
           @count = params[:count].to_i unless params[:count].to_i <= 0
-          @beliefs = @beliefs.limit(@count)
         end
+        @beliefs = @beliefs.limit(@count)
 
         @connections = []
         count = @beliefs.count

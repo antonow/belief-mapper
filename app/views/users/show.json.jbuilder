@@ -3,8 +3,8 @@ json.beliefs @beliefs do |belief|
   json.name belief.name
   json.definition belief.definition
   json.count belief.user_count / @divide_by + MIN_BELIEF_SIZE - @subtract
-  if current_user.held_beliefs.include?(belief)
-    json.hsl belief.user_beliefs.find_by(user: current_user).conviction
+  if @user.held_beliefs.include?(belief)
+    json.hsl belief.user_beliefs.find_by(user: @user).conviction
   else
     json.hsl -1
   end

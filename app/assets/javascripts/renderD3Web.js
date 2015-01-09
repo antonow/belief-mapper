@@ -11,7 +11,7 @@ renderD3Web = function(baseUrl) {
   if (count != null) {
     count = "?"+count[0];
   } else {
-    count = "?count=30";
+    count = "";
   }
 
   var category = current_url.match(/category=\d+/);

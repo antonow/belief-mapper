@@ -32,7 +32,8 @@
             <% else %>
               <h1>Congratulations, you've answered all the questions we have for you!</h1>
               <p>You've skipped <%= current_user.user_beliefs.where(skipped: true).count %> questions. Check out <%= link_to 'your skipped questions', "/users/your_beliefs#your_skipped_questions" %> if you'd like to revisit them.
-                There are also more beliefs in the system than we've asked you about. To view them, checkout the list of <%= link_to 'all beliefs', list_beliefs_path%>.</p><br>
+                There are more beliefs in the system than we've asked you about. To view them, checkout the list of <%= link_to 'all beliefs', list_beliefs_path %>.</p>
+                <p>You can also share your belief map with <%= link_to 'this url', user_path(current_user.unique_url) %>. Your name or other personal information will <strong>not</strong> be displayed along with your map. Thank you for using Belief Mapper!</p><br>
             <% end %>
             <%= render partial: "beliefs/progress_bar" %>
           <% end %>

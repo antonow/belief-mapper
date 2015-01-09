@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :age %><br />
-    <%= f.number_field :age, hide_label: true %>
+    <%= f.number_field :age, hide_label: true, in: 3...120 %>
   </div>
 
   <div class="field">

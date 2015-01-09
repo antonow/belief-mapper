@@ -102,7 +102,7 @@ class UsersController < ApplicationController
       format.json {
         @user = User.find_by(unique_url: params[:id])
         @connections = []
-        @beliefs = current_user.held_beliefs_by_conviction
+        @beliefs = @user.held_beliefs_by_conviction
         count = @beliefs.count
 
         @divide_by = 1

@@ -10,9 +10,9 @@ class Comment < ActiveRecord::Base
   def linkify_comment
     matches = self.body.scan(/\b[A-Za-z]+ism/).sort_by { |ism| ism.length }.reverse
     matches.each do |match|
-    	if Belief.all_names.include? (match)
+    	if Belief.all_names.include? (match.downcase)
 		    belief = Belief.find_by(name: match)
-		    self.update(body: self.body.gsub(/(?<!>)#{match}(?!<)/, "<a href='beliefs/#{match}' rel='tooltip' title='#{belief.definition}'>#{match}</a>"))
+		    self.update(body: self.body.gsub(/(?<!>)#{match}(?!<)/, "<a href='beliefs/#{match.downcase}' rel='tooltip' title='#{belief.definition}'>#{match}</a>"))
       else # if this 'ism' doesn' exist in the system yet
 		    self.update(body: self.body.gsub(/(?<!>)#{match}(?!<)/, "<a href='#' rel='tooltip' title='This belief is pending'>#{match}</a>"))
 		  end

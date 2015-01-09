@@ -3,6 +3,11 @@ class User < ActiveRecord::Base
 
   include BeliefsHelper
 
+  after_destroy do
+    self.user_beliefs.destroy_all
+    self.demographic.destroy unless self.demographic.nil?
+  end
+
   # @held_belief_ids = []
   # @skipped_belief_ids = []
   # @not_at_all_belief_ids = []
